@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AcceptanceTests/AcceptanceTests.csproj" />
+  <Project Path="Ahorcado/Ahorcado.csproj" />
+  <Project Path="Tests/Tests.csproj" />
+  <Project Path="Web/Web.csproj" />
+</Solution>
