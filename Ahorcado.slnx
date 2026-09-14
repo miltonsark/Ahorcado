@@ -2,5 +2,5 @@
   <Project Path="AcceptanceTests/AcceptanceTests.csproj" />
   <Project Path="Ahorcado/Ahorcado.csproj" />
   <Project Path="Tests/Tests.csproj" />
-  <Project Path="Web/Web.csproj" />
+  <Project Path="WebAhorcado/WebAhorcado.csproj" Id="be742bea-c356-4758-9199-c59cf5a1265c" />
 </Solution>
