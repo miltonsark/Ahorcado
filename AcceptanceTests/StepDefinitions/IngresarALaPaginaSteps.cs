@@ -17,7 +17,7 @@ namespace Ahorcado.AcceptanceTests.StepDefinitions
             var playwright = await Playwright.CreateAsync();
             var browser = await playwright.Chromium.LaunchAsync();
             _page = await browser.NewPageAsync();
-            await _page.GotoAsync("http://localhost:5000/");
+            await _page.GotoAsync("https://localhost:7122/");
         }
 
         [Then(@"veo el título ""(.*)""")]
