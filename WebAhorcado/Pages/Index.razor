@@ -1,3 +1,12 @@
 ﻿@page "/"
 
 <h1>Ahorcado</h1>
+
+<p data-testid="palabra-oculta">@PalabraOculta</p>
+
+@code {
+    [SupplyParameterFromQuery(Name = "word")]
+    public string? Word { get; set; }
+
+    private string PalabraOculta => new Ahorcado.Ahorcado(Word ?? "").PalabraEnmascarada();
+}
