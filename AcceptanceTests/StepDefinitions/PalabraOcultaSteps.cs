@@ -19,4 +19,13 @@ public class PalabraOcultaSteps
         var palabra = _navegador.Page.GetByTestId("palabra-oculta");
         await Assertions.Expect(palabra).ToHaveTextAsync(esperado);
     }
+
+    [When("ingreso la letra {string}")]
+    public async Task CuandoIngresoLaLetra(string letra)
+    {
+        var opciones = new LocatorFillOptions { Timeout = 5000 };
+        await _navegador.Page.GetByTestId("letra-input").FillAsync(letra, opciones);
+        await _navegador.Page.GetByTestId("letra-enviar")
+            .ClickAsync(new LocatorClickOptions { Timeout = 5000 });
+    }
 }
