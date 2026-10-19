@@ -6,7 +6,9 @@ namespace Ahorcado;
 
 public class Ahorcado
 {
-    public Ahorcado(string palabra) { }
+    private readonly string _palabra;
 
-    public string PalabraEnmascarada() => "____";
+    public Ahorcado(string palabra) => _palabra = palabra;
+
+    public string PalabraEnmascarada() => string.Join(" ", _palabra.Select(_ => "_"));
 }

@@ -10,6 +10,14 @@ public class AhorcadoTests
     {
         var juego = new Juego("GATO");
 
-        Assert.Equal("____", juego.PalabraEnmascarada());
+        Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void PalabraEnmascarada_DePerro_MuestraUnGuionPorLetra()
+    {
+        var juego = new Juego("PERRO");
+
+        Assert.Equal("_ _ _ _ _", juego.PalabraEnmascarada());
     }
 }
