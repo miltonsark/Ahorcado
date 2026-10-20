@@ -8,4 +8,4 @@ A short summary of the feature
 Escenario: Ingreso una letra que está en la palabra
 	Dado que ingreso a la partida con la palabra 'GATO'
 	Cuando ingreso la letra 'A'
-	Entonces veo la palabra oculta "_A__"
+	Entonces veo la palabra oculta "_ A _ _"

@@ -2,11 +2,27 @@
 
 <h1>Ahorcado</h1>
 
-<p data-testid="palabra-oculta">@PalabraOculta</p>
+<p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
+
+<input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" />
+<button data-testid="letra-enviar" @onclick="EnviarLetra">Adivinar</button>
 
 @code {
     [SupplyParameterFromQuery(Name = "word")]
     public string? Word { get; set; }
 
-    private string PalabraOculta => new Ahorcado.Ahorcado(Word ?? "").PalabraEnmascarada();
+    private Ahorcado.Ahorcado? juego;
+    private string letra = "";
+
+    protected override void OnParametersSet()
+    {
+        juego ??= new Ahorcado.Ahorcado(Word ?? "");
+    }
+
+    private void EnviarLetra()
+    {
+        if (letra.Length == 1)
+            juego!.Adivinar(char.ToUpperInvariant(letra[0]));
+        letra = "";
+    }
 }
