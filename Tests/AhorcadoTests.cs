@@ -20,4 +20,14 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ _ _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Adivinar_A_en_GATO_revela_la_letra()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('A');
+
+        Assert.Equal("_ A _ _", juego.PalabraEnmascarada());
+    }
 }
