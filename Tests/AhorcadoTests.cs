@@ -24,7 +24,7 @@ public class AhorcadoTests
     [Fact]
     public void Adivinar_A_en_GATO_revela_la_letra()
     {
-        var juego = new Ahorcado.Ahorcado("GATO");
+        var juego = new Juego("GATO");
 
         juego.Adivinar('A');
 
