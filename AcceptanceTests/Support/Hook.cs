@@ -35,7 +35,7 @@ public class Hooks
         }) ?? throw new InvalidOperationException("No pude iniciar WebAhorcado.");
 
         using var http = new HttpClient();
-        var limite = DateTime.UtcNow.AddSeconds(60);
+        var limite = DateTime.UtcNow.AddSeconds(120);
         while (DateTime.UtcNow < limite)
         {
             try
@@ -47,7 +47,7 @@ public class Hooks
             await Task.Delay(500);
         }
 
-        throw new InvalidOperationException("WebAhorcado no arrancó en 60 s.");
+        throw new InvalidOperationException("WebAhorcado no arrancó en 120 s.");
     }
 
     [AfterTestRun]

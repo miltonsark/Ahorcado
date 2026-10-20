@@ -26,17 +26,36 @@ jobs:
       - name: Restore
         run: dotnet restore Ahorcado.slnx
 
+      # Se compila en Debug (default) porque el hook de los AT levanta la web
+      # con "dotnet run", que usa Debug: asi reutiliza este build.
       - name: Build
-        run: dotnet build Ahorcado.slnx --no-restore -c Release
+        run: dotnet build Ahorcado.slnx --no-restore
 
-      # Solo unit tests: AcceptanceTests suele necesitar navegador/app levantada
-      - name: Test
-        run: dotnet test Tests --no-build -c Release --logger trx --results-directory TestResults
+      # Unit tests + coverage del dominio (proyecto Ahorcado). Falla si baja del 90%.
+      - name: Unit tests + coverage (minimo 90%)
+        run: >
+          dotnet test Tests --no-build
+          --logger "trx;LogFileName=unit-tests.trx" --results-directory TestResults
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          /p:CoverletOutput=../TestResults/coverage/
+          /p:Include="[Ahorcado]*"
+          /p:Threshold=90
 
-      # Sube resultados aunque fallen los tests
+      # Playwright necesita el navegador y sus dependencias del sistema en el runner
+      - name: Instalar Chromium para Playwright
+        run: pwsh AcceptanceTests/bin/Debug/net10.0/playwright.ps1 install --with-deps chromium
+
+      # El hook (Support/Hook.cs) levanta WebAhorcado antes de correr los escenarios
+      - name: Acceptance tests
+        run: dotnet test AcceptanceTests --no-build --logger "trx;LogFileName=acceptance-tests.trx" --results-directory TestResults
+
+      # Sube resultados y coverage aunque fallen los tests
       - name: Publicar resultados
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: TestResults/*.trx
+          path: |
+            TestResults/*.trx
+            TestResults/coverage/
