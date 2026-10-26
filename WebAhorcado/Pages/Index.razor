@@ -7,6 +7,8 @@
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" />
 <button data-testid="letra-enviar" @onclick="EnviarLetra">Adivinar</button>
 
+<p>Errores: <span data-testid="errores"></span></p>
+
 @code {
     [SupplyParameterFromQuery(Name = "word")]
     public string? Word { get; set; }
