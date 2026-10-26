@@ -50,4 +50,14 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ T _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Adivinar_Z_en_GATO_suma_un_error()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+
+        Assert.Equal(1, juego.Errores);
+    }
 }
