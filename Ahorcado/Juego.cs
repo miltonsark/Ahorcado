@@ -11,7 +11,8 @@ public class Ahorcado
 
     public Ahorcado(string palabra) => _palabra = palabra;
 
-    public int Errores => 0;
+    public int Errores => 1;
+
     public void Adivinar(char letra)
     {
         letra = char.ToUpperInvariant(letra);
