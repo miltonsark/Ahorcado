@@ -40,4 +40,14 @@ public class AhorcadoTests
 
         Assert.Equal("_ A _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Adivinar_t_minuscula_en_GATO_revela_la_T()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('t');
+
+        Assert.Equal("_ _ T _", juego.PalabraEnmascarada());
+    }
 }
