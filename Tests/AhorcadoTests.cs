@@ -60,4 +60,15 @@ public class AhorcadoTests
 
         Assert.Equal(1, juego.Errores);
     }
+
+    [Fact]
+    public void Adivinar_dos_letras_que_no_estan_en_GATO_suma_dos_errores()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+        juego.Adivinar('X');
+
+        Assert.Equal(2, juego.Errores);
+    }
 }
