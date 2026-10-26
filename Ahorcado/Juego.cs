@@ -11,7 +11,7 @@ public class Ahorcado
 
     public Ahorcado(string palabra) => _palabra = palabra;
 
-    public int Errores => 1;
+    public int Errores { get; private set; }
 
     public void Adivinar(char letra)
     {
@@ -19,6 +19,8 @@ public class Ahorcado
 
         if (_palabra.Contains(letra))
             _acertadas.Add(letra);
+        else
+            Errores++;
     }
 
     public string PalabraEnmascarada() => string.Join(" ", _palabra.Select(letra =>
