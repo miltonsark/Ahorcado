@@ -13,6 +13,8 @@ public class Ahorcado
 
     public void Adivinar(char letra)
     {
+        letra = char.ToUpperInvariant(letra);
+
         if (_palabra.Contains(letra))
             _acertadas.Add(letra);
     }
