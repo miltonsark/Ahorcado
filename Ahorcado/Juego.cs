@@ -9,6 +9,7 @@ public class Ahorcado
     private readonly string _palabra;
     private readonly HashSet<char> _acertadas = new HashSet<char>();
     private readonly HashSet<char> _erradas = new HashSet<char>();
+    private const int MaxErrores = 6;
 
     public Ahorcado(string palabra) => _palabra = palabra;
 
@@ -17,7 +18,7 @@ public class Ahorcado
     public string Mensaje { get; private set; } = "";
 
     public string Resultado =>
-        Errores >= 6 ? "Perdiste" :
+        Errores >= MaxErrores ? "Perdiste" :
         _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
 
     public void Adivinar(char letra)
