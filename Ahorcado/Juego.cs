@@ -8,7 +8,7 @@ public class Ahorcado
 {
     private readonly string _palabra;
     private readonly HashSet<char> _acertadas = new HashSet<char>();
-    private char? _ultimaErrada;
+    private readonly HashSet<char> _erradas = new HashSet<char>();
 
     public Ahorcado(string palabra) => _palabra = palabra;
 
@@ -20,11 +20,8 @@ public class Ahorcado
 
         if (_palabra.Contains(letra))
             _acertadas.Add(letra);
-        else if (letra != _ultimaErrada)
-        {
+        else if (_erradas.Add(letra))
             Errores++;
-            _ultimaErrada = letra;
-        }
     }
 
     public string PalabraEnmascarada() => string.Join(" ", _palabra.Select(letra =>
