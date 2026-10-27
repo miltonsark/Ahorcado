@@ -9,6 +9,7 @@ public class Ahorcado
     private readonly string _palabra;
     private readonly HashSet<char> _acertadas = new HashSet<char>();
     private readonly HashSet<char> _erradas = new HashSet<char>();
+    private const int MaxErrores = 6;
 
     public Ahorcado(string palabra) => _palabra = palabra;
 
@@ -16,7 +17,9 @@ public class Ahorcado
 
     public string Mensaje { get; private set; } = "";
 
-    public string Resultado => _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
+    public string Resultado =>
+        Errores >= MaxErrores ? "Perdiste" :
+        _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
 
     public void Adivinar(char letra)
     {
@@ -31,6 +34,12 @@ public class Ahorcado
             Errores++;
     }
 
-    public string PalabraEnmascarada() => string.Join(" ", _palabra.Select(letra =>
-        _acertadas.Contains(letra) ? letra.ToString() : "_"));
+    public string PalabraEnmascarada()
+    {
+        if (Errores >= MaxErrores)
+            return string.Join(" ", _palabra.Select(letra => letra.ToString()));
+
+        return string.Join(" ", _palabra.Select(letra =>
+            _acertadas.Contains(letra) ? letra.ToString() : "_"));
+    }
 }

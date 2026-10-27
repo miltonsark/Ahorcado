@@ -140,4 +140,48 @@ public class AhorcadoTests
 
         Assert.Equal("", juego.Resultado);
     }
+
+    [Fact]
+    public void Fallar_6_letras_en_GATO_pierde()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("Perdiste", juego.Resultado);
+    }
+
+    [Fact]
+    public void Fallar_5_letras_en_GATO_todavia_no_pierde()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQWY")
+            juego.Adivinar(letra);
+
+        Assert.Equal("", juego.Resultado);
+    }
+
+    [Fact]
+    public void Perder_con_GATO_revela_la_palabra()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("G A T O", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Perder_con_PERRO_revela_la_palabra()
+    {
+        var juego = new Juego("PERRO");
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("P E R R O", juego.PalabraEnmascarada());
+    }
 }
