@@ -21,9 +21,11 @@ public class Ahorcado
         Errores >= MaxErrores ? "Perdiste" :
         _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
 
+    public bool Terminado => Resultado != "";
+
     public void Adivinar(char letra)
     {
-        if (Resultado != "") return;
+        if (Terminado) return;
 
         letra = char.ToUpperInvariant(letra);
 
