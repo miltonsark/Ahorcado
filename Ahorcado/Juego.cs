@@ -14,11 +14,14 @@ public class Ahorcado
 
     public int Errores { get; private set; }
 
-    public string Mensaje => "La letra Z ya fue usada";
+    public string Mensaje { get; private set; } = "";
 
     public void Adivinar(char letra)
     {
         letra = char.ToUpperInvariant(letra);
+
+        if (_acertadas.Contains(letra) || _erradas.Contains(letra))
+        Mensaje = $"La letra {letra} ya fue usada";
 
         if (_palabra.Contains(letra))
             _acertadas.Add(letra);
