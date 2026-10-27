@@ -17,7 +17,7 @@ public class Ahorcado
     public string Mensaje { get; private set; } = "";
 
     public string Resultado =>
-        Errores > 0 ? "Perdiste" :
+        Errores >= 6 ? "Perdiste" :
         _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
 
     public void Adivinar(char letra)
