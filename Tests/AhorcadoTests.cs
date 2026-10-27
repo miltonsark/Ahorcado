@@ -116,4 +116,28 @@ public class AhorcadoTests
 
         Assert.Equal("La letra A ya fue usada", juego.Mensaje);
     }
+
+    [Fact]
+    public void Adivinar_todas_las_letras_de_GATO_gana()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.Adivinar('A');
+        juego.Adivinar('T');
+        juego.Adivinar('O');
+
+        Assert.Equal("Ganaste", juego.Resultado);
+    }
+
+    [Fact]
+    public void Adivinar_solo_G_y_A_de_GATO_todavia_no_gana()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.Adivinar('A');
+
+        Assert.Equal("", juego.Resultado);
+    }
 }

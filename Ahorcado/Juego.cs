@@ -16,6 +16,8 @@ public class Ahorcado
 
     public string Mensaje { get; private set; } = "";
 
+    public string Resultado => _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
+
     public void Adivinar(char letra)
     {
         letra = char.ToUpperInvariant(letra);
