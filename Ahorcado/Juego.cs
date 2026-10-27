@@ -34,6 +34,12 @@ public class Ahorcado
             Errores++;
     }
 
-    public string PalabraEnmascarada() => string.Join(" ", _palabra.Select(letra =>
-        _acertadas.Contains(letra) ? letra.ToString() : "_"));
+    public string PalabraEnmascarada()
+    {
+        if (Errores >= MaxErrores)
+            return "G A T O";
+
+        return string.Join(" ", _palabra.Select(letra =>
+            _acertadas.Contains(letra) ? letra.ToString() : "_"));
+    }
 }
