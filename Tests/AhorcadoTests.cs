@@ -196,4 +196,16 @@ public class AhorcadoTests
 
         Assert.Equal(6, juego.Errores);
     }
+
+    [Fact]
+    public void Despues_de_ganar_no_se_aceptan_mas_letras()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "GATO")
+            juego.Adivinar(letra);
+        juego.Adivinar('Z');
+
+        Assert.Equal(0, juego.Errores);
+    }
 }
