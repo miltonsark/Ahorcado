@@ -140,4 +140,15 @@ public class AhorcadoTests
 
         Assert.Equal("", juego.Resultado);
     }
+
+    [Fact]
+    public void Fallar_6_letras_en_GATO_pierde()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("Perdiste", juego.Resultado);
+    }
 }
