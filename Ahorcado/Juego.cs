@@ -30,7 +30,7 @@ public class Ahorcado
         letra = char.ToUpperInvariant(letra);
 
         if (_acertadas.Contains(letra) || _erradas.Contains(letra))
-        Mensaje = $"La letra {letra} ya fue usada";
+            Mensaje = $"La letra {letra} ya fue usada";
 
         if (_palabra.Contains(letra))
             _acertadas.Add(letra);
