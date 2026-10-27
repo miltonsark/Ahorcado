@@ -129,4 +129,15 @@ public class AhorcadoTests
 
         Assert.Equal("Ganaste", juego.Resultado);
     }
+
+    [Fact]
+    public void Adivinar_solo_G_y_A_de_GATO_todavia_no_gana()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.Adivinar('A');
+
+        Assert.Equal("", juego.Resultado);
+    }
 }
