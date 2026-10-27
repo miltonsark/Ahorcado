@@ -173,4 +173,15 @@ public class AhorcadoTests
 
         Assert.Equal("G A T O", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Perder_con_PERRO_revela_la_palabra()
+    {
+        var juego = new Juego("PERRO");
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("P E R R O", juego.PalabraEnmascarada());
+    }
 }
