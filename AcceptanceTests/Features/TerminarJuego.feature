@@ -35,3 +35,15 @@ Escenario: Al perder veo la palabra completa
     Y ingreso la letra "Y"
     Y ingreso la letra "U"
     Entonces veo la palabra oculta "G A T O"
+
+@CA-3
+Escenario: Después de perder no se aceptan más letras
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "Z"
+    Y ingreso la letra "X"
+    Y ingreso la letra "Q"
+    Y ingreso la letra "W"
+    Y ingreso la letra "Y"
+    Y ingreso la letra "U"
+    Y ingreso la letra "K"
+    Entonces veo 6 errores
