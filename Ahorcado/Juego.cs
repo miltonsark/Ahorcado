@@ -14,7 +14,7 @@ public class Ahorcado
 
     public int Errores { get; private set; }
 
-    public string Mensaje => "";
+    public string Mensaje => "La letra Z ya fue usada";
 
     public void Adivinar(char letra)
     {
