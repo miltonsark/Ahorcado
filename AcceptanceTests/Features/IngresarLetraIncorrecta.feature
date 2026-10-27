@@ -2,7 +2,7 @@
 @HU-J02
 Característica: Ingresar una letra que no está en la palabra
 
-@CA-1
+@CA-2
 Escenario: Ingreso una letra que no está en la palabra
     Dado que ingreso a la partida con la palabra "GATO"
     Cuando ingreso la letra "Z"
