@@ -71,4 +71,27 @@ public class AhorcadoTests
 
         Assert.Equal(2, juego.Errores);
     }
+
+    [Fact]
+    public void Adivinar_Z_dos_veces_en_GATO_suma_un_solo_error()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+        juego.Adivinar('Z');
+
+        Assert.Equal(1, juego.Errores);
+    }
+
+    [Fact]
+    public void Adivinar_Z_X_Z_en_GATO_suma_dos_errores()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+        juego.Adivinar('X');
+        juego.Adivinar('Z');
+
+        Assert.Equal(2, juego.Errores);
+    }
 }

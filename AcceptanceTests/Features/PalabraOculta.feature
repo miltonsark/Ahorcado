@@ -1,5 +1,5 @@
 ﻿# language: es
-@HU-R02
+@HU-R01
 Característica: Iniciar partida con palabra oculta
 
 @CA-1
