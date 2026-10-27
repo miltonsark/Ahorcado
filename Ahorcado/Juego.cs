@@ -16,7 +16,7 @@ public class Ahorcado
 
     public string Mensaje { get; private set; } = "";
 
-    public string Resultado => "";
+    public string Resultado => "Ganaste";
 
     public void Adivinar(char letra)
     {
