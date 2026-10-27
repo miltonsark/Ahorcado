@@ -162,4 +162,15 @@ public class AhorcadoTests
 
         Assert.Equal("", juego.Resultado);
     }
+
+    [Fact]
+    public void Perder_con_GATO_revela_la_palabra()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("G A T O", juego.PalabraEnmascarada());
+    }
 }
