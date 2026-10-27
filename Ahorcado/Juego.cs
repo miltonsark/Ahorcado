@@ -23,6 +23,8 @@ public class Ahorcado
 
     public void Adivinar(char letra)
     {
+        if (Errores >= MaxErrores) return;
+
         letra = char.ToUpperInvariant(letra);
 
         if (_acertadas.Contains(letra) || _erradas.Contains(letra))
