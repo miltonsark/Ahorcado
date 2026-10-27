@@ -8,6 +8,8 @@
 <button data-testid="letra-enviar" @onclick="EnviarLetra">Adivinar</button>
 
 <p>Errores: <span data-testid="errores">@juego?.Errores</span></p>
+<p data-testid="mensaje">@juego?.Mensaje</p>
+
 
 @code {
     [SupplyParameterFromQuery(Name = "word")]

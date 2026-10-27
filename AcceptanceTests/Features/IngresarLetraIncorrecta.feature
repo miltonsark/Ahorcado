@@ -15,3 +15,10 @@ Escenario: Ingreso dos veces la misma letra que no está en la palabra
     Cuando ingreso la letra "Z"
     Y ingreso la letra "Z"
     Entonces veo 1 errores
+
+@CA-3
+Escenario: Ingreso una letra que ya usé y se me avisa
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "Z"
+    Y ingreso la letra "Z"
+    Entonces veo el mensaje "La letra Z ya fue usada"
