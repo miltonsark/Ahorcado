@@ -37,7 +37,7 @@ public class Ahorcado
     public string PalabraEnmascarada()
     {
         if (Errores >= MaxErrores)
-            return "G A T O";
+            return string.Join(" ", _palabra.Select(letra => letra.ToString()));
 
         return string.Join(" ", _palabra.Select(letra =>
             _acertadas.Contains(letra) ? letra.ToString() : "_"));
