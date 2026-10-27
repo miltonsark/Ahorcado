@@ -14,6 +14,8 @@ public class Ahorcado
 
     public int Errores { get; private set; }
 
+    public string Mensaje => "";
+
     public void Adivinar(char letra)
     {
         letra = char.ToUpperInvariant(letra);

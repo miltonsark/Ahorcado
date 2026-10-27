@@ -94,4 +94,15 @@ public class AhorcadoTests
 
         Assert.Equal(2, juego.Errores);
     }
+
+    [Fact]
+    public void Adivinar_Z_dos_veces_en_GATO_avisa_que_ya_fue_usada()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+        juego.Adivinar('Z');
+
+        Assert.Equal("La letra Z ya fue usada", juego.Mensaje);
+    }
 }
