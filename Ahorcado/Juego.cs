@@ -23,7 +23,7 @@ public class Ahorcado
 
     public void Adivinar(char letra)
     {
-        if (Errores >= MaxErrores) return;
+        if (Resultado != "") return;
 
         letra = char.ToUpperInvariant(letra);
 
