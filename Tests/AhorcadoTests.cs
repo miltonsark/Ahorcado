@@ -171,7 +171,7 @@ public class AhorcadoTests
         foreach (var letra in "ZXQWYU")
             juego.Adivinar(letra);
 
-        Assert.Equal("GATO", juego.PalabraEnmascarada());
+        Assert.Equal("G A T O", juego.PalabraEnmascarada());
     }
 
     [Fact]
@@ -182,6 +182,6 @@ public class AhorcadoTests
         foreach (var letra in "ZXQWYU")
             juego.Adivinar(letra);
 
-        Assert.Equal("PERRO", juego.PalabraEnmascarada());
+        Assert.Equal("P E R R O", juego.PalabraEnmascarada());
     }
 }
