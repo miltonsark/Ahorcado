@@ -4,7 +4,7 @@
 
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
-<input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" disabled="@(juego?.Terminado == true)" />
+<input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
 <button data-testid="letra-enviar" @onclick="EnviarLetra">Adivinar</button>
 
 <p>Errores: <span data-testid="errores">@juego?.Errores</span></p>
@@ -29,5 +29,11 @@
         if (letra.Length == 1)
             juego!.Adivinar(letra[0]);
         letra = "";
+    }
+
+    private void TeclaPresionada(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+            EnviarLetra();
     }
 }
