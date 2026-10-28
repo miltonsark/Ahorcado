@@ -248,4 +248,14 @@ public class AhorcadoTests
 
         Assert.Equal(40, juego.Puntaje);
     }
+
+    [Fact]
+    public void Mientras_la_partida_sigue_el_puntaje_es_0()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+
+        Assert.Equal(0, juego.Puntaje);
+    }
 }
