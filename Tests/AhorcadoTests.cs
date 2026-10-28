@@ -237,4 +237,15 @@ public class AhorcadoTests
 
         Assert.Equal(60, juego.Puntaje);
     }
+
+    [Fact]
+    public void Ganar_GATO_con_2_errores_da_40_puntos()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXGATO")
+            juego.Adivinar(letra);
+
+        Assert.Equal(40, juego.Puntaje);
+    }
 }
