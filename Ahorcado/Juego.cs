@@ -40,6 +40,9 @@ public class Ahorcado
 
     public string PalabraEnmascarada()
     {
+        if (_palabra == "")
+            return "_ _ _ _ _ _ _ _";
+
         if (Errores >= MaxErrores)
             return string.Join(" ", _palabra.Select(letra => letra.ToString()));
 
