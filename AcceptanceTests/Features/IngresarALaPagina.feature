@@ -9,3 +9,8 @@ Característica: Ingresar a la página
 Escenario: El jugador ingresa a la página
     Dado que navego a la página principal
     Entonces veo el título "Ahorcado"
+
+@CA-2
+Escenario: Sin palabra en la URL arranca con la palabra por defecto
+    Dado que navego a la página principal
+    Entonces veo la palabra oculta "_ _ _ _ _ _ _ _"

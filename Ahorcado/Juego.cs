@@ -10,8 +10,9 @@ public class Ahorcado
     private readonly HashSet<char> _acertadas = new HashSet<char>();
     private readonly HashSet<char> _erradas = new HashSet<char>();
     private const int MaxErrores = 6;
+    private const string PalabraPorDefecto = "AHORCADO";
 
-    public Ahorcado(string palabra) => _palabra = palabra;
+    public Ahorcado(string palabra) => _palabra = palabra == "" ? PalabraPorDefecto : palabra;
 
     public int Errores { get; private set; }
 
