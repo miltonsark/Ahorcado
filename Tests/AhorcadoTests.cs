@@ -226,4 +226,15 @@ public class AhorcadoTests
 
         Assert.Equal("A _ _ _ _ A _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Ganar_GATO_sin_errores_da_60_puntos()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "GATO")
+            juego.Adivinar(letra);
+
+        Assert.Equal(60, juego.Puntaje);
+    }
 }
