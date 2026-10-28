@@ -45,5 +45,4 @@ Escenario: Después de perder no se aceptan más letras
     Y ingreso la letra "W"
     Y ingreso la letra "Y"
     Y ingreso la letra "U"
-    Y ingreso la letra "K"
-    Entonces veo 6 errores
+    Entonces el campo de letra está deshabilitado
