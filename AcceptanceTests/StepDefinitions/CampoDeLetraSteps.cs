@@ -15,4 +15,12 @@ public class CampoDeLetraSteps
         var campo = _navegador.Page.GetByTestId("letra-input");
         await Assertions.Expect(campo).ToBeDisabledAsync();
     }
+
+    [When("ingreso la letra {string} y presiono Enter")]
+    public async Task CuandoIngresoLaLetraYPresionoEnter(string letra)
+    {
+        var campo = _navegador.Page.GetByTestId("letra-input");
+        await campo.FillAsync(letra, new LocatorFillOptions { Timeout = 5000 });
+        await campo.PressAsync("Enter");
+    }
 }

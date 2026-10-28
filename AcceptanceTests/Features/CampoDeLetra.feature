@@ -13,3 +13,9 @@ Escenario: Al ganar el campo de letra queda deshabilitado
     Y ingreso la letra "T"
     Y ingreso la letra "O"
     Entonces el campo de letra está deshabilitado
+
+@CA-1
+Escenario: Confirmo la letra con Enter
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "A" y presiono Enter
+    Entonces veo la palabra oculta "_ A _ _"
