@@ -208,4 +208,12 @@ public class AhorcadoTests
 
         Assert.Equal(0, juego.Errores);
     }
+
+    [Fact]
+    public void Sin_palabra_usa_la_palabra_por_defecto()
+    {
+        var juego = new Juego("");
+
+        Assert.Equal("_ _ _ _ _ _ _ _", juego.PalabraEnmascarada());
+    }
 }
