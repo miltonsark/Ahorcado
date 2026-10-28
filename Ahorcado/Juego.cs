@@ -24,7 +24,7 @@ public class Ahorcado
 
     public bool Terminado => Resultado != "";
 
-    public int Puntaje => 0;
+    public int Puntaje => 60;
 
     public void Adivinar(char letra)
     {
