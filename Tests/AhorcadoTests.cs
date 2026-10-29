@@ -320,4 +320,15 @@ public class AhorcadoTests
 
         Assert.True(juego.PuedePedirPista);
     }
+
+    [Fact]
+    public void Con_la_partida_ganada_no_se_puede_pedir_pista()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "GATO")
+            juego.Adivinar(letra);
+
+        Assert.False(juego.PuedePedirPista);
+    }
 }
