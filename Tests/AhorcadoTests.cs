@@ -342,4 +342,15 @@ public class AhorcadoTests
 
         Assert.False(juego.PuedePedirPista);
     }
+
+    [Fact]
+    public void Pedir_pista_dos_veces_cuenta_un_solo_error()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+        juego.PedirPista();
+
+        Assert.Equal(1, juego.Errores);
+    }
 }
