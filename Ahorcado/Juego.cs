@@ -43,6 +43,7 @@ public class Ahorcado
 
     public void PedirPista()
     {
+        _acertadas.Add('G');
     }
 
     public string PalabraEnmascarada()
