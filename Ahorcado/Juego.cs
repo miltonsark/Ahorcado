@@ -11,6 +11,7 @@ public class Ahorcado
     private readonly HashSet<char> _erradas = new HashSet<char>();
     private const int MaxErrores = 6;
     private const string PalabraPorDefecto = "AHORCADO";
+    private bool _pistaUsada;
 
     public Ahorcado(string palabra) => _palabra = palabra == "" ? PalabraPorDefecto : palabra;
 
@@ -26,7 +27,7 @@ public class Ahorcado
 
     public int Puntaje => Terminado ? (MaxErrores - Errores) * 10 : 0;
 
-    public bool PuedePedirPista => Errores == 0;
+    public bool PuedePedirPista => !_pistaUsada;
 
     public void Adivinar(char letra)
     {
@@ -48,6 +49,7 @@ public class Ahorcado
         var letra = _palabra.First(l => !_acertadas.Contains(l));
         _acertadas.Add(letra);
         Errores++;
+        _pistaUsada = true;
     }
 
     public string PalabraEnmascarada()
