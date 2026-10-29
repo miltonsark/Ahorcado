@@ -46,6 +46,8 @@ public class Ahorcado
 
     public void PedirPista()
     {
+        if (!PuedePedirPista) return;
+
         var letra = _palabra.First(l => !_acertadas.Contains(l));
         _acertadas.Add(letra);
         Errores++;
