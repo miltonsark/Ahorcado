@@ -280,4 +280,14 @@ public class AhorcadoTests
         Assert.Equal("G A _ _", juego.PalabraEnmascarada());
     }
 
+    [Fact]
+    public void Pedir_pista_suma_un_error()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+
+        Assert.Equal(1, juego.Errores);
+    }
+
 }
