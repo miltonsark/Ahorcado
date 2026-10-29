@@ -41,6 +41,10 @@ public class Ahorcado
             Errores++;
     }
 
+    public void PedirPista()
+    {
+    }
+
     public string PalabraEnmascarada()
     {
         if (Errores >= MaxErrores)
