@@ -2,7 +2,7 @@
 
 <h1>Ahorcado</h1>
 
-<button data-testid="config-predeterminada">Usar configuración predeterminada</button>
+<button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">Usar configuración predeterminada</button>
 
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
@@ -38,5 +38,10 @@
     {
         if (e.Key == "Enter")
             EnviarLetra();
+    }
+
+    private void UsarConfiguracionPredeterminada()
+    {
+        juego = new Ahorcado.Ahorcado("");
     }
 }
