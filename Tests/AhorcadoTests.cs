@@ -269,4 +269,15 @@ public class AhorcadoTests
         Assert.Equal("G _ _ _", juego.PalabraEnmascarada());
     }
 
+    [Fact]
+    public void Pedir_pista_despues_de_adivinar_la_G_revela_la_A()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.PedirPista();
+
+        Assert.Equal("G A _ _", juego.PalabraEnmascarada());
+    }
+
 }
