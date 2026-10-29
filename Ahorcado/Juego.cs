@@ -43,7 +43,8 @@ public class Ahorcado
 
     public void PedirPista()
     {
-        _acertadas.Add('G');
+        var letra = _palabra.First(l => !_acertadas.Contains(l));
+        _acertadas.Add(letra);
     }
 
     public string PalabraEnmascarada()
