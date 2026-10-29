@@ -301,4 +301,13 @@ public class AhorcadoTests
         Assert.Equal(2, juego.Errores);
     }
 
+    [Fact]
+    public void Despues_de_pedir_pista_no_se_puede_pedir_otra()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+
+        Assert.False(juego.PuedePedirPista);
+    }
 }
