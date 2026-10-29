@@ -59,3 +59,50 @@ jobs:
           path: |
             TestResults/*.trx
             TestResults/coverage/
+
+  # Publica la web en GitHub Pages solo si pasaron todos los tests
+  # y solo con push a master (al mergear un PR)
+  deploy:
+    needs: build-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Publicar WebAhorcado
+        run: dotnet publish WebAhorcado -c Release -o publish
+
+      # La web queda en /Ahorcado/ y no en la raiz del dominio
+      - name: Ajustar para GitHub Pages
+        run: |
+          sed -i 's|<base href="/" />|<base href="/Ahorcado/" />|' publish/wwwroot/index.html
+          cp publish/wwwroot/index.html publish/wwwroot/404.html
+          touch publish/wwwroot/.nojekyll
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir la web
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: publish/wwwroot
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
