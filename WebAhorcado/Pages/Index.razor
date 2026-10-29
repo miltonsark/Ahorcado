@@ -8,6 +8,7 @@
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
 <button data-testid="letra-enviar" @onclick="EnviarLetra">Adivinar</button>
+<button data-testid="pista" @onclick="() => juego!.PedirPista()">Pedir pista</button>
 
 <p>Errores: <span data-testid="errores">@juego?.Errores</span></p>
 <p data-testid="mensaje">@juego?.Mensaje</p>

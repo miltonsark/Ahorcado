@@ -41,6 +41,13 @@ public class Ahorcado
             Errores++;
     }
 
+    public void PedirPista()
+    {
+        var letra = _palabra.First(l => !_acertadas.Contains(l));
+        _acertadas.Add(letra);
+        Errores++;
+    }
+
     public string PalabraEnmascarada()
     {
         if (Errores >= MaxErrores)

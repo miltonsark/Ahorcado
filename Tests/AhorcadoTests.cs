@@ -258,4 +258,47 @@ public class AhorcadoTests
 
         Assert.Equal(0, juego.Puntaje);
     }
+
+    [Fact]
+    public void Pedir_pista_en_GATO_revela_la_G()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+
+        Assert.Equal("G _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Pedir_pista_despues_de_adivinar_la_G_revela_la_A()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.PedirPista();
+
+        Assert.Equal("G A _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Pedir_pista_suma_un_error()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+
+        Assert.Equal(1, juego.Errores);
+    }
+
+    [Fact]
+    public void Pedir_pista_con_un_error_previo_deja_dos_errores()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+        juego.PedirPista();
+
+        Assert.Equal(2, juego.Errores);
+    }
+
 }
