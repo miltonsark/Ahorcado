@@ -25,3 +25,9 @@ Escenario: Si la pista completa la palabra, gano
     Y ingreso la letra "T"
     Y pido una pista
     Entonces veo el resultado "Ganaste"
+
+@CA-5
+Escenario: Después de pedir una pista no puedo pedir otra
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando pido una pista
+    Entonces el botón de pista está deshabilitado
