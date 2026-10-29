@@ -301,4 +301,56 @@ public class AhorcadoTests
         Assert.Equal(2, juego.Errores);
     }
 
+    [Fact]
+    public void Despues_de_pedir_pista_no_se_puede_pedir_otra()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+
+        Assert.False(juego.PuedePedirPista);
+    }
+
+    [Fact]
+    public void Con_un_error_y_sin_pista_usada_se_puede_pedir_pista()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+
+        Assert.True(juego.PuedePedirPista);
+    }
+
+    [Fact]
+    public void Con_la_partida_ganada_no_se_puede_pedir_pista()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "GATO")
+            juego.Adivinar(letra);
+
+        Assert.False(juego.PuedePedirPista);
+    }
+
+    [Fact]
+    public void Con_una_sola_vida_no_se_puede_pedir_pista()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQWY")
+            juego.Adivinar(letra);
+
+        Assert.False(juego.PuedePedirPista);
+    }
+
+    [Fact]
+    public void Pedir_pista_dos_veces_cuenta_un_solo_error()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+        juego.PedirPista();
+
+        Assert.Equal(1, juego.Errores);
+    }
 }
