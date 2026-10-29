@@ -45,6 +45,7 @@ public class Ahorcado
     {
         var letra = _palabra.First(l => !_acertadas.Contains(l));
         _acertadas.Add(letra);
+        Errores = 1;
     }
 
     public string PalabraEnmascarada()
