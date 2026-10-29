@@ -26,7 +26,7 @@ public class Ahorcado
 
     public int Puntaje => Terminado ? (MaxErrores - Errores) * 10 : 0;
 
-    public bool PuedePedirPista => true;
+    public bool PuedePedirPista => Errores == 0;
 
     public void Adivinar(char letra)
     {
