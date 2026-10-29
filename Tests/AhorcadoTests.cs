@@ -331,4 +331,15 @@ public class AhorcadoTests
 
         Assert.False(juego.PuedePedirPista);
     }
+
+    [Fact]
+    public void Con_una_sola_vida_no_se_puede_pedir_pista()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQWY")
+            juego.Adivinar(letra);
+
+        Assert.False(juego.PuedePedirPista);
+    }
 }
