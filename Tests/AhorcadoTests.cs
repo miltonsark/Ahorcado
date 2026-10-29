@@ -310,4 +310,14 @@ public class AhorcadoTests
 
         Assert.False(juego.PuedePedirPista);
     }
+
+    [Fact]
+    public void Con_un_error_y_sin_pista_usada_se_puede_pedir_pista()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+
+        Assert.True(juego.PuedePedirPista);
+    }
 }
