@@ -290,4 +290,15 @@ public class AhorcadoTests
         Assert.Equal(1, juego.Errores);
     }
 
+    [Fact]
+    public void Pedir_pista_con_un_error_previo_deja_dos_errores()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+        juego.PedirPista();
+
+        Assert.Equal(2, juego.Errores);
+    }
+
 }
