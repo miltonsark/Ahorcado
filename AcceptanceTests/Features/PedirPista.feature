@@ -16,3 +16,12 @@ Escenario: Pedir una pista descuenta una vida
     Dado que ingreso a la partida con la palabra "GATO"
     Cuando pido una pista
     Entonces veo 1 errores
+
+@CA-4
+Escenario: Si la pista completa la palabra, gano
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "G"
+    Y ingreso la letra "A"
+    Y ingreso la letra "T"
+    Y pido una pista
+    Entonces veo el resultado "Ganaste"
