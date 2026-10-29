@@ -31,3 +31,22 @@ Escenario: Después de pedir una pista no puedo pedir otra
     Dado que ingreso a la partida con la palabra "GATO"
     Cuando pido una pista
     Entonces el botón de pista está deshabilitado
+
+@CA-3
+Escenario: Con la partida ganada no puedo pedir pista
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "G"
+    Y ingreso la letra "A"
+    Y ingreso la letra "T"
+    Y ingreso la letra "O"
+    Entonces el botón de pista está deshabilitado
+
+@CA-6
+Escenario: Con una sola vida no puedo pedir pista
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "Z"
+    Y ingreso la letra "X"
+    Y ingreso la letra "Q"
+    Y ingreso la letra "W"
+    Y ingreso la letra "Y"
+    Entonces el botón de pista está deshabilitado
