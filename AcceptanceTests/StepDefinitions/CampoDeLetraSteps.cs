@@ -23,4 +23,18 @@ public class CampoDeLetraSteps
         await campo.FillAsync(letra, new LocatorFillOptions { Timeout = 5000 });
         await campo.PressAsync("Enter");
     }
+
+    [Then("el campo de letra está vacío")]
+    public async Task EntoncesElCampoDeLetraEstaVacio()
+    {
+        var campo = _navegador.Page.GetByTestId("letra-input");
+        await Assertions.Expect(campo).ToHaveValueAsync("");
+    }
+
+    [Then("el campo de letra acepta una sola letra")]
+    public async Task EntoncesElCampoDeLetraAceptaUnaSolaLetra()
+    {
+        var campo = _navegador.Page.GetByTestId("letra-input");
+        await Assertions.Expect(campo).ToHaveAttributeAsync("maxlength", "1");
+    }
 }

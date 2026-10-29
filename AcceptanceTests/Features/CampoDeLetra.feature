@@ -19,3 +19,10 @@ Escenario: Confirmo la letra con Enter
     Dado que ingreso a la partida con la palabra "GATO"
     Cuando ingreso la letra "A" y presiono Enter
     Entonces veo la palabra oculta "_ A _ _"
+
+@CA-2
+Escenario: Se ingresa una letra por vez y el campo se limpia
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "A"
+    Entonces el campo de letra está vacío
+    Y el campo de letra acepta una sola letra
