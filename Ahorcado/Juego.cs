@@ -17,6 +17,7 @@ public class Ahorcado
 
     public Ahorcado(string palabra, Dificultad dificultad) : this(palabra)
     {
+        _maxErrores = 4;
     }
 
     public int Errores { get; private set; }
