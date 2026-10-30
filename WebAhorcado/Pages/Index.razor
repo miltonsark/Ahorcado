@@ -4,6 +4,9 @@
 
 <button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">Usar configuración predeterminada</button>
 
+<label>Nombre: <input data-testid="nombre-input" /></label>
+<p>Jugador: <span data-testid="jugador"></span></p>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
