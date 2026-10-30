@@ -362,4 +362,12 @@ public class AhorcadoTests
 
         Assert.Equal("Nico", jugador.Nombre);
     }
+
+    [Fact]
+    public void Jugador_Ana_se_llama_Ana()
+    {
+        var jugador = new Jugador("Ana");
+
+        Assert.Equal("Ana", jugador.Nombre);
+    }
 }
