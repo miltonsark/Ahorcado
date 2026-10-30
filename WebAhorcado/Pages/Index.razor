@@ -10,6 +10,10 @@
 <label>
     Dificultad:
     <select data-testid="dificultad" @onchange="CambiarDificultad">
+        <option value="Facil">Fácil</option>
+        <option value="Normal" selected>Normal</option>
+        <option value="Dificil">Difícil</option>
+    </select>
 </label>
 
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>

@@ -14,3 +14,8 @@ Escenario: En difícil pierdo con 4 errores
     Y ingreso la letra "Q"
     Y ingreso la letra "W"
     Entonces veo el resultado "Perdiste"
+
+@CA-2
+Escenario: Si no elijo dificultad, juego en Normal
+    Dado que ingreso a la partida con la palabra "GATO"
+    Entonces la dificultad elegida es "Normal"

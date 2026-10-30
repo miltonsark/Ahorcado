@@ -15,4 +15,11 @@ public class DificultadSteps
         await _navegador.Page.GetByTestId("dificultad")
             .SelectOptionAsync(new SelectOptionValue { Label = dificultad });
     }
+
+    [Then("la dificultad elegida es {string}")]
+    public async Task EntoncesLaDificultadElegidaEs(string valor)
+    {
+        var lista = _navegador.Page.GetByTestId("dificultad");
+        await Assertions.Expect(lista).ToHaveValueAsync(valor);
+    }
 }
