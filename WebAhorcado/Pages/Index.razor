@@ -7,6 +7,15 @@
 <label>Nombre: <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" /></label>
 <p>Jugador: <span data-testid="jugador">@(new Ahorcado.Jugador(nombre).Nombre)</span></p>
 
+<label>
+    Dificultad:
+    <select data-testid="dificultad">
+        <option value="Facil">Fácil</option>
+        <option value="Normal" selected>Normal</option>
+        <option value="Dificil">Difícil</option>
+    </select>
+</label>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
