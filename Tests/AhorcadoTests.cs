@@ -370,4 +370,12 @@ public class AhorcadoTests
 
         Assert.Equal("Ana", jugador.Nombre);
     }
+
+    [Fact]
+    public void Jugador_sin_nombre_se_llama_Anonimo()
+    {
+        var jugador = new Jugador("");
+
+        Assert.Equal("Anónimo", jugador.Nombre);
+    }
 }
