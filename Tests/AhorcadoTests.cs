@@ -390,4 +390,15 @@ public class AhorcadoTests
 
         Assert.Equal("Perdiste", juego.Resultado);
     }
+
+    [Fact]
+    public void En_facil_6_errores_todavia_no_pierde()
+    {
+        var juego = new Juego("GATO", Dificultad.Facil);
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("", juego.Resultado);
+    }
 }
