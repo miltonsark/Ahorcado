@@ -6,5 +6,5 @@ public class Jugador
 
     public Jugador(string nombre) => _nombre = nombre;
 
-    public string Nombre => _nombre;
+    public string Nombre => _nombre == "" ? "Anónimo" : _nombre;
 }
