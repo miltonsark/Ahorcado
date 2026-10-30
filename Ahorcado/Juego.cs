@@ -15,6 +15,10 @@ public class Ahorcado
 
     public Ahorcado(string palabra) => _palabra = palabra == "" ? PalabraPorDefecto : palabra;
 
+    public Ahorcado(string palabra, Dificultad dificultad) : this(palabra)
+    {
+    }
+
     public int Errores { get; private set; }
 
     public string Mensaje { get; private set; } = "";

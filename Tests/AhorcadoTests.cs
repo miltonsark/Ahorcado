@@ -1,5 +1,6 @@
 ﻿using Juego = Ahorcado.Ahorcado;
 using Jugador = Ahorcado.Jugador;
+using Dificultad = Ahorcado.Dificultad;
 using Xunit;
 
 namespace Tests;
@@ -377,5 +378,16 @@ public class AhorcadoTests
         var jugador = new Jugador("");
 
         Assert.Equal("Anónimo", jugador.Nombre);
+    }
+
+    [Fact]
+    public void En_dificil_se_pierde_con_4_errores()
+    {
+        var juego = new Juego("GATO", Dificultad.Dificil);
+
+        foreach (var letra in "ZXQW")
+            juego.Adivinar(letra);
+
+        Assert.Equal("Perdiste", juego.Resultado);
     }
 }
