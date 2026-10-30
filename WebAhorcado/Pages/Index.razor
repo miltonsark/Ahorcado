@@ -4,6 +4,9 @@
 
 <button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">Usar configuración predeterminada</button>
 
+<label>Nombre: <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" /></label>
+<p>Jugador: <span data-testid="jugador">@(new Ahorcado.Jugador(nombre).Nombre)</span></p>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
@@ -22,6 +25,7 @@
 
     private Ahorcado.Ahorcado? juego;
     private string letra = "";
+    private string nombre = ""; 
 
     protected override void OnParametersSet()
     {

@@ -1,4 +1,5 @@
 ﻿using Juego = Ahorcado.Ahorcado;
+using Jugador = Ahorcado.Jugador;
 using Xunit;
 
 namespace Tests;
@@ -352,5 +353,29 @@ public class AhorcadoTests
         juego.PedirPista();
 
         Assert.Equal(1, juego.Errores);
+    }
+
+    [Fact]
+    public void Jugador_Nico_se_llama_Nico()
+    {
+        var jugador = new Jugador("Nico");
+
+        Assert.Equal("Nico", jugador.Nombre);
+    }
+
+    [Fact]
+    public void Jugador_Ana_se_llama_Ana()
+    {
+        var jugador = new Jugador("Ana");
+
+        Assert.Equal("Ana", jugador.Nombre);
+    }
+
+    [Fact]
+    public void Jugador_sin_nombre_se_llama_Anonimo()
+    {
+        var jugador = new Jugador("");
+
+        Assert.Equal("Anónimo", jugador.Nombre);
     }
 }
