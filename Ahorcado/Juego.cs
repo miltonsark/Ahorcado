@@ -9,25 +9,35 @@ public class Ahorcado
     private readonly string _palabra;
     private readonly HashSet<char> _acertadas = new HashSet<char>();
     private readonly HashSet<char> _erradas = new HashSet<char>();
-    private const int MaxErrores = 6;
+    private readonly int _maxErrores = 6;
     private const string PalabraPorDefecto = "AHORCADO";
     private bool _pistaUsada;
 
     public Ahorcado(string palabra) => _palabra = palabra == "" ? PalabraPorDefecto : palabra;
+
+    public Ahorcado(string palabra, Dificultad dificultad) : this(palabra)
+    {
+        _maxErrores = dificultad switch
+        {
+            Dificultad.Facil => 8,
+            Dificultad.Dificil => 4,
+            _ => 6
+        };
+    }
 
     public int Errores { get; private set; }
 
     public string Mensaje { get; private set; } = "";
 
     public string Resultado =>
-        Errores >= MaxErrores ? "Perdiste" :
+        Errores >= _maxErrores ? "Perdiste" :
         _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
 
     public bool Terminado => Resultado != "";
 
-    public int Puntaje => Terminado ? (MaxErrores - Errores) * 10 : 0;
+    public int Puntaje => Terminado ? (_maxErrores - Errores) * 10 : 0;
 
-    public bool PuedePedirPista => !_pistaUsada && !Terminado && Errores < MaxErrores - 1;
+    public bool PuedePedirPista => !_pistaUsada && !Terminado && Errores < _maxErrores - 1;
 
     public void Adivinar(char letra)
     {
@@ -56,10 +66,12 @@ public class Ahorcado
 
     public string PalabraEnmascarada()
     {
-        if (Errores >= MaxErrores)
+        if (Errores >= _maxErrores)
             return string.Join(" ", _palabra.Select(letra => letra.ToString()));
 
         return string.Join(" ", _palabra.Select(letra =>
             _acertadas.Contains(letra) ? letra.ToString() : "_"));
     }
+
+
 }
