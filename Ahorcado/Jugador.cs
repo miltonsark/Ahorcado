@@ -2,9 +2,9 @@
 
 public class Jugador
 {
-    public Jugador(string nombre)
-    {
-    }
+    private readonly string _nombre;
 
-    public string Nombre => "Nico";
+    public Jugador(string nombre) => _nombre = nombre;
+
+    public string Nombre => _nombre;
 }
