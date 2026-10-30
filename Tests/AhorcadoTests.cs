@@ -401,4 +401,15 @@ public class AhorcadoTests
 
         Assert.Equal("", juego.Resultado);
     }
+
+    [Fact]
+    public void En_normal_se_pierde_con_6_errores()
+    {
+        var juego = new Juego("GATO", Dificultad.Normal);
+
+        foreach (var letra in "ZXQWYU")
+            juego.Adivinar(letra);
+
+        Assert.Equal("Perdiste", juego.Resultado);
+    }
 }

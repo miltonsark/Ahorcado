@@ -72,4 +72,6 @@ public class Ahorcado
         return string.Join(" ", _palabra.Select(letra =>
             _acertadas.Contains(letra) ? letra.ToString() : "_"));
     }
+
+
 }
