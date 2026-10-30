@@ -6,5 +6,5 @@ public class Jugador
     {
     }
 
-    public string Nombre => "";
+    public string Nombre => "Nico";
 }
