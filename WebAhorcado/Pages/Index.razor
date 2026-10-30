@@ -9,11 +9,7 @@
 
 <label>
     Dificultad:
-    <select data-testid="dificultad">
-        <option value="Facil">Fácil</option>
-        <option value="Normal" selected>Normal</option>
-        <option value="Dificil">Difícil</option>
-    </select>
+    <select data-testid="dificultad" @onchange="CambiarDificultad">
 </label>
 
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
@@ -57,5 +53,11 @@
     private void UsarConfiguracionPredeterminada()
     {
         juego = new Ahorcado.Ahorcado("");
+    }
+
+    private void CambiarDificultad(ChangeEventArgs e)
+    {
+        var dificultad = Enum.Parse<Ahorcado.Dificultad>(e.Value!.ToString()!);
+        juego = new Ahorcado.Ahorcado(Word ?? "", dificultad);
     }
 }
