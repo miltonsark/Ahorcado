@@ -20,7 +20,7 @@
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
 <button data-testid="letra-enviar" @onclick="EnviarLetra">Adivinar</button>
-<button data-testid="pista" @onclick="() => juego!.PedirPista()" disabled="@(juego?.PuedePedirPista != true)">Pedir pista</button>
+<button data-testid="pista" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">Pedir pista</button>
 
 <p>Errores: <span data-testid="errores">@juego?.Errores</span></p>
 <p data-testid="mensaje">@juego?.Mensaje</p>
@@ -28,7 +28,12 @@
 <p>Puntaje: <span data-testid="puntaje">@juego?.Puntaje</span></p>
 
 <h2>Historial</h2>
-<ul data-testid="historial"><li></li></ul>
+<ul data-testid="historial">
+    @foreach (var entrada in historial.Entradas)
+    {
+        <li>@entrada</li>
+    }
+</ul>
 
 
 @code {
@@ -38,6 +43,7 @@
     private Ahorcado.Ahorcado? juego;
     private string letra = "";
     private string nombre = ""; 
+    private readonly Ahorcado.Historial historial = new();
 
     protected override void OnParametersSet()
     {
@@ -47,8 +53,23 @@
     private void EnviarLetra()
     {
         if (letra.Length == 1)
+        {
             juego!.Adivinar(letra[0]);
+            RegistrarSiTermino();
+        }
         letra = "";
+    }
+
+    private void PedirPista()
+    {
+        juego!.PedirPista();
+        RegistrarSiTermino();
+    }
+
+    private void RegistrarSiTermino()
+    {
+        if (juego!.Terminado)
+            historial.Registrar(new Ahorcado.Jugador(nombre).Nombre, juego.Puntaje);
     }
 
     private void TeclaPresionada(KeyboardEventArgs e)
