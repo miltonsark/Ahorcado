@@ -2,9 +2,9 @@
 
 public class Historial
 {
-    public void Registrar(string nombre, int puntaje)
-    {
-    }
+    private readonly List<string> _entradas = new();
 
-    public IReadOnlyList<string> Entradas => new List<string> { "Carla: 60" };
+    public void Registrar(string nombre, int puntaje) => _entradas.Add($"{nombre}: {puntaje}");
+
+    public IReadOnlyList<string> Entradas => _entradas;
 }
