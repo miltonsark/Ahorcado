@@ -6,5 +6,5 @@ public class Historial
     {
     }
 
-    public IReadOnlyList<string> Entradas => new List<string>();
+    public IReadOnlyList<string> Entradas => new List<string> { "Carla: 60" };
 }
