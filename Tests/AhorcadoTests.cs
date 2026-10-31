@@ -1,6 +1,7 @@
 ﻿using Juego = Ahorcado.Ahorcado;
 using Jugador = Ahorcado.Jugador;
 using Dificultad = Ahorcado.Dificultad;
+using Historial = Ahorcado.Historial;
 using Xunit;
 
 namespace Tests;
@@ -411,5 +412,36 @@ public class AhorcadoTests
             juego.Adivinar(letra);
 
         Assert.Equal("Perdiste", juego.Resultado);
+    }
+
+    [Fact]
+    public void Registrar_a_Carla_con_60_la_agrega_al_historial()
+    {
+        var historial = new Historial();
+
+        historial.Registrar("Carla", 60);
+
+        Assert.Equal(new[] { "Carla: 60" }, historial.Entradas);
+    }
+
+    [Fact]
+    public void Registrar_a_Ana_con_40_la_agrega_al_historial()
+    {
+        var historial = new Historial();
+
+        historial.Registrar("Ana", 40);
+
+        Assert.Equal(new[] { "Ana: 40" }, historial.Entradas);
+    }
+
+    [Fact]
+    public void El_historial_muestra_primero_la_partida_mas_reciente()
+    {
+        var historial = new Historial();
+
+        historial.Registrar("Carla", 60);
+        historial.Registrar("Ana", 40);
+
+        Assert.Equal(new[] { "Ana: 40", "Carla: 60" }, historial.Entradas);
     }
 }
