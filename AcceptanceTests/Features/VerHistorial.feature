@@ -32,3 +32,13 @@ Escenario: El historial muestra primero la partida más reciente
     Y ingreso la letra "U"
     Entonces la entrada 1 del historial es "Carla: 0"
     Y la entrada 2 del historial es "Carla: 60"
+
+@CA-3
+Escenario: Al recargar la página el historial empieza vacío
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando ingreso la letra "G"
+    Y ingreso la letra "A"
+    Y ingreso la letra "T"
+    Y ingreso la letra "O"
+    Y recargo la página
+    Entonces el historial está vacío
