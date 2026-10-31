@@ -433,4 +433,15 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { "Ana: 40" }, historial.Entradas);
     }
+
+    [Fact]
+    public void El_historial_muestra_primero_la_partida_mas_reciente()
+    {
+        var historial = new Historial();
+
+        historial.Registrar("Carla", 60);
+        historial.Registrar("Ana", 40);
+
+        Assert.Equal(new[] { "Ana: 40", "Carla: 60" }, historial.Entradas);
+    }
 }
