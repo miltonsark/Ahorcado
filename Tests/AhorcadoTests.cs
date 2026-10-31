@@ -423,4 +423,14 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { "Carla: 60" }, historial.Entradas);
     }
+
+    [Fact]
+    public void Registrar_a_Ana_con_40_la_agrega_al_historial()
+    {
+        var historial = new Historial();
+
+        historial.Registrar("Ana", 40);
+
+        Assert.Equal(new[] { "Ana: 40" }, historial.Entradas);
+    }
 }
