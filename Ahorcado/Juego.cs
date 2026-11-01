@@ -18,13 +18,12 @@ public class Ahorcado
 
     public Ahorcado(string palabra, Dificultad dificultad) : this(palabra)
     {
-        _maxErrores = dificultad switch
+        (_maxErrores, _puntosPorVida) = dificultad switch
         {
-            Dificultad.Facil => 8,
-            Dificultad.Dificil => 4,
-            _ => 6
+            Dificultad.Facil => (8, 5),
+            Dificultad.Dificil => (4, 20),
+            _ => (6, 10)
         };
-        _puntosPorVida = 20;
     }
 
     public int Errores { get; private set; }
