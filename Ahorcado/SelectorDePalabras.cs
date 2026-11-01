@@ -2,9 +2,11 @@
 
 public class SelectorDePalabras
 {
-    public SelectorDePalabras(Func<int, int> elegirIndice)
-    {
-    }
+    private static readonly string[] Colores = { "ROJO", "AZUL", "VERDE", "NEGRO", "BLANCO" };
 
-    public string Elegir(string categoria) => "ROJO";
+    private readonly Func<int, int> _elegirIndice;
+
+    public SelectorDePalabras(Func<int, int> elegirIndice) => _elegirIndice = elegirIndice;
+
+    public string Elegir(string categoria) => Colores[_elegirIndice(Colores.Length)];
 }
