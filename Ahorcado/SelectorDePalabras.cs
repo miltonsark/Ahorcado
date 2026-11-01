@@ -6,5 +6,5 @@ public class SelectorDePalabras
     {
     }
 
-    public string Elegir(string categoria) => "";
+    public string Elegir(string categoria) => "ROJO";
 }
