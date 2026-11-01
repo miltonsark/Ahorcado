@@ -16,3 +16,9 @@ Escenario: Al elegir Colores juego con un color
     Y ingreso la letra "M"
     Y ingreso la letra "P"
     Entonces la palabra revelada es una de "ROJO, AZUL, VERDE, NEGRO, BLANCO"
+
+@CA-2
+Escenario: Veo la categoría que elegí
+    Dado que ingreso a la partida con la palabra "GATO"
+    Cuando elijo la categoría "Frutas"
+    Entonces veo la categoría "Frutas"

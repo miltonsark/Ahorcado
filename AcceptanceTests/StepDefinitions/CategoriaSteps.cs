@@ -26,4 +26,11 @@ public class CategoriaSteps
         var patron = new Regex("^(" + string.Join("|", opciones) + ")$");
         await Assertions.Expect(_navegador.Page.GetByTestId("palabra-oculta")).ToHaveTextAsync(patron);
     }
+
+    [Then("veo la categoría {string}")]
+    public async Task EntoncesVeoLaCategoria(string esperada)
+    {
+        var categoria = _navegador.Page.GetByTestId("categoria-actual");
+        await Assertions.Expect(categoria).ToHaveTextAsync(esperada);
+    }
 }

@@ -26,6 +26,8 @@
     </select>
 </label>
 
+<p>Categoría: <span data-testid="categoria-actual"></span></p>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
