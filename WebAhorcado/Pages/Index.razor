@@ -18,7 +18,7 @@
 
 <label>
     Categoría:
-    <select data-testid="categoria">
+    <select data-testid="categoria" @onchange="CambiarCategoria">
         <option value="" selected>Sin categoría</option>
         <option value="Animales">Animales</option>
         <option value="Frutas">Frutas</option>
@@ -54,6 +54,7 @@
     private string letra = "";
     private string nombre = ""; 
     private readonly Ahorcado.Historial historial = new();
+    private readonly Ahorcado.SelectorDePalabras selector = new(cantidad => Random.Shared.Next(cantidad));
 
     protected override void OnParametersSet()
     {
@@ -97,5 +98,13 @@
     {
         var dificultad = Enum.Parse<Ahorcado.Dificultad>(e.Value!.ToString()!);
         juego = new Ahorcado.Ahorcado(Word ?? "", dificultad);
+    }
+
+    private void CambiarCategoria(ChangeEventArgs e)
+    {
+        var categoria = e.Value!.ToString()!;
+        if (categoria == "") return;
+
+        juego = new Ahorcado.Ahorcado(selector.Elegir(categoria));
     }
 }
