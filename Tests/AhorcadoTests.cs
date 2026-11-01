@@ -475,4 +475,12 @@ public class AhorcadoTests
 
         Assert.Equal("ROJO", selector.Elegir("Colores"));
     }
+
+    [Fact]
+    public void En_Colores_la_posicion_1_es_AZUL()
+    {
+        var selector = new SelectorDePalabras(cantidad => 1);
+
+        Assert.Equal("AZUL", selector.Elegir("Colores"));
+    }
 }
