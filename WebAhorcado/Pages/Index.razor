@@ -16,6 +16,16 @@
     </select>
 </label>
 
+<label>
+    Categoría:
+    <select data-testid="categoria">
+        <option value="" selected>Sin categoría</option>
+        <option value="Animales">Animales</option>
+        <option value="Frutas">Frutas</option>
+        <option value="Colores">Colores</option>
+    </select>
+</label>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
