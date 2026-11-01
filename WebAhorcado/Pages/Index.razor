@@ -26,6 +26,8 @@
     </select>
 </label>
 
+<p>Categoría: <span data-testid="categoria-actual">@categoria</span></p>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
@@ -53,6 +55,7 @@
     private Ahorcado.Ahorcado? juego;
     private string letra = "";
     private string nombre = ""; 
+    private string categoria = "";
     private readonly Ahorcado.Historial historial = new();
     private readonly Ahorcado.SelectorDePalabras selector = new(cantidad => Random.Shared.Next(cantidad));
 
@@ -102,9 +105,9 @@
 
     private void CambiarCategoria(ChangeEventArgs e)
     {
-        var categoria = e.Value!.ToString()!;
-        if (categoria == "") return;
-
-        juego = new Ahorcado.Ahorcado(selector.Elegir(categoria));
+        var elegida = e.Value!.ToString()!;
+        if (elegida == "") return;
+        categoria = elegida;
+        juego = new Ahorcado.Ahorcado(selector.Elegir(elegida));
     }
 }
