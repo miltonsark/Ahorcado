@@ -444,4 +444,27 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { "Ana: 40", "Carla: 60" }, historial.Entradas);
     }
+
+    [Fact]
+    public void Ganar_perfecto_en_dificil_da_80_puntos()
+    {
+        var juego = new Juego("GATO", Dificultad.Dificil);
+
+        foreach (var letra in "GATO")
+            juego.Adivinar(letra);
+
+        Assert.Equal(80, juego.Puntaje);
+    }
+
+    [Fact]
+    public void Ganar_perfecto_en_facil_da_40_puntos()
+    {
+        var juego = new Juego("GATO", Dificultad.Facil);
+
+        foreach (var letra in "GATO")
+            juego.Adivinar(letra);
+
+        Assert.Equal(40, juego.Puntaje);
+    }
+
 }

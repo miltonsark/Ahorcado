@@ -10,6 +10,7 @@ public class Ahorcado
     private readonly HashSet<char> _acertadas = new HashSet<char>();
     private readonly HashSet<char> _erradas = new HashSet<char>();
     private readonly int _maxErrores = 6;
+    private readonly int _puntosPorVida = 10;
     private const string PalabraPorDefecto = "AHORCADO";
     private bool _pistaUsada;
 
@@ -17,11 +18,11 @@ public class Ahorcado
 
     public Ahorcado(string palabra, Dificultad dificultad) : this(palabra)
     {
-        _maxErrores = dificultad switch
+        (_maxErrores, _puntosPorVida) = dificultad switch
         {
-            Dificultad.Facil => 8,
-            Dificultad.Dificil => 4,
-            _ => 6
+            Dificultad.Facil => (8, 5),
+            Dificultad.Dificil => (4, 20),
+            _ => (6, 10)
         };
     }
 
@@ -35,7 +36,7 @@ public class Ahorcado
 
     public bool Terminado => Resultado != "";
 
-    public int Puntaje => Terminado ? (_maxErrores - Errores) * 10 : 0;
+    public int Puntaje => Terminado ? (_maxErrores - Errores) * _puntosPorVida : 0;
 
     public bool PuedePedirPista => !_pistaUsada && !Terminado && Errores < _maxErrores - 1;
 
