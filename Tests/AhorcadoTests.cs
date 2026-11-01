@@ -3,6 +3,7 @@ using Jugador = Ahorcado.Jugador;
 using Dificultad = Ahorcado.Dificultad;
 using Historial = Ahorcado.Historial;
 using Xunit;
+using SelectorDePalabras = Ahorcado.SelectorDePalabras;
 
 namespace Tests;
 
@@ -467,4 +468,11 @@ public class AhorcadoTests
         Assert.Equal(40, juego.Puntaje);
     }
 
+    [Fact]
+    public void En_Colores_la_posicion_0_es_ROJO()
+    {
+        var selector = new SelectorDePalabras(cantidad => 0);
+
+        Assert.Equal("ROJO", selector.Elegir("Colores"));
+    }
 }
