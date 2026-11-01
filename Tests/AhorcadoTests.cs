@@ -483,4 +483,12 @@ public class AhorcadoTests
 
         Assert.Equal("AZUL", selector.Elegir("Colores"));
     }
+
+    [Fact]
+    public void En_Animales_la_posicion_0_es_GATO()
+    {
+        var selector = new SelectorDePalabras(cantidad => 0);
+
+        Assert.Equal("GATO", selector.Elegir("Animales"));
+    }
 }
