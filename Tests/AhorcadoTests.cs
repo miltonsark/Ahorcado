@@ -455,4 +455,16 @@ public class AhorcadoTests
 
         Assert.Equal(80, juego.Puntaje);
     }
+
+    [Fact]
+    public void Ganar_perfecto_en_facil_da_40_puntos()
+    {
+        var juego = new Juego("GATO", Dificultad.Facil);
+
+        foreach (var letra in "GATO")
+            juego.Adivinar(letra);
+
+        Assert.Equal(40, juego.Puntaje);
+    }
+
 }
