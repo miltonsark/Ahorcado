@@ -7,5 +7,5 @@ public class Configuracion
     public string Categoria { get; set; } = "";
 
     public Ahorcado CrearPartida(SelectorDePalabras selector, string? palabraFija = null)
-        => new Ahorcado(Categoria == "" ? SelectorDePalabras.PalabraPorDefecto(Idioma) : "GATO");
+        => new Ahorcado(Categoria == "" ? SelectorDePalabras.PalabraPorDefecto(Idioma) : selector.Elegir(Categoria, Idioma));
 }
