@@ -26,6 +26,7 @@ public class Traductor
         ["Tiempo restante"] = "Time left",
         ["Clásico"] = "Classic",
         ["Pizarra"] = "Chalkboard",
+        ["Neón"] = "Neon",
         ["Adivinar"] = "Guess",
         ["Pedir pista"] = "Get a hint",
         ["Errores"] = "Mistakes",
