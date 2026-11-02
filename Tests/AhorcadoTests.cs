@@ -501,4 +501,15 @@ public class AhorcadoTests
 
         Assert.Equal(30, juego.TiempoRestante);
     }
+
+    [Fact]
+    public void Con_limite_de_60_y_un_segundo_quedan_59()
+    {
+        var juego = new Juego("GATO");
+
+        juego.EstablecerLimite(60);
+        juego.PasarSegundo();
+
+        Assert.Equal(59, juego.TiempoRestante);
+    }
 }

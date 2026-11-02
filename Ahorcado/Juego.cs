@@ -46,6 +46,10 @@ public class Ahorcado
     {
     }
 
+    public void PasarSegundo()
+    {
+    }
+
     public void Adivinar(char letra)
     {
         if (Terminado) return;
