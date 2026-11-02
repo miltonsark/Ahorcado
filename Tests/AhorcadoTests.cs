@@ -710,4 +710,14 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ _ _ _ _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Configuracion_predeterminada_crea_la_partida_con_AHORCADO()
+    {
+        var config = new Configuracion();
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _ _ _ _ _", juego.PalabraEnmascarada());
+    }
 }
