@@ -691,4 +691,12 @@ public class AhorcadoTests
 
         Assert.Equal("Ana", turnos.Actual);
     }
+
+    [Fact]
+    public void Sin_nombres_juega_Anonimo()
+    {
+        var turnos = new Turnos("");
+
+        Assert.Equal("Anónimo", turnos.Actual);
+    }
 }
