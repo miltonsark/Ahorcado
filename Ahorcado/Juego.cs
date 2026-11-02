@@ -39,7 +39,7 @@ public class Ahorcado
 
     public int Puntaje => Terminado ? (_maxErrores - Errores) * _puntosPorVida : 0;
 
-    public int PartesDelDibujo => Errores;
+    public int PartesDelDibujo => Errores * 6 / _maxErrores;
 
     public bool PuedePedirPista => !_pistaUsada && !Terminado && Errores < _maxErrores - 1;
 
