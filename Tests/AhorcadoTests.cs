@@ -860,4 +860,12 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ _ _ _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void La_partida_sabe_de_que_categoria_es_su_palabra()
+    {
+        var juego = new Configuracion { Categoria = "Aleatoria" }.CrearPartida(new SelectorDePalabras(_ => 1));
+
+        Assert.Equal("Frutas", juego.Categoria);
+    }
 }

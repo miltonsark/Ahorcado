@@ -26,6 +26,8 @@ public class Ahorcado
         };
     }
 
+    public string Categoria { get; init; } = "";
+
     public int Errores { get; private set; }
     private bool Perdio => Errores >= _maxErrores || TiempoRestante == 0;
 
