@@ -621,4 +621,10 @@ public class AhorcadoTests
     {
         Assert.Equal("HANGMAN", SelectorDePalabras.PalabraPorDefecto(Idioma.Ingles));
     }
+
+    [Fact]
+    public void En_espanol_la_palabra_por_defecto_es_AHORCADO()
+    {
+        Assert.Equal("AHORCADO", SelectorDePalabras.PalabraPorDefecto(Idioma.Espanol));
+    }
 }
