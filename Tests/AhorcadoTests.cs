@@ -660,4 +660,14 @@ public class AhorcadoTests
 
         Assert.Equal("Beto", turnos.Actual);
     }
+
+    [Fact]
+    public void Al_pasar_el_turno_le_toca_a_Beto()
+    {
+        var turnos = new Turnos("Ana, Beto");
+
+        turnos.Pasar();
+
+        Assert.Equal("Beto", turnos.Actual);
+    }
 }

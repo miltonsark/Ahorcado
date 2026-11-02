@@ -8,4 +8,9 @@ public class Turnos
         _nombres = nombres.Split(',').Select(nombre => nombre.Trim()).ToList();
 
     public string Actual => _nombres[0];
+
+    public void Pasar()
+    {
+    }
 }
+
