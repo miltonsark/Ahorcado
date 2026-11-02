@@ -26,7 +26,7 @@ public class HistorialSteps
     public async Task EntoncesElHistorialEstaVacio()
     {
         // Espera a que la página termine de cargar antes de contar
-        await Assertions.Expect(_navegador.Page.GetByTestId("palabra-oculta")).ToHaveTextAsync("_ _ _ _");
+        await Assertions.Expect(_navegador.Page.GetByTestId("historial")).ToBeAttachedAsync();
         var entradas = _navegador.Page.GetByTestId("historial").Locator("li");
         await Assertions.Expect(entradas).ToHaveCountAsync(0);
     }

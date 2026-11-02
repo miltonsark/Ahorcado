@@ -37,5 +37,7 @@ Escenario: Cada partida se registra con el jugador del turno
     Y ingreso la letra "W"
     Y ingreso la letra "Y"
     Y ingreso la letra "U"
+    Y elijo "Inicio"
+    Y elijo "Historial y jugadores"
     Entonces la entrada 1 del historial es "Beto: 0"
     Y la entrada 2 del historial es "Ana: 60"
