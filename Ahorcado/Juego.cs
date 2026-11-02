@@ -31,7 +31,7 @@ public class Ahorcado
     public string Mensaje { get; private set; } = "";
 
     public string Resultado =>
-        Errores >= _maxErrores ? "Perdiste" :
+        Errores >= _maxErrores || TiempoRestante == 0 ? "Perdiste" :
         _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
 
     public bool Terminado => Resultado != "";
