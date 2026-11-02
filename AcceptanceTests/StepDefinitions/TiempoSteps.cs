@@ -29,7 +29,7 @@ public class TiempoSteps
     [Given("que ingreso a la partida con la palabra {string} y {int} segundos de límite")]
     public async Task DadoIngresoConLimite(string palabra, int segundos)
     {
-        await _navegador.Page.GotoAsync($"{Hooks.BaseUrl}/?word={palabra}&tiempo={segundos}");
+        await _navegador.Page.GotoAsync($"{Hooks.BaseUrl}/partida?word={palabra}&tiempo={segundos}");
     }
 
     [When("espero {int} segundos")]

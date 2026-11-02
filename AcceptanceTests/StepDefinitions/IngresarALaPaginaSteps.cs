@@ -17,6 +17,12 @@ namespace Ahorcado.AcceptanceTests.StepDefinitions
             await _nav.Page.GotoAsync($"{Hooks.BaseUrl}/");
         }
 
+        [Given(@"que navego a la partida")]
+        public async Task DadoQueNavegoALaPartida()
+        {
+            await _nav.Page.GotoAsync($"{Hooks.BaseUrl}/partida");
+        }
+
         [Then(@"veo el título ""(.*)""")]
         public async Task EntoncesVeoElTitulo(string titulo)
         {

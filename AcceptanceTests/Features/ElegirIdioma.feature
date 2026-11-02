@@ -17,6 +17,6 @@ Escenario: En inglés veo el resultado en inglés
 
 @CA-2
 Escenario: En inglés la palabra por defecto es HANGMAN
-    Dado que navego a la página principal
+    Dado que navego a la partida
     Cuando elijo el idioma "English"
     Entonces veo la palabra oculta "_ _ _ _ _ _ _"
