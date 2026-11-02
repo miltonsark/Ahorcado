@@ -1,59 +1,59 @@
 ﻿@page "/"
 @implements IDisposable
 
-<h1>Ahorcado</h1>
+<h1>@T("Ahorcado")</h1>
 
 <label>
-    Idioma:
-    <select data-testid="idioma">
+    @T("Idioma"):
+    <select data-testid="idioma" @onchange="CambiarIdioma">
         <option value="Espanol" selected>Español</option>
         <option value="Ingles">English</option>
     </select>
 </label>
 
-<button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">Usar configuración predeterminada</button>
+<button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">@T("Usar configuración predeterminada")</button>
 
-<label>Nombre: <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" /></label>
-<p>Jugador: <span data-testid="jugador">@(new Ahorcado.Jugador(nombre).Nombre)</span></p>
+<label>@T("Nombre"): <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" /></label>
+<p>@T("Jugador"): <span data-testid="jugador">@(new Ahorcado.Jugador(nombre).Nombre)</span></p>
 
 <label>
-    Dificultad:
+    @T("Dificultad"):
     <select data-testid="dificultad" @onchange="CambiarDificultad">
-        <option value="Facil">Fácil</option>
-        <option value="Normal" selected>Normal</option>
-        <option value="Dificil">Difícil</option>
+        <option value="Facil">@T("Fácil")</option>
+        <option value="Normal" selected>@T("Normal")</option>
+        <option value="Dificil">@T("Difícil")</option>
     </select>
 </label>
 
 <label>
-    Categoría:
+    @T("Categoría"):
     <select data-testid="categoria" @onchange="CambiarCategoria">
-        <option value="" selected>Sin categoría</option>
-        <option value="Animales">Animales</option>
-        <option value="Frutas">Frutas</option>
-        <option value="Colores">Colores</option>
+        <option value="" selected>@T("Sin categoría")</option>
+        <option value="Animales">@T("Animales")</option>
+        <option value="Frutas">@T("Frutas")</option>
+        <option value="Colores">@T("Colores")</option>
     </select>
 </label>
 
-<p>Categoría: <span data-testid="categoria-actual">@categoria</span></p>
+<p>@T("Categoría"): <span data-testid="categoria-actual">@T(categoria)</span></p>
 
 <label>
-    Tiempo:
+    @T("Tiempo"):
     <select data-testid="limite-tiempo" @onchange="CambiarLimite">
-        <option value="0" selected>Sin límite</option>
-        <option value="60">60 segundos</option>
-        <option value="30">30 segundos</option>
+        <option value="0" selected>@T("Sin límite")</option>
+        <option value="60">@T("60 segundos")</option>
+        <option value="30">@T("30 segundos")</option>
     </select>
 </label>
 
 <label>
-    Skin:
+    @T("Skin"):
     <select data-testid="skin" @onchange="CambiarSkin">
-        <option value="clasico" selected>Clásico</option>
-        <option value="pizarra">Pizarra</option>
+        <option value="clasico" selected>@T("Clásico")</option>
+        <option value="pizarra">@T("Pizarra")</option>
     </select>
 </label>
-<p>Tiempo restante: <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></p>
+<p>@T("Tiempo restante"): <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></p>
 
 @{ var partes = juego?.PartesDelDibujo ?? 0; }
 <svg data-testid="dibujo" class="ahorcado" data-skin="@skin" width="160" height="200" viewBox="0 0 160 200">
@@ -72,15 +72,15 @@
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
-<button data-testid="letra-enviar" @onclick="EnviarLetra">Adivinar</button>
-<button data-testid="pista" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">Pedir pista</button>
+<button data-testid="letra-enviar" @onclick="EnviarLetra">@T("Adivinar")</button>
+<button data-testid="pista" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">@T("Pedir pista")</button>
 
-<p>Errores: <span data-testid="errores">@juego?.Errores</span></p>
-<p data-testid="mensaje">@juego?.Mensaje</p>
-<p data-testid="resultado">@juego?.Resultado</p>
-<p>Puntaje: <span data-testid="puntaje">@juego?.Puntaje</span></p>
+<p>@T("Errores"): <span data-testid="errores">@juego?.Errores</span></p>
+<p data-testid="mensaje">@T(juego?.Mensaje ?? "")</p>
+<p data-testid="resultado">@T(juego?.Resultado ?? "")</p>
+<p>@T("Puntaje"): <span data-testid="puntaje">@juego?.Puntaje</span></p>
 
-<h2>Historial</h2>
+<h2>@T("Historial")</h2>
 <ul data-testid="historial">
     @foreach (var entrada in historial.Entradas)
     {
@@ -182,6 +182,13 @@
     }
 
     private void CambiarSkin(ChangeEventArgs e) => skin = e.Value!.ToString()!;
+
+    private Ahorcado.Idioma idioma = Ahorcado.Idioma.Espanol;
+
+    private string T(string texto) => new Ahorcado.Traductor(idioma).Traducir(texto);
+
+    private void CambiarIdioma(ChangeEventArgs e) =>
+        idioma = Enum.Parse<Ahorcado.Idioma>(e.Value!.ToString()!);
 
     public void Dispose() => reloj?.Dispose();
 }
