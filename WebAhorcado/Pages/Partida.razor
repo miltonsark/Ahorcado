@@ -144,7 +144,7 @@
 
     private void UsarConfiguracionPredeterminada()
     {
-        juego = new Ahorcado.Ahorcado(Ahorcado.SelectorDePalabras.PalabraPorDefecto(idioma));
+        juego = new Ahorcado.Ahorcado(Ahorcado.SelectorDePalabras.PalabraPorDefecto(Estado.Configuracion.Idioma));
     }
 
     private void CambiarDificultad(ChangeEventArgs e)
@@ -158,7 +158,7 @@
         var elegida = e.Value!.ToString()!;
         if (elegida == "") return;
         Estado.Configuracion.Categoria = elegida;
-        juego = new Ahorcado.Ahorcado(selector.Elegir(elegida, idioma));
+        juego = new Ahorcado.Ahorcado(selector.Elegir(elegida, Estado.Configuracion.Idioma));
     }
     private System.Threading.Timer? reloj;
 
@@ -184,14 +184,13 @@
 
     private void CambiarSkin(ChangeEventArgs e) => skin = e.Value!.ToString()!;
 
-    private Ahorcado.Idioma idioma = Ahorcado.Idioma.Espanol;
 
-    private string T(string texto) => new Ahorcado.Traductor(idioma).Traducir(texto);
+    private string T(string texto) => new Ahorcado.Traductor(Estado.Configuracion.Idioma).Traducir(texto);
 
     private void CambiarIdioma(ChangeEventArgs e)
     {
-        idioma = Enum.Parse<Ahorcado.Idioma>(e.Value!.ToString()!);
-        juego = new Ahorcado.Ahorcado(Word ?? Ahorcado.SelectorDePalabras.PalabraPorDefecto(idioma));
+        Estado.Configuracion.Idioma = Enum.Parse<Ahorcado.Idioma>(e.Value!.ToString()!);
+        juego = new Ahorcado.Ahorcado(Word ?? Ahorcado.SelectorDePalabras.PalabraPorDefecto(Estado.Configuracion.Idioma));
     }
 
     public void Dispose() => reloj?.Dispose();
