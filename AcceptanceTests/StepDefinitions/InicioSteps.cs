@@ -21,4 +21,12 @@ public class InicioSteps
     {
         await _navegador.Page.GetByRole(AriaRole.Link, new() { Name = opcion, Exact = true }).ClickAsync();
     }
+
+    [When("inicio la partida con la palabra {string}")]
+    public async Task CuandoInicioLaPartidaConLaPalabra(string palabra)
+    {
+        // Navega dentro de la app sin recargar, así se conserva la configuración guardada
+        await _navegador.Page.EvaluateAsync($"Blazor.navigateTo('partida?word={palabra}')");
+        await Assertions.Expect(_navegador.Page.GetByTestId("palabra-oculta")).ToBeVisibleAsync();
+    }
 }

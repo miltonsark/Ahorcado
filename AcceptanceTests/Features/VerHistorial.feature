@@ -7,8 +7,10 @@ Característica: Ver historial de puntajes
 
 @CA-1
 Escenario: Al terminar la partida se agrega al historial
-    Dado que ingreso a la partida con la palabra "GATO"
-    Cuando ingreso el nombre "Carla"
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Carla"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
     Y ingreso la letra "G"
     Y ingreso la letra "A"
     Y ingreso la letra "T"
@@ -17,13 +19,15 @@ Escenario: Al terminar la partida se agrega al historial
 
 @CA-2
 Escenario: El historial muestra primero la partida más reciente
-    Dado que ingreso a la partida con la palabra "GATO"
-    Cuando ingreso el nombre "Carla"
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Carla"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
     Y ingreso la letra "G"
     Y ingreso la letra "A"
     Y ingreso la letra "T"
     Y ingreso la letra "O"
-    Y elijo usar la configuración predeterminada
+    Y paso a la siguiente partida
     Y ingreso la letra "Z"
     Y ingreso la letra "X"
     Y ingreso la letra "Q"

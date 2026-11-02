@@ -30,7 +30,12 @@ public class Traductor
         ["Pedir pista"] = "Get a hint",
         ["Errores"] = "Mistakes",
         ["Puntaje"] = "Score",
-        ["Historial"] = "History"
+        ["Historial"] = "History",
+        ["Iniciar partida"] = "Start game",
+        ["Configuración"] = "Settings",
+        ["Historial y jugadores"] = "History and players",
+        ["Guardar"] = "Save",
+        ["Jugadores"] = "Players"
     };
 
     private readonly Idioma _idioma;

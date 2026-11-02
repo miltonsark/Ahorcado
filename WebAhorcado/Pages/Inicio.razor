@@ -1,10 +1,15 @@
 ﻿@page "/"
+@inject EstadoDelJuego Estado
 
 <main class="inicio">
-    <h1>Ahorcado</h1>
+    <h1>@T("Ahorcado")</h1>
     <nav>
-        <a href="partida" data-testid="ir-partida">Iniciar partida</a>
-        <a href="configuracion" data-testid="ir-configuracion">Configuración</a>
-        <a href="historial" data-testid="ir-historial">Historial y jugadores</a>
+        <a href="partida" data-testid="ir-partida">@T("Iniciar partida")</a>
+        <a href="configuracion" data-testid="ir-configuracion">@T("Configuración")</a>
+        <a href="historial" data-testid="ir-historial">@T("Historial y jugadores")</a>
     </nav>
 </main>
+
+@code {
+    private string T(string texto) => new Ahorcado.Traductor(Estado.Configuracion.Idioma).Traducir(texto);
+}

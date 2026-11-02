@@ -1,62 +1,17 @@
 ﻿@page "/partida"
 @implements IDisposable
+@inject EstadoDelJuego Estado
 
 <h1>@T("Ahorcado")</h1>
 
-<label>
-    @T("Idioma"):
-    <select data-testid="idioma" @onchange="CambiarIdioma">
-        <option value="Espanol" selected>Español</option>
-        <option value="Ingles">English</option>
-    </select>
-</label>
+<p>Jugador: <span data-testid="jugador">@Estado.Turnos.Actual</span></p>
 
-<button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">@T("Usar configuración predeterminada")</button>
+<p>@T("Categoría"): <span data-testid="categoria-actual">@T(Estado.Configuracion.Categoria)</span></p>
 
-<label>Nombre: <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" @bind:after="ActualizarJugadores" /></label>
-<p>Jugador: <span data-testid="jugador">@turnos.Actual</span></p>
-
-<label>
-    @T("Dificultad"):
-    <select data-testid="dificultad" @onchange="CambiarDificultad">
-        <option value="Facil">@T("Fácil")</option>
-        <option value="Normal" selected>@T("Normal")</option>
-        <option value="Dificil">@T("Difícil")</option>
-    </select>
-</label>
-
-<label>
-    @T("Categoría"):
-    <select data-testid="categoria" @onchange="CambiarCategoria">
-        <option value="" selected>@T("Sin categoría")</option>
-        <option value="Animales">@T("Animales")</option>
-        <option value="Frutas">@T("Frutas")</option>
-        <option value="Colores">@T("Colores")</option>
-    </select>
-</label>
-
-<p>@T("Categoría"): <span data-testid="categoria-actual">@T(categoria)</span></p>
-
-<label>
-    @T("Tiempo"):
-    <select data-testid="limite-tiempo" @onchange="CambiarLimite">
-        <option value="0" selected>@T("Sin límite")</option>
-        <option value="60">@T("60 segundos")</option>
-        <option value="30">@T("30 segundos")</option>
-    </select>
-</label>
-
-<label>
-    @T("Skin"):
-    <select data-testid="skin" @onchange="CambiarSkin">
-        <option value="clasico" selected>@T("Clásico")</option>
-        <option value="pizarra">@T("Pizarra")</option>
-    </select>
-</label>
 <p>@T("Tiempo restante"): <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></p>
 
 @{ var partes = juego?.PartesDelDibujo ?? 0; }
-<svg data-testid="dibujo" class="ahorcado" data-skin="@skin" width="160" height="200" viewBox="0 0 160 200">
+<svg data-testid="dibujo" class="ahorcado" data-skin="@Estado.Skin" width="160" height="200" viewBox="0 0 160 200">
     <line x1="10" y1="190" x2="110" y2="190" />
     <line x1="40" y1="190" x2="40" y2="10" />
     <line x1="40" y1="10" x2="110" y2="10" />
@@ -84,7 +39,7 @@
 
 <h2>@T("Historial")</h2>
 <ul data-testid="historial">
-    @foreach (var entrada in historial.Entradas)
+    @foreach (var entrada in Estado.Historial.Entradas)
     {
         <li>@entrada</li>
     }
@@ -100,17 +55,13 @@
 
     private Ahorcado.Ahorcado? juego;
     private string letra = "";
-    private string nombre = ""; 
-    private string categoria = "";
-    private string skin = "clasico";
-    private readonly Ahorcado.Historial historial = new();
     private readonly Ahorcado.SelectorDePalabras selector = new(cantidad => Random.Shared.Next(cantidad));
 
     protected override void OnParametersSet()
     {
         if (juego is not null) return;
 
-        juego = new Ahorcado.Ahorcado(Word ?? "");
+        juego = Estado.Configuracion.CrearPartida(selector, Word);
         if (Tiempo > 0)
             juego.EstablecerLimite(Tiempo.Value);
     }
@@ -134,7 +85,7 @@
     private void RegistrarSiTermino()
     {
         if (juego!.Terminado)
-            historial.Registrar(turnos.Actual, juego.Puntaje);
+            Estado.Historial.Registrar(Estado.Turnos.Actual, juego.Puntaje);
     }
 
     private void TeclaPresionada(KeyboardEventArgs e)
@@ -143,24 +94,6 @@
             EnviarLetra();
     }
 
-    private void UsarConfiguracionPredeterminada()
-    {
-        juego = new Ahorcado.Ahorcado(Ahorcado.SelectorDePalabras.PalabraPorDefecto(idioma));
-    }
-
-    private void CambiarDificultad(ChangeEventArgs e)
-    {
-        var dificultad = Enum.Parse<Ahorcado.Dificultad>(e.Value!.ToString()!);
-        juego = new Ahorcado.Ahorcado(Word ?? "", dificultad);
-    }
-
-    private void CambiarCategoria(ChangeEventArgs e)
-    {
-        var elegida = e.Value!.ToString()!;
-        if (elegida == "") return;
-        categoria = elegida;
-        juego = new Ahorcado.Ahorcado(selector.Elegir(elegida, idioma));
-    }
     private System.Threading.Timer? reloj;
 
     protected override void OnInitialized()
@@ -175,35 +108,14 @@
         }), null, 1000, 1000);
     }
 
-    private void CambiarLimite(ChangeEventArgs e)
-    {
-        var segundos = int.Parse(e.Value!.ToString()!);
-        juego = new Ahorcado.Ahorcado(Word ?? "");
-        if (segundos > 0)
-            juego.EstablecerLimite(segundos);
-    }
 
-    private void CambiarSkin(ChangeEventArgs e) => skin = e.Value!.ToString()!;
-
-    private Ahorcado.Idioma idioma = Ahorcado.Idioma.Espanol;
-
-    private string T(string texto) => new Ahorcado.Traductor(idioma).Traducir(texto);
-
-    private void CambiarIdioma(ChangeEventArgs e)
-    {
-        idioma = Enum.Parse<Ahorcado.Idioma>(e.Value!.ToString()!);
-        juego = new Ahorcado.Ahorcado(Word ?? Ahorcado.SelectorDePalabras.PalabraPorDefecto(idioma));
-    }
+    private string T(string texto) => new Ahorcado.Traductor(Estado.Configuracion.Idioma).Traducir(texto);
 
     public void Dispose() => reloj?.Dispose();
 
-    private Ahorcado.Turnos turnos = new("");
-
-    private void ActualizarJugadores() => turnos = new Ahorcado.Turnos(nombre);
-
     private void SiguientePartida()
     {
-        turnos.Pasar();
-        juego = new Ahorcado.Ahorcado(Word ?? "");
+        Estado.Turnos.Pasar();
+        juego = Estado.Configuracion.CrearPartida(selector, Word);
     }
 }

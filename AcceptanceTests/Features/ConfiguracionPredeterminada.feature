@@ -7,6 +7,9 @@ Característica: Elegir configuración predeterminada
 
 @CA-2
 Escenario: Elijo la configuración predeterminada y arranca una partida nueva
-    Dado que ingreso a la partida con la palabra "GATO"
-    Cuando elijo usar la configuración predeterminada
+    Dado que navego a la configuración
+    Cuando elijo la dificultad "Difícil"
+    Y elijo usar la configuración predeterminada
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
     Entonces veo la palabra oculta "_ _ _ _ _ _ _ _"

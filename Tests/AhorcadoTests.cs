@@ -7,6 +7,7 @@ using Xunit;
 using SelectorDePalabras = Ahorcado.SelectorDePalabras;
 using Idioma = Ahorcado.Idioma;
 using Traductor = Ahorcado.Traductor;
+using Configuracion = Ahorcado.Configuracion;
 
 namespace Tests;
 
@@ -698,5 +699,112 @@ public class AhorcadoTests
         var turnos = new Turnos("");
 
         Assert.Equal("Anónimo", turnos.Actual);
+    }
+
+    [Fact]
+    public void Configuracion_en_ingles_crea_la_partida_con_HANGMAN()
+    {
+        var config = new Configuracion { Idioma = Idioma.Ingles };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _ _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Configuracion_predeterminada_crea_la_partida_con_AHORCADO()
+    {
+        var config = new Configuracion();
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _ _ _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Configuracion_con_categoria_Animales_crea_la_partida_con_GATO()
+    {
+        var config = new Configuracion { Categoria = "Animales" };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Configuracion_con_Frutas_en_ingles_crea_la_partida_con_APPLE()
+    {
+        var config = new Configuracion { Categoria = "Frutas", Idioma = Idioma.Ingles };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Configuracion_en_Dificil_crea_una_partida_que_se_pierde_con_4_errores()
+    {
+        var config = new Configuracion { Dificultad = Dificultad.Dificil };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+        foreach (var letra in "ZXQW")
+            juego.Adivinar(letra);
+
+        Assert.Equal("Perdiste", juego.Resultado);
+    }
+
+    [Fact]
+    public void Configuracion_con_30_segundos_crea_la_partida_con_limite()
+    {
+        var config = new Configuracion { Tiempo = 30 };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal(30, juego.TiempoRestante);
+    }
+
+    [Fact]
+    public void Configuracion_sin_tiempo_crea_la_partida_sin_limite()
+    {
+        var config = new Configuracion();
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Null(juego.TiempoRestante);
+    }
+
+    [Fact]
+    public void Configuracion_con_palabra_fija_ignora_idioma_y_categoria()
+    {
+        var config = new Configuracion { Idioma = Idioma.Ingles, Categoria = "Frutas" };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0), "GATO");
+
+        Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Al_adivinar_una_letra_nueva_se_borra_el_mensaje()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('A');
+        juego.Adivinar('A');
+        juego.Adivinar('T');
+
+        Assert.Equal("", juego.Mensaje);
+    }
+
+    [Theory]
+    [InlineData("Iniciar partida", "Start game")]
+    [InlineData("Configuración", "Settings")]
+    [InlineData("Historial y jugadores", "History and players")]
+    [InlineData("Guardar", "Save")]
+    [InlineData("Jugadores", "Players")]
+    public void Traductor_traduce_los_textos_de_las_pantallas_nuevas(string texto, string esperado)
+    {
+        var traductor = new Traductor(Idioma.Ingles);
+
+        Assert.Equal(esperado, traductor.Traducir(texto));
     }
 }

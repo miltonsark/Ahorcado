@@ -7,8 +7,10 @@ Característica: Elegir categoría
 
 @CA-1
 Escenario: Al elegir Colores juego con un color
-    Dado que ingreso a la partida con la palabra "GATO"
+    Dado que navego a la configuración
     Cuando elijo la categoría "Colores"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
     Y ingreso la letra "F"
     Y ingreso la letra "H"
     Y ingreso la letra "I"
@@ -19,6 +21,8 @@ Escenario: Al elegir Colores juego con un color
 
 @CA-2
 Escenario: Veo la categoría que elegí
-    Dado que ingreso a la partida con la palabra "GATO"
+    Dado que navego a la configuración
     Cuando elijo la categoría "Frutas"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
     Entonces veo la categoría "Frutas"

@@ -7,8 +7,10 @@ Característica: Elegir idioma
 
 @CA-1
 Escenario: En inglés veo el resultado en inglés
-    Dado que ingreso a la partida con la palabra "GATO"
+    Dado que navego a la configuración
     Cuando elijo el idioma "English"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
     Y ingreso la letra "G"
     Y ingreso la letra "A"
     Y ingreso la letra "T"
@@ -17,6 +19,8 @@ Escenario: En inglés veo el resultado en inglés
 
 @CA-2
 Escenario: En inglés la palabra por defecto es HANGMAN
-    Dado que navego a la partida
+    Dado que navego a la configuración
     Cuando elijo el idioma "English"
+    Y guardo la configuración
+    Y elijo "Start game"
     Entonces veo la palabra oculta "_ _ _ _ _ _ _"

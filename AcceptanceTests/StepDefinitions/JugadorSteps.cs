@@ -22,4 +22,12 @@ public class JugadorSteps
         var jugador = _navegador.Page.GetByTestId("jugador");
         await Assertions.Expect(jugador).ToHaveTextAsync(esperado);
     }
+
+    [When("ingreso el jugador {int} {string}")]
+    public async Task CuandoIngresoElJugador(int numero, string nombre)
+    {
+        var campo = _navegador.Page.GetByTestId($"jugador-{numero}");
+        await campo.FillAsync(nombre);
+        await campo.BlurAsync();
+    }
 }
