@@ -13,6 +13,9 @@ public class Configuracion
     public Ahorcado CrearPartida(SelectorDePalabras selector, string? palabraFija = null)
     {
         var palabra = Categoria == "" ? SelectorDePalabras.PalabraPorDefecto(Idioma) : selector.Elegir(Categoria, Idioma);
-        return new Ahorcado(palabra, Dificultad);
+        var juego = new Ahorcado(palabra, Dificultad);
+        if (Tiempo > 0)
+            juego.EstablecerLimite(Tiempo);
+        return juego;
     }
 }
