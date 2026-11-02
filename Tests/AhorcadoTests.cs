@@ -615,4 +615,32 @@ public class AhorcadoTests
 
         Assert.Equal("The letter Z was already used", traductor.Traducir("La letra Z ya fue usada"));
     }
+
+    [Fact]
+    public void En_ingles_la_palabra_por_defecto_es_HANGMAN()
+    {
+        Assert.Equal("HANGMAN", SelectorDePalabras.PalabraPorDefecto(Idioma.Ingles));
+    }
+
+    [Fact]
+    public void En_espanol_la_palabra_por_defecto_es_AHORCADO()
+    {
+        Assert.Equal("AHORCADO", SelectorDePalabras.PalabraPorDefecto(Idioma.Espanol));
+    }
+
+    [Fact]
+    public void En_ingles_Colores_posicion_0_es_RED()
+    {
+        var selector = new SelectorDePalabras(cantidad => 0);
+
+        Assert.Equal("RED", selector.Elegir("Colores", Idioma.Ingles));
+    }
+
+    [Fact]
+    public void En_ingles_Animales_posicion_1_es_DOG()
+    {
+        var selector = new SelectorDePalabras(cantidad => 1);
+
+        Assert.Equal("DOG", selector.Elegir("Animales", Idioma.Ingles));
+    }
 }

@@ -14,3 +14,9 @@ Escenario: En inglés veo el resultado en inglés
     Y ingreso la letra "T"
     Y ingreso la letra "O"
     Entonces veo el resultado "You won"
+
+@CA-2
+Escenario: En inglés la palabra por defecto es HANGMAN
+    Dado que navego a la página principal
+    Cuando elijo el idioma "English"
+    Entonces veo la palabra oculta "_ _ _ _ _ _ _"
