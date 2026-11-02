@@ -3,29 +3,29 @@
 @inject EstadoDelJuego Estado
 
 <main class="configuracion">
-    <h1>Configuración</h1>
+    <h1>@T("Configuración")</h1>
 
     <label>
-        Categoría:
+        @T("Categoría"):
         <select data-testid="categoria" @bind="Estado.Configuracion.Categoria">
-            <option value="" selected>Sin categoría</option>
-            <option value="Animales">Animales</option>
-            <option value="Frutas">Frutas</option>
-            <option value="Colores">Colores</option>
+            <option value="" selected>@T("Sin categoría")</option>
+            <option value="Animales">@T("Animales")</option>
+            <option value="Frutas">@T("Frutas")</option>
+            <option value="Colores">@T("Colores")</option>
         </select>
     </label>
 
     <label>
-        Dificultad:
+        @T("Dificultad"):
         <select data-testid="dificultad" @bind="Estado.Configuracion.Dificultad">
-            <option value="Facil">Fácil</option>
-            <option value="Normal" selected>Normal</option>
-            <option value="Dificil">Difícil</option>
+            <option value="Facil">@T("Fácil")</option>
+            <option value="Normal" selected>@T("Normal")</option>
+            <option value="Dificil">@T("Difícil")</option>
         </select>
     </label>
 
     <label>
-        Idioma:
+        @T("Idioma"):
         <select data-testid="idioma" @bind="Estado.Configuracion.Idioma">
             <option value="Espanol" selected>Español</option>
             <option value="Ingles">English</option>
@@ -33,36 +33,38 @@
     </label>
 
     <label>
-        Tiempo:
+        @T("Tiempo"):
         <select data-testid="limite-tiempo" @bind="Estado.Configuracion.Tiempo">
-            <option value="0" selected>Sin límite</option>
-            <option value="60">60 segundos</option>
-            <option value="30">30 segundos</option>
+            <option value="0" selected>@T("Sin límite")</option>
+            <option value="60">@T("60 segundos")</option>
+            <option value="30">@T("30 segundos")</option>
         </select>
     </label>
 
     <label>
-        Skin:
+        @T("Skin"):
         <select data-testid="skin" @bind="Estado.Skin">
-            <option value="clasico" selected>Clásico</option>
-            <option value="pizarra">Pizarra</option>
+            <option value="clasico" selected>@T("Clásico")</option>
+            <option value="pizarra">@T("Pizarra")</option>
         </select>
     </label>
 
     <fieldset>
-        <legend>Jugadores</legend>
-        <label>Jugador 1: <input data-testid="jugador-1" @bind="Estado.Jugadores[0]" /></label>
-        <label>Jugador 2: <input data-testid="jugador-2" @bind="Estado.Jugadores[1]" /></label>
-        <label>Jugador 3: <input data-testid="jugador-3" @bind="Estado.Jugadores[2]" /></label>
-        <label>Jugador 4: <input data-testid="jugador-4" @bind="Estado.Jugadores[3]" /></label>
+        <legend>@T("Jugadores")</legend>
+        <label>@T("Jugador") 1: <input data-testid="jugador-1" @bind="Estado.Jugadores[0]" /></label>
+        <label>@T("Jugador") 2: <input data-testid="jugador-2" @bind="Estado.Jugadores[1]" /></label>
+        <label>@T("Jugador") 3: <input data-testid="jugador-3" @bind="Estado.Jugadores[2]" /></label>
+        <label>@T("Jugador") 4: <input data-testid="jugador-4" @bind="Estado.Jugadores[3]" /></label>
     </fieldset>
 
-    <button data-testid="config-predeterminada" @onclick="UsarPredeterminada">Usar configuración predeterminada</button>
+    <button data-testid="config-predeterminada" @onclick="UsarPredeterminada">@T("Usar configuración predeterminada")</button>
 
-    <button data-testid="guardar-configuracion" @onclick="Guardar">Guardar</button>
+    <button data-testid="guardar-configuracion" @onclick="Guardar">@T("Guardar")</button>
 </main>
 
 @code {
+    private string T(string texto) => new Ahorcado.Traductor(Estado.Configuracion.Idioma).Traducir(texto);
+
     private void UsarPredeterminada()
         => Estado.Configuracion = new() { Idioma = Estado.Configuracion.Idioma };
 
