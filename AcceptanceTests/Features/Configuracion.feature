@@ -40,3 +40,11 @@ Escenario: El tiempo guardado se usa al iniciar la partida
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Entonces veo el tiempo restante entre 25 y 30
+
+@CA-5
+Escenario: El skin guardado se usa al iniciar la partida
+    Dado que navego a la configuración
+    Cuando elijo el skin "Pizarra"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
+    Entonces el dibujo usa el skin "pizarra"
