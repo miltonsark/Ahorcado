@@ -15,4 +15,16 @@ public class ConfiguracionSteps
         await _navegador.Page.GetByTestId("config-predeterminada")
             .ClickAsync(new LocatorClickOptions { Timeout = 5000 });
     }
+
+    [Given("que navego a la configuración")]
+    public async Task DadoQueNavegoALaConfiguracion()
+    {
+        await _navegador.Page.GotoAsync($"{Hooks.BaseUrl}/configuracion");
+    }
+
+    [When("guardo la configuración")]
+    public async Task CuandoGuardoLaConfiguracion()
+    {
+        await _navegador.Page.GetByTestId("guardar-configuracion").ClickAsync();
+    }
 }

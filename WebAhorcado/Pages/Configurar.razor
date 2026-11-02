@@ -1,0 +1,22 @@
+﻿@page "/configuracion"
+@inject NavigationManager Nav
+
+<main class="configuracion">
+    <h1>Configuración</h1>
+
+    <label>
+        Categoría:
+        <select data-testid="categoria">
+            <option value="" selected>Sin categoría</option>
+            <option value="Animales">Animales</option>
+            <option value="Frutas">Frutas</option>
+            <option value="Colores">Colores</option>
+        </select>
+    </label>
+
+    <button data-testid="guardar-configuracion" @onclick="Guardar">Guardar</button>
+</main>
+
+@code {
+    private void Guardar() => Nav.NavigateTo("");
+}
