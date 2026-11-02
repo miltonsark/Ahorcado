@@ -17,3 +17,12 @@ Escenario: Siguiente partida arranca con la configuración elegida
     Y ingreso la letra "Q"
     Y ingreso la letra "W"
     Entonces veo el resultado "Perdiste"
+
+@CA-3
+Escenario: La configuración predeterminada vuelve a Normal y mantiene el idioma
+    Dado que navego a la configuración
+    Cuando elijo la dificultad "Difícil"
+    Y elijo el idioma "English"
+    Y elijo usar la configuración predeterminada
+    Entonces la dificultad elegida es "Normal"
+    Y el idioma elegido es "Ingles"
