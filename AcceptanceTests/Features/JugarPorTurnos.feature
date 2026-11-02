@@ -7,8 +7,11 @@ Característica: Establecer cantidad de jugadores
 
 @CA-2
 Escenario: Al pasar a la siguiente partida le toca al siguiente jugador
-    Dado que ingreso a la partida con la palabra "GATO"
-    Cuando ingreso el nombre "Ana, Beto"
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Beto"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
     Y ingreso la letra "G"
     Y ingreso la letra "A"
     Y ingreso la letra "T"
@@ -18,8 +21,11 @@ Escenario: Al pasar a la siguiente partida le toca al siguiente jugador
 
 @CA-3
 Escenario: Cada partida se registra con el jugador del turno
-    Dado que ingreso a la partida con la palabra "GATO"
-    Cuando ingreso el nombre "Ana, Beto"
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Beto"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
     Y ingreso la letra "G"
     Y ingreso la letra "A"
     Y ingreso la letra "T"

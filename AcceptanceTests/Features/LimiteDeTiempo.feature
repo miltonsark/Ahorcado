@@ -7,8 +7,10 @@ Característica: Establecer tiempo
 
 @CA-1
 Escenario: Elijo 30 segundos y veo la cuenta regresiva
-    Dado que ingreso a la partida con la palabra "GATO"
+    Dado que navego a la configuración
     Cuando elijo el límite de tiempo "30 segundos"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
     Entonces veo el tiempo restante entre 25 y 30
 
 @CA-2

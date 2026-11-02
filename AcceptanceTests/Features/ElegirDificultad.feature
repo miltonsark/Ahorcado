@@ -7,8 +7,10 @@ Característica: Elegir dificultad
 
 @CA-1
 Escenario: En difícil pierdo con 4 errores
-    Dado que ingreso a la partida con la palabra "GATO"
+    Dado que navego a la configuración
     Cuando elijo la dificultad "Difícil"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
     Y ingreso la letra "Z"
     Y ingreso la letra "X"
     Y ingreso la letra "Q"
@@ -17,5 +19,5 @@ Escenario: En difícil pierdo con 4 errores
 
 @CA-2
 Escenario: Si no elijo dificultad, juego en Normal
-    Dado que ingreso a la partida con la palabra "GATO"
+    Dado que navego a la configuración
     Entonces la dificultad elegida es "Normal"
