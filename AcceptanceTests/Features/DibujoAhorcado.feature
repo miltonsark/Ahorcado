@@ -29,3 +29,11 @@ Escenario: Si no elijo skin, el dibujo es Clásico
 Escenario: La configuración ofrece el skin Neón
     Dado que navego a la configuración
     Entonces el selector de skin ofrece "Neón"
+
+@CA-3
+Escenario: Con el skin Neón el dibujo usa neon
+    Dado que navego a la configuración
+    Cuando elijo el skin "Neón"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
+    Entonces el dibujo usa el skin "neon"
