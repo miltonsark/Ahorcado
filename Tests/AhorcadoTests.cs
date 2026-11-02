@@ -570,4 +570,15 @@ public class AhorcadoTests
 
         Assert.Equal(3, juego.PartesDelDibujo);
     }
+
+    [Fact]
+    public void En_dificil_con_2_errores_se_ven_3_partes()
+    {
+        var juego = new Juego("GATO", Dificultad.Dificil);
+
+        foreach (var letra in "ZX")
+            juego.Adivinar(letra);
+
+        Assert.Equal(3, juego.PartesDelDibujo);
+    }
 }
