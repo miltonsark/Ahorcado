@@ -16,6 +16,7 @@ public class Traductor
         ["Difícil"] = "Hard",
         ["Categoría"] = "Category",
         ["Sin categoría"] = "No category",
+        ["Aleatoria"] = "Random",
         ["Animales"] = "Animals",
         ["Frutas"] = "Fruits",
         ["Colores"] = "Colors",
