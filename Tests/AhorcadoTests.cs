@@ -1,4 +1,5 @@
 ﻿using Juego = Ahorcado.Ahorcado;
+using Turnos = Ahorcado.Turnos;
 using Jugador = Ahorcado.Jugador;
 using Dificultad = Ahorcado.Dificultad;
 using Historial = Ahorcado.Historial;
@@ -642,5 +643,13 @@ public class AhorcadoTests
         var selector = new SelectorDePalabras(cantidad => 1);
 
         Assert.Equal("DOG", selector.Elegir("Animales", Idioma.Ingles));
+    }
+
+    [Fact]
+    public void Con_Ana_y_Beto_empieza_Ana()
+    {
+        var turnos = new Turnos("Ana, Beto");
+
+        Assert.Equal("Ana", turnos.Actual);
     }
 }
