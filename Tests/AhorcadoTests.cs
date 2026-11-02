@@ -7,6 +7,7 @@ using Xunit;
 using SelectorDePalabras = Ahorcado.SelectorDePalabras;
 using Idioma = Ahorcado.Idioma;
 using Traductor = Ahorcado.Traductor;
+using Configuracion = Ahorcado.Configuracion;
 
 namespace Tests;
 
@@ -698,5 +699,15 @@ public class AhorcadoTests
         var turnos = new Turnos("");
 
         Assert.Equal("Anónimo", turnos.Actual);
+    }
+
+    [Fact]
+    public void Configuracion_en_ingles_crea_la_partida_con_HANGMAN()
+    {
+        var config = new Configuracion { Idioma = Idioma.Ingles };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _ _ _ _", juego.PalabraEnmascarada());
     }
 }
