@@ -59,6 +59,7 @@ public class Ahorcado
         if (Terminado) return;
 
         letra = char.ToUpperInvariant(letra);
+        Mensaje = "";
 
         if (_acertadas.Contains(letra) || _erradas.Contains(letra))
             Mensaje = $"La letra {letra} ya fue usada";
