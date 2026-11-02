@@ -652,4 +652,12 @@ public class AhorcadoTests
 
         Assert.Equal("Ana", turnos.Actual);
     }
+
+    [Fact]
+    public void Con_Beto_y_Ana_empieza_Beto()
+    {
+        var turnos = new Turnos("Beto, Ana");
+
+        Assert.Equal("Beto", turnos.Actual);
+    }
 }
