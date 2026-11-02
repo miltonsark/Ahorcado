@@ -8,7 +8,7 @@
         <h1>@T("Ahorcado")</h1>
         <div class="chips">
             <span class="chip">@T("Jugador"): <strong data-testid="jugador">@Estado.Turnos.Actual</strong></span>
-            <span class="chip">@T("Categoría"): <span data-testid="categoria-actual">@T(Estado.Configuracion.Categoria)</span></span>
+            <span class="chip">@T("Categoría"): <span data-testid="categoria-actual">@T(juego?.Categoria ?? "")</span></span>
             <span class="chip chip-tiempo">@T("Tiempo restante"): <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></span>
         </div>
     </header>
