@@ -607,4 +607,12 @@ public class AhorcadoTests
 
         Assert.Equal("Ganaste", traductor.Traducir("Ganaste"));
     }
+
+    [Fact]
+    public void En_ingles_se_traduce_el_aviso_de_letra_usada()
+    {
+        var traductor = new Traductor(Idioma.Ingles);
+
+        Assert.Equal("The letter Z was already used", traductor.Traducir("La letra Z ya fue usada"));
+    }
 }
