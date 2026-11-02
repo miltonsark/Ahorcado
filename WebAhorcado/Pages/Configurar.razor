@@ -51,15 +51,19 @@
 
     <fieldset>
         <legend>Jugadores</legend>
-        <label>Jugador 1: <input data-testid="jugador-1" /></label>
-        <label>Jugador 2: <input data-testid="jugador-2" /></label>
-        <label>Jugador 3: <input data-testid="jugador-3" /></label>
-        <label>Jugador 4: <input data-testid="jugador-4" /></label>
+        <label>Jugador 1: <input data-testid="jugador-1" @bind="Estado.Jugadores[0]" /></label>
+        <label>Jugador 2: <input data-testid="jugador-2" @bind="Estado.Jugadores[1]" /></label>
+        <label>Jugador 3: <input data-testid="jugador-3" @bind="Estado.Jugadores[2]" /></label>
+        <label>Jugador 4: <input data-testid="jugador-4" @bind="Estado.Jugadores[3]" /></label>
     </fieldset>
 
     <button data-testid="guardar-configuracion" @onclick="Guardar">Guardar</button>
 </main>
 
 @code {
-    private void Guardar() => Nav.NavigateTo("");
+    private void Guardar()
+    {
+        Estado.Turnos = new Ahorcado.Turnos(string.Join(",", Estado.Jugadores.Where(nombre => nombre.Trim() != "")));
+        Nav.NavigateTo("");
+    }
 }

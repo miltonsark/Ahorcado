@@ -15,7 +15,7 @@
 <button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">@T("Usar configuración predeterminada")</button>
 
 <label>Nombre: <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" @bind:after="ActualizarJugadores" /></label>
-<p>Jugador: <span data-testid="jugador">@turnos.Actual</span></p>
+<p>Jugador: <span data-testid="jugador">@Estado.Turnos.Actual</span></p>
 
 <label>
     @T("Dificultad"):
@@ -132,7 +132,7 @@
     private void RegistrarSiTermino()
     {
         if (juego!.Terminado)
-            Estado.Historial.Registrar(turnos.Actual, juego.Puntaje);
+            Estado.Historial.Registrar(Estado.Turnos.Actual, juego.Puntaje);
     }
 
     private void TeclaPresionada(KeyboardEventArgs e)
@@ -194,13 +194,11 @@
 
     public void Dispose() => reloj?.Dispose();
 
-    private Ahorcado.Turnos turnos = new("");
-
-    private void ActualizarJugadores() => turnos = new Ahorcado.Turnos(nombre);
+    private void ActualizarJugadores() => Estado.Turnos = new Ahorcado.Turnos(nombre);
 
     private void SiguientePartida()
     {
-        turnos.Pasar();
+        Estado.Turnos.Pasar();
         juego = new Ahorcado.Ahorcado(Word ?? "");
     }
 }
