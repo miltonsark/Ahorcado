@@ -794,4 +794,17 @@ public class AhorcadoTests
 
         Assert.Equal("", juego.Mensaje);
     }
+
+    [Theory]
+    [InlineData("Iniciar partida", "Start game")]
+    [InlineData("Configuración", "Settings")]
+    [InlineData("Historial y jugadores", "History and players")]
+    [InlineData("Guardar", "Save")]
+    [InlineData("Jugadores", "Players")]
+    public void Traductor_traduce_los_textos_de_las_pantallas_nuevas(string texto, string esperado)
+    {
+        var traductor = new Traductor(Idioma.Ingles);
+
+        Assert.Equal(esperado, traductor.Traducir(texto));
+    }
 }
