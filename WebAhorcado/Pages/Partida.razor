@@ -39,13 +39,6 @@
 <p data-testid="resultado">@T(juego?.Resultado ?? "")</p>
 <p>@T("Puntaje"): <span data-testid="puntaje">@juego?.Puntaje</span></p>
 
-<h2>@T("Historial")</h2>
-<ul data-testid="historial">
-    @foreach (var entrada in Estado.Historial.Entradas)
-    {
-        <li>@entrada</li>
-    }
-</ul>
 
 
 @code {
