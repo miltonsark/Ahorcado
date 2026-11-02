@@ -868,4 +868,10 @@ public class AhorcadoTests
 
         Assert.Equal("Frutas", juego.Categoria);
     }
+
+    [Fact]
+    public void Traductor_traduce_Aleatoria()
+    {
+        Assert.Equal("Random", new Traductor(Idioma.Ingles).Traducir("Aleatoria"));
+    }
 }
