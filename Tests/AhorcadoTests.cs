@@ -720,4 +720,14 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ _ _ _ _ _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Configuracion_con_categoria_Animales_crea_la_partida_con_GATO()
+    {
+        var config = new Configuracion { Categoria = "Animales" };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
+    }
 }
