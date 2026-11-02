@@ -9,15 +9,20 @@ public class SelectorDePalabras
         ["Colores"] = new[] { "ROJO", "AZUL", "VERDE", "NEGRO", "BLANCO" }
     };
 
+    private static readonly Dictionary<string, string[]> PalabrasEnIngles = new()
+    {
+        ["Animales"] = new[] { "CAT", "DOG", "HORSE", "TIGER", "GIRAFFE" },
+        ["Frutas"] = new[] { "APPLE", "BANANA", "PEAR", "GRAPE", "ORANGE" },
+        ["Colores"] = new[] { "RED", "BLUE", "GREEN", "BLACK", "WHITE" }
+    };
+
     private readonly Func<int, int> _elegirIndice;
 
     public SelectorDePalabras(Func<int, int> elegirIndice) => _elegirIndice = elegirIndice;
 
     public string Elegir(string categoria, Idioma idioma = Idioma.Espanol)
     {
-        if (idioma == Idioma.Ingles) return "RED";
-
-        var palabras = Palabras[categoria];
+        var palabras = (idioma == Idioma.Ingles ? PalabrasEnIngles : Palabras)[categoria];
         return palabras[_elegirIndice(palabras.Length)];
     }
 
