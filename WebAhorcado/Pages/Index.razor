@@ -60,8 +60,11 @@
 
 
 @code {
-    [SupplyParameterFromQuery(Name = "word")]
+    [SupplyParameterFromQuery(Name = "word")]    
     public string? Word { get; set; }
+
+    [SupplyParameterFromQuery(Name = "tiempo")]
+    public int? Tiempo { get; set; }
 
     private Ahorcado.Ahorcado? juego;
     private string letra = "";
@@ -72,7 +75,11 @@
 
     protected override void OnParametersSet()
     {
-        juego ??= new Ahorcado.Ahorcado(Word ?? "");
+        if (juego is not null) return;
+
+        juego = new Ahorcado.Ahorcado(Word ?? "");
+        if (Tiempo > 0)
+            juego.EstablecerLimite(Tiempo.Value);
     }
 
     private void EnviarLetra()
@@ -127,7 +134,10 @@
     {
         reloj = new System.Threading.Timer(_ => InvokeAsync(() =>
         {
-            juego?.PasarSegundo();
+            if (juego is null || juego.Terminado) return;
+
+            juego.PasarSegundo();
+            RegistrarSiTermino();
             StateHasChanged();
         }), null, 1000, 1000);
     }
