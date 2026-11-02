@@ -807,4 +807,23 @@ public class AhorcadoTests
 
         Assert.Equal(esperado, traductor.Traducir(texto));
     }
+
+    [Fact]
+    public void Turnos_exponen_la_lista_de_jugadores()
+    {
+        var turnos = new Turnos("Ana, Carla");
+
+        Assert.Equal(new[] { "Ana", "Carla" }, turnos.Jugadores);
+    }
+
+    [Theory]
+    [InlineData("Inicio", "Home")]
+    [InlineData("Orden de turnos", "Turn order")]
+    [InlineData("Últimas partidas", "Latest games")]
+    public void Traductor_traduce_los_textos_del_historial(string texto, string esperado)
+    {
+        var traductor = new Traductor(Idioma.Ingles);
+
+        Assert.Equal(esperado, traductor.Traducir(texto));
+    }
 }

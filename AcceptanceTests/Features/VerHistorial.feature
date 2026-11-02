@@ -15,6 +15,8 @@ Escenario: Al terminar la partida se agrega al historial
     Y ingreso la letra "A"
     Y ingreso la letra "T"
     Y ingreso la letra "O"
+    Y elijo "Inicio"
+    Y elijo "Historial y jugadores"
     Entonces la entrada 1 del historial es "Carla: 60"
 
 @CA-2
@@ -34,6 +36,8 @@ Escenario: El historial muestra primero la partida más reciente
     Y ingreso la letra "W"
     Y ingreso la letra "Y"
     Y ingreso la letra "U"
+    Y elijo "Inicio"
+    Y elijo "Historial y jugadores"
     Entonces la entrada 1 del historial es "Carla: 0"
     Y la entrada 2 del historial es "Carla: 60"
 
@@ -44,5 +48,7 @@ Escenario: Al recargar la página el historial empieza vacío
     Y ingreso la letra "A"
     Y ingreso la letra "T"
     Y ingreso la letra "O"
+    Y elijo "Inicio"
+    Y elijo "Historial y jugadores"
     Y recargo la página
     Entonces el historial está vacío

@@ -4,6 +4,8 @@
 
 <h1>@T("Ahorcado")</h1>
 
+<a href="" data-testid="volver-inicio">@T("Inicio")</a>
+
 <p>Jugador: <span data-testid="jugador">@Estado.Turnos.Actual</span></p>
 
 <p>@T("Categoría"): <span data-testid="categoria-actual">@T(Estado.Configuracion.Categoria)</span></p>
@@ -37,13 +39,6 @@
 <p data-testid="resultado">@T(juego?.Resultado ?? "")</p>
 <p>@T("Puntaje"): <span data-testid="puntaje">@juego?.Puntaje</span></p>
 
-<h2>@T("Historial")</h2>
-<ul data-testid="historial">
-    @foreach (var entrada in Estado.Historial.Entradas)
-    {
-        <li>@entrada</li>
-    }
-</ul>
 
 
 @code {

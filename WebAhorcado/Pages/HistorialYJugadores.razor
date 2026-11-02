@@ -1,0 +1,27 @@
+﻿@page "/historial"
+@inject EstadoDelJuego Estado
+
+<main class="historial">
+    <h1>@T("Historial y jugadores")</h1>
+    <a href="" data-testid="volver-inicio">@T("Inicio")</a>
+
+    <h2>@T("Orden de turnos")</h2>
+    <ol data-testid="jugadores">
+        @foreach (var jugador in Estado.Turnos.Jugadores)
+        {
+            <li class="@(jugador == Estado.Turnos.Actual ? "actual" : "")">@jugador</li>
+        }
+    </ol>
+
+    <h2>@T("Últimas partidas")</h2>
+    <ul data-testid="historial">
+        @foreach (var entrada in Estado.Historial.Entradas)
+        {
+            <li>@entrada</li>
+        }
+    </ul>
+</main>
+
+@code {
+    private string T(string texto) => new Ahorcado.Traductor(Estado.Configuracion.Idioma).Traducir(texto);
+}
