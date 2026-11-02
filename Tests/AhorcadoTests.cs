@@ -752,4 +752,14 @@ public class AhorcadoTests
 
         Assert.Equal("Perdiste", juego.Resultado);
     }
+
+    [Fact]
+    public void Configuracion_con_30_segundos_crea_la_partida_con_limite()
+    {
+        var config = new Configuracion { Tiempo = 30 };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal(30, juego.TiempoRestante);
+    }
 }
