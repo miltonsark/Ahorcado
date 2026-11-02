@@ -559,4 +559,15 @@ public class AhorcadoTests
 
         Assert.Equal(1, juego.PartesDelDibujo);
     }
+
+    [Fact]
+    public void Con_3_errores_se_ven_3_partes()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "ZXQ")
+            juego.Adivinar(letra);
+
+        Assert.Equal(3, juego.PartesDelDibujo);
+    }
 }
