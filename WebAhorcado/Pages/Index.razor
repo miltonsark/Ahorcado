@@ -74,6 +74,8 @@
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
 <button data-testid="letra-enviar" @onclick="EnviarLetra">@T("Adivinar")</button>
 <button data-testid="pista" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">@T("Pedir pista")</button>
+<button data-testid="siguiente-partida">Siguiente partida</button>
+
 
 <p>@T("Errores"): <span data-testid="errores">@juego?.Errores</span></p>
 <p data-testid="mensaje">@T(juego?.Mensaje ?? "")</p>
