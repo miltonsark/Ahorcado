@@ -28,6 +28,16 @@
 
 <p>Categoría: <span data-testid="categoria-actual">@categoria</span></p>
 
+<label>
+    Tiempo:
+    <select data-testid="limite-tiempo">
+        <option value="0" selected>Sin límite</option>
+        <option value="60">60 segundos</option>
+        <option value="30">30 segundos</option>
+    </select>
+</label>
+<p>Tiempo restante: <span data-testid="tiempo-restante"></span></p>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
