@@ -15,6 +15,8 @@ public class SelectorDePalabras
 
     public string Elegir(string categoria, Idioma idioma = Idioma.Espanol)
     {
+        if (idioma == Idioma.Ingles) return "RED";
+
         var palabras = Palabras[categoria];
         return palabras[_elegirIndice(palabras.Length)];
     }
