@@ -4,6 +4,8 @@ using Dificultad = Ahorcado.Dificultad;
 using Historial = Ahorcado.Historial;
 using Xunit;
 using SelectorDePalabras = Ahorcado.SelectorDePalabras;
+using Idioma = Ahorcado.Idioma;
+using Traductor = Ahorcado.Traductor;
 
 namespace Tests;
 
@@ -580,5 +582,13 @@ public class AhorcadoTests
             juego.Adivinar(letra);
 
         Assert.Equal(3, juego.PartesDelDibujo);
+    }
+
+    [Fact]
+    public void En_ingles_Ganaste_es_You_won()
+    {
+        var traductor = new Traductor(Idioma.Ingles);
+
+        Assert.Equal("You won", traductor.Traducir("Ganaste"));
     }
 }
