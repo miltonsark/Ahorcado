@@ -730,4 +730,14 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Configuracion_con_Frutas_en_ingles_crea_la_partida_con_APPLE()
+    {
+        var config = new Configuracion { Categoria = "Frutas", Idioma = Idioma.Ingles };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Equal("_ _ _ _ _", juego.PalabraEnmascarada());
+    }
 }
