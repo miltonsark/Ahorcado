@@ -50,3 +50,14 @@ Escenario: Con el skin Robot el dibujo usa robot
     Y guardo la configuración
     Y inicio la partida con la palabra "GATO"
     Entonces el dibujo usa el skin "robot"
+
+@CA-3
+Escenario: Con el skin Robot también veo una parte por error
+    Dado que navego a la configuración
+    Cuando elijo el skin "Robot"
+    Y guardo la configuración
+    Y inicio la partida con la palabra "GATO"
+    Y ingreso la letra "Z"
+    Y ingreso la letra "X"
+    Y ingreso la letra "Q"
+    Entonces veo 3 partes del dibujo
