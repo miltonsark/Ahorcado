@@ -26,3 +26,18 @@ Escenario: La configuración predeterminada vuelve a Normal y mantiene el idioma
     Y elijo usar la configuración predeterminada
     Entonces la dificultad elegida es "Normal"
     Y el idioma elegido es "Ingles"
+
+@CA-1
+Escenario: Las opciones elegidas se combinan sin pisarse
+    Dado que navego a la configuración
+    Cuando elijo la categoría "Animales"
+    Y elijo la dificultad "Difícil"
+    Y elijo el idioma "English"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
+    Y ingreso la letra "Z"
+    Y ingreso la letra "X"
+    Y ingreso la letra "Q"
+    Y ingreso la letra "W"
+    Entonces veo el resultado "You lost"
+    Y la palabra revelada es una de "CAT, DOG, HORSE, TIGER, GIRAFFE"
