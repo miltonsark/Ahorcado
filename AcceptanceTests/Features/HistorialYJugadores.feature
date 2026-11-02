@@ -24,3 +24,12 @@ Escenario: El historial muestra las partidas jugadas
     Y elijo "Inicio"
     Y elijo "Historial y jugadores"
     Entonces la entrada 1 del historial es "Ana: 60"
+
+@CA-3
+Escenario: Veo el orden de los turnos
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Carla"
+    Y guardo la configuración
+    Y elijo "Historial y jugadores"
+    Entonces el jugador 2 de la lista es "Carla"
