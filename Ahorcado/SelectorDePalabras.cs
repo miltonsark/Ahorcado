@@ -26,7 +26,8 @@ public class SelectorDePalabras
         return palabras[_elegirIndice(palabras.Length)];
     }
 
-    public string ElegirCategoria() => "Frutas";
+    public string ElegirCategoria() =>
+        Palabras.Keys.ElementAt(_elegirIndice(Palabras.Count));
 
     public static string PalabraPorDefecto(Idioma idioma) =>
         idioma == Idioma.Ingles ? "HANGMAN" : "AHORCADO";
