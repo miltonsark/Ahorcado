@@ -18,4 +18,6 @@ public class SelectorDePalabras
         var palabras = Palabras[categoria];
         return palabras[_elegirIndice(palabras.Length)];
     }
+
+    public static string PalabraPorDefecto(Idioma idioma) => "";
 }

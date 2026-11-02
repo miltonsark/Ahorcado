@@ -615,4 +615,10 @@ public class AhorcadoTests
 
         Assert.Equal("The letter Z was already used", traductor.Traducir("La letra Z ya fue usada"));
     }
+
+    [Fact]
+    public void En_ingles_la_palabra_por_defecto_es_HANGMAN()
+    {
+        Assert.Equal("HANGMAN", SelectorDePalabras.PalabraPorDefecto(Idioma.Ingles));
+    }
 }
