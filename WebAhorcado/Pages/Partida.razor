@@ -199,6 +199,6 @@
     private void SiguientePartida()
     {
         Estado.Turnos.Pasar();
-        juego = new Ahorcado.Ahorcado(Word ?? "");
+        juego = Estado.Configuracion.CrearPartida(selector, Word);
     }
 }
