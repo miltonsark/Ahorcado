@@ -39,6 +39,8 @@
 </label>
 <p>Tiempo restante: <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></p>
 
+<svg data-testid="dibujo" class="ahorcado" width="160" height="200" viewBox="0 0 160 200"></svg>
+
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
