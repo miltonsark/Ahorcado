@@ -842,4 +842,12 @@ public class AhorcadoTests
 
         Assert.Equal("Frutas", selector.ElegirCategoria());
     }
+
+    [Fact]
+    public void Selector_con_la_posicion_2_elige_Colores()
+    {
+        var selector = new SelectorDePalabras(_ => 2);
+
+        Assert.Equal("Colores", selector.ElegirCategoria());
+    }
 }
