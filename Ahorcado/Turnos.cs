@@ -11,7 +11,7 @@ public class Turnos
 
     public string Actual => _nombres[_turno];
 
-    public IReadOnlyList<string> Jugadores => [];
+    public IReadOnlyList<string> Jugadores => _nombres;
 
     public void Pasar() => _turno = (_turno + 1) % _nombres.Count;
 
