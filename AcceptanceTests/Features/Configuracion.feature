@@ -12,3 +12,15 @@ Escenario: La categoría guardada se usa al iniciar la partida
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Entonces veo la categoría "Animales"
+
+@CA-2
+Escenario: La dificultad guardada se usa al iniciar la partida
+    Dado que navego a la configuración
+    Cuando elijo la dificultad "Difícil"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
+    Y ingreso la letra "Z"
+    Y ingreso la letra "X"
+    Y ingreso la letra "Q"
+    Y ingreso la letra "W"
+    Entonces veo el resultado "Perdiste"
