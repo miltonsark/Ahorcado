@@ -48,3 +48,12 @@ Escenario: El skin guardado se usa al iniciar la partida
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Entonces el dibujo usa el skin "pizarra"
+
+@CA-6
+Escenario: Los jugadores guardados juegan por turnos
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Carla"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
+    Entonces veo el jugador "Ana"
