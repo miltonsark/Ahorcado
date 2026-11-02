@@ -15,7 +15,7 @@ public class Configuracion
         var categoria = Categoria == "Aleatoria" && palabraFija is null ? selector.ElegirCategoria() : Categoria;
         var palabra = palabraFija
             ?? (categoria == "" ? SelectorDePalabras.PalabraPorDefecto(Idioma) : selector.Elegir(categoria, Idioma));
-        var juego = new Ahorcado(palabra, Dificultad);
+        var juego = new Ahorcado(palabra, Dificultad) { Categoria = categoria };
         if (Tiempo > 0)
             juego.EstablecerLimite(Tiempo);
         return juego;
