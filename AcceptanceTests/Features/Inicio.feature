@@ -11,3 +11,9 @@ Escenario: El inicio muestra las tres opciones
     Entonces veo la opción "Iniciar partida"
     Y veo la opción "Configuración"
     Y veo la opción "Historial y jugadores"
+
+@CA-2
+Escenario: Iniciar partida abre una partida con la configuración predeterminada
+    Dado que navego a la página principal
+    Cuando elijo "Iniciar partida"
+    Entonces veo la palabra oculta "_ _ _ _ _ _ _ _"

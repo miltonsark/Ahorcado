@@ -15,4 +15,10 @@ public class InicioSteps
         var enlace = _navegador.Page.GetByRole(AriaRole.Link, new() { Name = opcion, Exact = true });
         await Assertions.Expect(enlace).ToBeVisibleAsync();
     }
+
+    [When("elijo {string}")]
+    public async Task CuandoElijo(string opcion)
+    {
+        await _navegador.Page.GetByRole(AriaRole.Link, new() { Name = opcion, Exact = true }).ClickAsync();
+    }
 }
