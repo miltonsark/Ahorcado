@@ -762,4 +762,14 @@ public class AhorcadoTests
 
         Assert.Equal(30, juego.TiempoRestante);
     }
+
+    [Fact]
+    public void Configuracion_sin_tiempo_crea_la_partida_sin_limite()
+    {
+        var config = new Configuracion();
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+
+        Assert.Null(juego.TiempoRestante);
+    }
 }
