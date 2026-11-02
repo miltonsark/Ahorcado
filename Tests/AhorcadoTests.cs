@@ -850,4 +850,14 @@ public class AhorcadoTests
 
         Assert.Equal("Colores", selector.ElegirCategoria());
     }
+
+    [Fact]
+    public void Configuracion_aleatoria_elige_la_palabra_de_una_categoria_al_azar()
+    {
+        var config = new Configuracion { Categoria = "Aleatoria" };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 1));
+
+        Assert.Equal("_ _ _ _ _ _", juego.PalabraEnmascarada());
+    }
 }

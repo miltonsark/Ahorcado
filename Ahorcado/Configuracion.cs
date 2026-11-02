@@ -13,7 +13,7 @@ public class Configuracion
     public Ahorcado CrearPartida(SelectorDePalabras selector, string? palabraFija = null)
     {
         var palabra = palabraFija
-            ?? (Categoria == "" ? SelectorDePalabras.PalabraPorDefecto(Idioma) : selector.Elegir(Categoria, Idioma));
+            ?? (Categoria is "" or "Aleatoria" ? SelectorDePalabras.PalabraPorDefecto(Idioma) : selector.Elegir(Categoria, Idioma));
         var juego = new Ahorcado(palabra, Dificultad);
         if (Tiempo > 0)
             juego.EstablecerLimite(Tiempo);
