@@ -3,6 +3,14 @@
 
 <h1>Ahorcado</h1>
 
+<label>
+    Idioma:
+    <select data-testid="idioma">
+        <option value="Espanol" selected>Español</option>
+        <option value="Ingles">English</option>
+    </select>
+</label>
+
 <button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">Usar configuración predeterminada</button>
 
 <label>Nombre: <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" /></label>
