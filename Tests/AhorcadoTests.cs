@@ -782,4 +782,16 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Al_adivinar_una_letra_nueva_se_borra_el_mensaje()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('A');
+        juego.Adivinar('A');
+        juego.Adivinar('T');
+
+        Assert.Equal("", juego.Mensaje);
+    }
 }
