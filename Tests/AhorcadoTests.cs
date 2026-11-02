@@ -635,4 +635,12 @@ public class AhorcadoTests
 
         Assert.Equal("RED", selector.Elegir("Colores", Idioma.Ingles));
     }
+
+    [Fact]
+    public void En_ingles_Animales_posicion_1_es_DOG()
+    {
+        var selector = new SelectorDePalabras(cantidad => 1);
+
+        Assert.Equal("DOG", selector.Elegir("Animales", Idioma.Ingles));
+    }
 }
