@@ -1,12 +1,13 @@
 ﻿@page "/configuracion"
 @inject NavigationManager Nav
+@inject EstadoDelJuego Estado
 
 <main class="configuracion">
     <h1>Configuración</h1>
 
     <label>
         Categoría:
-        <select data-testid="categoria">
+        <select data-testid="categoria" @bind="Estado.Configuracion.Categoria">
             <option value="" selected>Sin categoría</option>
             <option value="Animales">Animales</option>
             <option value="Frutas">Frutas</option>
