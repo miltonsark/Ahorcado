@@ -549,4 +549,14 @@ public class AhorcadoTests
 
         Assert.Equal(0, juego.TiempoRestante);
     }
+
+    [Fact]
+    public void Con_1_error_se_ve_1_parte()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Z');
+
+        Assert.Equal(1, juego.PartesDelDibujo);
+    }
 }
