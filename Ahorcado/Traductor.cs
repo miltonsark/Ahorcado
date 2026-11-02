@@ -8,9 +8,14 @@ public class Traductor
         ["Perdiste"] = "You lost"
     };
 
-    public Traductor(Idioma idioma)
-    {
-    }
+    private readonly Idioma _idioma;
 
-    public string Traducir(string texto) => Ingles.GetValueOrDefault(texto, texto);
+    public Traductor(Idioma idioma) => _idioma = idioma;
+
+    public string Traducir(string texto)
+    {
+        if (_idioma == Idioma.Espanol) return texto;
+
+        return Ingles.GetValueOrDefault(texto, texto);
+    }
 }
