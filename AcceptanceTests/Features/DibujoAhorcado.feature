@@ -24,3 +24,8 @@ Escenario: Elijo el skin Pizarra
 Escenario: Si no elijo skin, el dibujo es Clásico
     Dado que ingreso a la partida con la palabra "GATO"
     Entonces el dibujo usa el skin "clasico"
+
+@CA-3
+Escenario: La configuración ofrece el skin Neón
+    Dado que navego a la configuración
+    Entonces el selector de skin ofrece "Neón"

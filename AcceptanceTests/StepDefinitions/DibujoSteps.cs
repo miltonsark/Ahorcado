@@ -29,4 +29,11 @@ public class DibujoSteps
         var dibujo = _navegador.Page.GetByTestId("dibujo");
         await Assertions.Expect(dibujo).ToHaveAttributeAsync("data-skin", skin);
     }
+
+    [Then("el selector de skin ofrece {string}")]
+    public async Task EntoncesElSelectorDeSkinOfrece(string skin)
+    {
+        var opcion = _navegador.Page.GetByTestId("skin").Locator("option", new() { HasText = skin });
+        await Assertions.Expect(opcion).ToHaveCountAsync(1);
+    }
 }
