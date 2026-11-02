@@ -30,7 +30,7 @@ Escenario: El idioma guardado se usa al iniciar la partida
     Dado que navego a la configuración
     Cuando elijo el idioma "English"
     Y guardo la configuración
-    Y elijo "Iniciar partida"
+    Y elijo "Start game"
     Entonces veo la palabra oculta "_ _ _ _ _ _ _"
 
 @CA-4
@@ -57,3 +57,10 @@ Escenario: Los jugadores guardados juegan por turnos
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Entonces veo el jugador "Ana"
+
+@CA-7
+Escenario: Con idioma inglés el inicio se ve en inglés
+    Dado que navego a la configuración
+    Cuando elijo el idioma "English"
+    Y guardo la configuración
+    Entonces veo la opción "Start game"

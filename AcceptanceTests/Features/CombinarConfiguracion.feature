@@ -34,7 +34,7 @@ Escenario: Las opciones elegidas se combinan sin pisarse
     Y elijo la dificultad "Difícil"
     Y elijo el idioma "English"
     Y guardo la configuración
-    Y elijo "Iniciar partida"
+    Y elijo "Start game"
     Y ingreso la letra "Z"
     Y ingreso la letra "X"
     Y ingreso la letra "Q"
