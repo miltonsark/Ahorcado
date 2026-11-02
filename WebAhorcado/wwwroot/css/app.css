@@ -141,6 +141,43 @@ h1:focus {
     opacity: .9;
 }
 
+.ahorcado[data-skin="neon"] {
+    background: #0E0B1A;
+}
+
+.ahorcado[data-skin="neon"] line,
+.ahorcado[data-skin="neon"] circle {
+    stroke: #39F3FF;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 4px #39F3FF);
+}
+
+.ahorcado[data-skin="neon"] [data-testid^="parte-"] {
+    stroke: #FF4FD8;
+    filter: drop-shadow(0 0 4px #FF4FD8);
+}
+
+.ahorcado[data-skin="robot"] {
+    background: #2B2F36;
+}
+
+.ahorcado[data-skin="robot"] line {
+    stroke: #6D7781;
+    stroke-width: 7;
+    stroke-linecap: square;
+}
+
+.ahorcado[data-skin="robot"] rect {
+    fill: #AEB7C1;
+    stroke: #5B636C;
+    stroke-width: 2;
+}
+
+.ahorcado[data-skin="robot"] rect.ojo {
+    fill: #39F3FF;
+    stroke: none;
+}
+
 /* Botones */
 .btn {
     min-height: 52px;
