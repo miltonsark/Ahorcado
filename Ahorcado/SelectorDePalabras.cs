@@ -13,7 +13,7 @@ public class SelectorDePalabras
 
     public SelectorDePalabras(Func<int, int> elegirIndice) => _elegirIndice = elegirIndice;
 
-    public string Elegir(string categoria)
+    public string Elegir(string categoria, Idioma idioma = Idioma.Espanol)
     {
         var palabras = Palabras[categoria];
         return palabras[_elegirIndice(palabras.Length)];

@@ -627,4 +627,12 @@ public class AhorcadoTests
     {
         Assert.Equal("AHORCADO", SelectorDePalabras.PalabraPorDefecto(Idioma.Espanol));
     }
+
+    [Fact]
+    public void En_ingles_Colores_posicion_0_es_RED()
+    {
+        var selector = new SelectorDePalabras(cantidad => 0);
+
+        Assert.Equal("RED", selector.Elegir("Colores", Idioma.Ingles));
+    }
 }
