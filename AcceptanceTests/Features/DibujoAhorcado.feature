@@ -17,3 +17,9 @@ Escenario: Elijo el skin Pizarra
     Dado que ingreso a la partida con la palabra "GATO"
     Cuando elijo el skin "Pizarra"
     Entonces el dibujo usa el skin "pizarra"
+
+    
+@CA-2
+Escenario: Si no elijo skin, el dibujo es Clásico
+    Dado que ingreso a la partida con la palabra "GATO"
+    Entonces el dibujo usa el skin "clasico"
