@@ -740,4 +740,16 @@ public class AhorcadoTests
 
         Assert.Equal("_ _ _ _ _", juego.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Configuracion_en_Dificil_crea_una_partida_que_se_pierde_con_4_errores()
+    {
+        var config = new Configuracion { Dificultad = Dificultad.Dificil };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
+        foreach (var letra in "ZXQW")
+            juego.Adivinar(letra);
+
+        Assert.Equal("Perdiste", juego.Resultado);
+    }
 }
