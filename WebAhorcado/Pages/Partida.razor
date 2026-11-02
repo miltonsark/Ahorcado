@@ -21,12 +21,29 @@
                 <line x1="40" y1="190" x2="40" y2="10" />
                 <line x1="40" y1="10" x2="110" y2="10" />
                 <line x1="110" y1="10" x2="110" y2="30" />
-                @if (partes >= 1) { <circle data-testid="parte-1" cx="110" cy="45" r="15" /> }
-                @if (partes >= 2) { <line data-testid="parte-2" x1="110" y1="60" x2="110" y2="120" /> }
-                @if (partes >= 3) { <line data-testid="parte-3" x1="110" y1="75" x2="85" y2="100" /> }
-                @if (partes >= 4) { <line data-testid="parte-4" x1="110" y1="75" x2="135" y2="100" /> }
-                @if (partes >= 5) { <line data-testid="parte-5" x1="110" y1="120" x2="90" y2="155" /> }
-                @if (partes >= 6) { <line data-testid="parte-6" x1="110" y1="120" x2="130" y2="155" /> }
+                @if (Estado.Skin == "robot")
+                {
+                    if (partes >= 1)
+                    {
+                        <rect data-testid="parte-1" x="96" y="30" width="28" height="28" rx="3" />
+                        <rect class="ojo" x="101" y="38" width="6" height="6" />
+                        <rect class="ojo" x="113" y="38" width="6" height="6" />
+                    }
+                    if (partes >= 2) { <rect data-testid="parte-2" x="95" y="62" width="30" height="55" rx="3" /> }
+                    if (partes >= 3) { <rect data-testid="parte-3" x="80" y="66" width="10" height="36" rx="3" /> }
+                    if (partes >= 4) { <rect data-testid="parte-4" x="130" y="66" width="10" height="36" rx="3" /> }
+                    if (partes >= 5) { <rect data-testid="parte-5" x="97" y="120" width="11" height="38" rx="3" /> }
+                    if (partes >= 6) { <rect data-testid="parte-6" x="112" y="120" width="11" height="38" rx="3" /> }
+                }
+                else
+                {
+                    if (partes >= 1) { <circle data-testid="parte-1" cx="110" cy="45" r="15" /> }
+                    if (partes >= 2) { <line data-testid="parte-2" x1="110" y1="60" x2="110" y2="120" /> }
+                    if (partes >= 3) { <line data-testid="parte-3" x1="110" y1="75" x2="85" y2="100" /> }
+                    if (partes >= 4) { <line data-testid="parte-4" x1="110" y1="75" x2="135" y2="100" /> }
+                    if (partes >= 5) { <line data-testid="parte-5" x1="110" y1="120" x2="90" y2="155" /> }
+                    if (partes >= 6) { <line data-testid="parte-6" x1="110" y1="120" x2="130" y2="155" /> }
+                }
             </svg>
         </div>
 
