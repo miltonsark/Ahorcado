@@ -2,9 +2,10 @@
 @inject EstadoDelJuego Estado
 
 <main class="historial">
-    <h1>Historial y jugadores</h1>
+    <h1>@T("Historial y jugadores")</h1>
+    <a href="" data-testid="volver-inicio">@T("Inicio")</a>
 
-    <h2>Orden de turnos</h2>
+    <h2>@T("Orden de turnos")</h2>
     <ol data-testid="jugadores">
         @foreach (var jugador in Estado.Turnos.Jugadores)
         {
@@ -12,7 +13,7 @@
         }
     </ol>
 
-    <h2>Últimas partidas</h2>
+    <h2>@T("Últimas partidas")</h2>
     <ul data-testid="historial">
         @foreach (var entrada in Estado.Historial.Entradas)
         {
@@ -20,3 +21,7 @@
         }
     </ul>
 </main>
+
+@code {
+    private string T(string texto) => new Ahorcado.Traductor(Estado.Configuracion.Idioma).Traducir(texto);
+}

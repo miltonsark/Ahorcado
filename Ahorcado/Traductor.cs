@@ -35,7 +35,10 @@ public class Traductor
         ["Configuración"] = "Settings",
         ["Historial y jugadores"] = "History and players",
         ["Guardar"] = "Save",
-        ["Jugadores"] = "Players"
+        ["Jugadores"] = "Players",
+        ["Inicio"] = "Home",
+        ["Orden de turnos"] = "Turn order",
+        ["Últimas partidas"] = "Latest games"
     };
 
     private readonly Idioma _idioma;
