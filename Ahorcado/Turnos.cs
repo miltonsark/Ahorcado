@@ -6,5 +6,5 @@ public class Turnos
     {
     }
 
-    public string Actual => "";
+    public string Actual => "Ana";
 }
