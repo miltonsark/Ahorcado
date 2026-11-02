@@ -826,4 +826,12 @@ public class AhorcadoTests
 
         Assert.Equal(esperado, traductor.Traducir(texto));
     }
+
+    [Fact]
+    public void Traductor_traduce_el_skin_Neon()
+    {
+        var traductor = new Traductor(Idioma.Ingles);
+
+        Assert.Equal("Neon", traductor.Traducir("Neón"));
+    }
 }
