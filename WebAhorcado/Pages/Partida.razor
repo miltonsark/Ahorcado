@@ -1,5 +1,6 @@
 ﻿@page "/partida"
 @implements IDisposable
+@inject EstadoDelJuego Estado
 
 <h1>@T("Ahorcado")</h1>
 
@@ -84,7 +85,7 @@
 
 <h2>@T("Historial")</h2>
 <ul data-testid="historial">
-    @foreach (var entrada in historial.Entradas)
+    @foreach (var entrada in Estado.Historial.Entradas)
     {
         <li>@entrada</li>
     }
@@ -103,7 +104,6 @@
     private string nombre = ""; 
     private string categoria = "";
     private string skin = "clasico";
-    private readonly Ahorcado.Historial historial = new();
     private readonly Ahorcado.SelectorDePalabras selector = new(cantidad => Random.Shared.Next(cantidad));
 
     protected override void OnParametersSet()
@@ -134,7 +134,7 @@
     private void RegistrarSiTermino()
     {
         if (juego!.Terminado)
-            historial.Registrar(turnos.Actual, juego.Puntaje);
+            Estado.Historial.Registrar(turnos.Actual, juego.Puntaje);
     }
 
     private void TeclaPresionada(KeyboardEventArgs e)
