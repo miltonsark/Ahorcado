@@ -40,7 +40,7 @@ public class Ahorcado
 
     public bool PuedePedirPista => !_pistaUsada && !Terminado && Errores < _maxErrores - 1;
 
-    public int? TiempoRestante => null;
+    public int? TiempoRestante => 30;
 
     public void EstablecerLimite(int segundos)
     {
