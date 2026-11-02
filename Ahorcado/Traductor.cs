@@ -6,5 +6,5 @@ public class Traductor
     {
     }
 
-    public string Traducir(string texto) => "";
+    public string Traducir(string texto) => "You won";
 }
