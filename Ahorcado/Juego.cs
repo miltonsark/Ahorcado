@@ -73,7 +73,7 @@ public class Ahorcado
 
     public string PalabraEnmascarada()
     {
-        if (Errores >= _maxErrores)
+        if (Errores >= _maxErrores || TiempoRestante == 0)
             return string.Join(" ", _palabra.Select(letra => letra.ToString()));
 
         return string.Join(" ", _palabra.Select(letra =>
