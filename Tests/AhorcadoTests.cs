@@ -491,4 +491,14 @@ public class AhorcadoTests
 
         Assert.Equal("GATO", selector.Elegir("Animales"));
     }
+
+    [Fact]
+    public void Con_limite_de_30_segundos_quedan_30()
+    {
+        var juego = new Juego("GATO");
+
+        juego.EstablecerLimite(30);
+
+        Assert.Equal(30, juego.TiempoRestante);
+    }
 }
