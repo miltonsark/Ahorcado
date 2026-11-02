@@ -1,4 +1,5 @@
 ﻿using Juego = Ahorcado.Ahorcado;
+using Turnos = Ahorcado.Turnos;
 using Jugador = Ahorcado.Jugador;
 using Dificultad = Ahorcado.Dificultad;
 using Historial = Ahorcado.Historial;
@@ -642,5 +643,60 @@ public class AhorcadoTests
         var selector = new SelectorDePalabras(cantidad => 1);
 
         Assert.Equal("DOG", selector.Elegir("Animales", Idioma.Ingles));
+    }
+
+    [Fact]
+    public void Con_Ana_y_Beto_empieza_Ana()
+    {
+        var turnos = new Turnos("Ana, Beto");
+
+        Assert.Equal("Ana", turnos.Actual);
+    }
+
+    [Fact]
+    public void Con_Beto_y_Ana_empieza_Beto()
+    {
+        var turnos = new Turnos("Beto, Ana");
+
+        Assert.Equal("Beto", turnos.Actual);
+    }
+
+    [Fact]
+    public void Al_pasar_el_turno_le_toca_a_Beto()
+    {
+        var turnos = new Turnos("Ana, Beto");
+
+        turnos.Pasar();
+
+        Assert.Equal("Beto", turnos.Actual);
+    }
+    [Fact]
+    public void Despues_del_ultimo_vuelve_al_primero()
+    {
+        var turnos = new Turnos("Ana, Beto");
+
+        turnos.Pasar();
+        turnos.Pasar();
+
+        Assert.Equal("Ana", turnos.Actual);
+    }
+
+    [Fact]
+    public void Se_juega_con_hasta_4_jugadores()
+    {
+        var turnos = new Turnos("Ana, Beto, Caro, Dani, Eli");
+
+        for (var i = 0; i < 4; i++)
+            turnos.Pasar();
+
+        Assert.Equal("Ana", turnos.Actual);
+    }
+
+    [Fact]
+    public void Sin_nombres_juega_Anonimo()
+    {
+        var turnos = new Turnos("");
+
+        Assert.Equal("Anónimo", turnos.Actual);
     }
 }

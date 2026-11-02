@@ -13,8 +13,8 @@
 
 <button data-testid="config-predeterminada" @onclick="UsarConfiguracionPredeterminada">@T("Usar configuración predeterminada")</button>
 
-<label>@T("Nombre"): <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" /></label>
-<p>@T("Jugador"): <span data-testid="jugador">@(new Ahorcado.Jugador(nombre).Nombre)</span></p>
+<label>Nombre: <input data-testid="nombre-input" @bind="nombre" @bind:event="oninput" @bind:after="ActualizarJugadores" /></label>
+<p>Jugador: <span data-testid="jugador">@turnos.Actual</span></p>
 
 <label>
     @T("Dificultad"):
@@ -74,6 +74,8 @@
 <input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
 <button data-testid="letra-enviar" @onclick="EnviarLetra">@T("Adivinar")</button>
 <button data-testid="pista" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">@T("Pedir pista")</button>
+<button data-testid="siguiente-partida" @onclick="SiguientePartida">Siguiente partida</button>
+
 
 <p>@T("Errores"): <span data-testid="errores">@juego?.Errores</span></p>
 <p data-testid="mensaje">@T(juego?.Mensaje ?? "")</p>
@@ -132,7 +134,7 @@
     private void RegistrarSiTermino()
     {
         if (juego!.Terminado)
-            historial.Registrar(new Ahorcado.Jugador(nombre).Nombre, juego.Puntaje);
+            historial.Registrar(turnos.Actual, juego.Puntaje);
     }
 
     private void TeclaPresionada(KeyboardEventArgs e)
@@ -194,4 +196,14 @@
     }
 
     public void Dispose() => reloj?.Dispose();
+
+    private Ahorcado.Turnos turnos = new("");
+
+    private void ActualizarJugadores() => turnos = new Ahorcado.Turnos(nombre);
+
+    private void SiguientePartida()
+    {
+        turnos.Pasar();
+        juego = new Ahorcado.Ahorcado(Word ?? "");
+    }
 }
