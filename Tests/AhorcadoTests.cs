@@ -512,4 +512,41 @@ public class AhorcadoTests
 
         Assert.Equal(59, juego.TiempoRestante);
     }
+
+    [Fact]
+    public void Si_el_tiempo_llega_a_0_se_pierde()
+    {
+        var juego = new Juego("GATO");
+        juego.EstablecerLimite(2);
+
+        juego.PasarSegundo();
+        juego.PasarSegundo();
+
+        Assert.Equal("Perdiste", juego.Resultado);
+    }
+
+    [Fact]
+    public void Si_el_tiempo_llega_a_0_se_revela_la_palabra()
+    {
+        var juego = new Juego("GATO");
+        juego.EstablecerLimite(2);
+
+        juego.PasarSegundo();
+        juego.PasarSegundo();
+
+        Assert.Equal("G A T O", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void El_tiempo_no_baja_de_0()
+    {
+        var juego = new Juego("GATO");
+        juego.EstablecerLimite(2);
+
+        juego.PasarSegundo();
+        juego.PasarSegundo();
+        juego.PasarSegundo();
+
+        Assert.Equal(0, juego.TiempoRestante);
+    }
 }

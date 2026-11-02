@@ -25,4 +25,16 @@ public class TiempoSteps
         var segundos = int.Parse(await tiempo.InnerTextAsync());
         Assert.InRange(segundos, minimo, maximo);
     }
+
+    [Given("que ingreso a la partida con la palabra {string} y {int} segundos de límite")]
+    public async Task DadoIngresoConLimite(string palabra, int segundos)
+    {
+        await _navegador.Page.GotoAsync($"{Hooks.BaseUrl}/?word={palabra}&tiempo={segundos}");
+    }
+
+    [When("espero {int} segundos")]
+    public async Task CuandoEspero(int segundos)
+    {
+        await _navegador.Page.WaitForTimeoutAsync(segundos * 1000);
+    }
 }

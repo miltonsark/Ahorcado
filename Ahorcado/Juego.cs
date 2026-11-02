@@ -27,11 +27,12 @@ public class Ahorcado
     }
 
     public int Errores { get; private set; }
+    private bool Perdio => Errores >= _maxErrores || TiempoRestante == 0;
 
     public string Mensaje { get; private set; } = "";
 
     public string Resultado =>
-        Errores >= _maxErrores ? "Perdiste" :
+        Perdio ? "Perdiste" :
         _palabra.All(letra => _acertadas.Contains(letra)) ? "Ganaste" : "";
 
     public bool Terminado => Resultado != "";
@@ -44,7 +45,12 @@ public class Ahorcado
 
     public void EstablecerLimite(int segundos) => TiempoRestante = segundos;
 
-    public void PasarSegundo() => TiempoRestante--;
+    public void PasarSegundo()
+    {
+        if (Terminado) return;
+
+        TiempoRestante--;
+    }
 
     public void Adivinar(char letra)
     {
@@ -73,12 +79,14 @@ public class Ahorcado
 
     public string PalabraEnmascarada()
     {
-        if (Errores >= _maxErrores)
+        if (Perdio)
             return string.Join(" ", _palabra.Select(letra => letra.ToString()));
 
         return string.Join(" ", _palabra.Select(letra =>
             _acertadas.Contains(letra) ? letra.ToString() : "_"));
     }
+
+
 
 
 }
