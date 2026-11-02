@@ -26,3 +26,11 @@ Escenario: Veo la categoría que elegí
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Entonces veo la categoría "Frutas"
+
+@CA-3
+Escenario: Con categoría Aleatoria veo la categoría que salió
+    Dado que navego a la configuración
+    Cuando elijo la categoría "Aleatoria"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
+    Entonces veo una categoría entre "Animales, Frutas, Colores"
