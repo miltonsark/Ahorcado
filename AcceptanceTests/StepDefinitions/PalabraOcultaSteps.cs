@@ -11,7 +11,7 @@ public class PalabraOcultaSteps
 
     [Given("que ingreso a la partida con la palabra {string}")]
     public async Task DadoIngresoALaPartida(string palabra)
-        => await _navegador.Page.GotoAsync($"{Hooks.BaseUrl}/?word={palabra}");
+        => await _navegador.Page.GotoAsync($"{Hooks.BaseUrl}/partida?word={palabra}");
 
     [Then("veo la palabra oculta {string}")]
     public async Task EntoncesVeoLaPalabraOculta(string esperado)

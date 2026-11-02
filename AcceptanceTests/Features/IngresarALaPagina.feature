@@ -12,5 +12,5 @@ Escenario: El jugador ingresa a la página
 
 @CA-2
 Escenario: Sin palabra en la URL arranca con la palabra por defecto
-    Dado que navego a la página principal
+    Dado que navego a la partida
     Entonces veo la palabra oculta "_ _ _ _ _ _ _ _"
