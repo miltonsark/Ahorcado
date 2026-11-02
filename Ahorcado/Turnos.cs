@@ -5,7 +5,7 @@ public class Turnos
     private readonly List<string> _nombres;
 
     public Turnos(string nombres) =>
-        _nombres = nombres.Split(',').Select(nombre => nombre.Trim()).ToList();
+    _nombres = nombres.Split(',').Select(nombre => nombre.Trim()).Take(4).ToList();
 
     private int _turno;
 
