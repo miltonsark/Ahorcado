@@ -2,9 +2,10 @@
 
 public class Turnos
 {
-    public Turnos(string nombres)
-    {
-    }
+    private readonly List<string> _nombres;
 
-    public string Actual => "Ana";
+    public Turnos(string nombres) =>
+        _nombres = nombres.Split(',').Select(nombre => nombre.Trim()).ToList();
+
+    public string Actual => _nombres[0];
 }
