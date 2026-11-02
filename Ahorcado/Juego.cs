@@ -40,6 +40,12 @@ public class Ahorcado
 
     public bool PuedePedirPista => !_pistaUsada && !Terminado && Errores < _maxErrores - 1;
 
+    public int? TiempoRestante { get; private set; }
+
+    public void EstablecerLimite(int segundos) => TiempoRestante = segundos;
+
+    public void PasarSegundo() => TiempoRestante--;
+
     public void Adivinar(char letra)
     {
         if (Terminado) return;

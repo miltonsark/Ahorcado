@@ -1,4 +1,5 @@
 ﻿@page "/"
+@implements IDisposable
 
 <h1>Ahorcado</h1>
 
@@ -27,6 +28,16 @@
 </label>
 
 <p>Categoría: <span data-testid="categoria-actual">@categoria</span></p>
+
+<label>
+    Tiempo:
+    <select data-testid="limite-tiempo" @onchange="CambiarLimite">
+        <option value="0" selected>Sin límite</option>
+        <option value="60">60 segundos</option>
+        <option value="30">30 segundos</option>
+    </select>
+</label>
+<p>Tiempo restante: <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></p>
 
 <p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
 
@@ -110,4 +121,24 @@
         categoria = elegida;
         juego = new Ahorcado.Ahorcado(selector.Elegir(elegida));
     }
+    private System.Threading.Timer? reloj;
+
+    protected override void OnInitialized()
+    {
+        reloj = new System.Threading.Timer(_ => InvokeAsync(() =>
+        {
+            juego?.PasarSegundo();
+            StateHasChanged();
+        }), null, 1000, 1000);
+    }
+
+    private void CambiarLimite(ChangeEventArgs e)
+    {
+        var segundos = int.Parse(e.Value!.ToString()!);
+        juego = new Ahorcado.Ahorcado(Word ?? "");
+        if (segundos > 0)
+            juego.EstablecerLimite(segundos);
+    }
+
+    public void Dispose() => reloj?.Dispose();
 }
