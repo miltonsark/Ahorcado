@@ -24,3 +24,11 @@ Escenario: La dificultad guardada se usa al iniciar la partida
     Y ingreso la letra "Q"
     Y ingreso la letra "W"
     Entonces veo el resultado "Perdiste"
+
+@CA-3
+Escenario: El idioma guardado se usa al iniciar la partida
+    Dado que navego a la configuración
+    Cuando elijo el idioma "English"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
+    Entonces veo la palabra oculta "_ _ _ _ _ _ _"
