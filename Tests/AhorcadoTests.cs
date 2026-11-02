@@ -680,4 +680,15 @@ public class AhorcadoTests
 
         Assert.Equal("Ana", turnos.Actual);
     }
+
+    [Fact]
+    public void Se_juega_con_hasta_4_jugadores()
+    {
+        var turnos = new Turnos("Ana, Beto, Caro, Dani, Eli");
+
+        for (var i = 0; i < 4; i++)
+            turnos.Pasar();
+
+        Assert.Equal("Ana", turnos.Actual);
+    }
 }
