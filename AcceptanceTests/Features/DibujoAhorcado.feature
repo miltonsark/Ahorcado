@@ -37,3 +37,8 @@ Escenario: Con el skin Neón el dibujo usa neon
     Y guardo la configuración
     Y inicio la partida con la palabra "GATO"
     Entonces el dibujo usa el skin "neon"
+
+@CA-3
+Escenario: La configuración ofrece el skin Robot
+    Dado que navego a la configuración
+    Entonces el selector de skin ofrece "Robot"
