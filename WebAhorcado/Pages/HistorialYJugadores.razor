@@ -5,7 +5,12 @@
     <h1>Historial y jugadores</h1>
 
     <h2>Orden de turnos</h2>
-    <ol data-testid="jugadores"></ol>
+    <ol data-testid="jugadores">
+        @foreach (var jugador in Estado.Turnos.Jugadores)
+        {
+            <li class="@(jugador == Estado.Turnos.Actual ? "actual" : "")">@jugador</li>
+        }
+    </ol>
 
     <h2>Últimas partidas</h2>
     <ul data-testid="historial">
