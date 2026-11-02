@@ -19,5 +19,5 @@ public class SelectorDePalabras
         return palabras[_elegirIndice(palabras.Length)];
     }
 
-    public static string PalabraPorDefecto(Idioma idioma) => "";
+    public static string PalabraPorDefecto(Idioma idioma) => "HANGMAN";
 }
