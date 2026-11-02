@@ -512,4 +512,16 @@ public class AhorcadoTests
 
         Assert.Equal(59, juego.TiempoRestante);
     }
+
+    [Fact]
+    public void Si_el_tiempo_llega_a_0_se_pierde()
+    {
+        var juego = new Juego("GATO");
+        juego.EstablecerLimite(2);
+
+        juego.PasarSegundo();
+        juego.PasarSegundo();
+
+        Assert.Equal("Perdiste", juego.Resultado);
+    }
 }
