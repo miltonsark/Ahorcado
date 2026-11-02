@@ -772,4 +772,14 @@ public class AhorcadoTests
 
         Assert.Null(juego.TiempoRestante);
     }
+
+    [Fact]
+    public void Configuracion_con_palabra_fija_ignora_idioma_y_categoria()
+    {
+        var config = new Configuracion { Idioma = Idioma.Ingles, Categoria = "Frutas" };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 0), "GATO");
+
+        Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
+    }
 }
