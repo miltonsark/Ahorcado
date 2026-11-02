@@ -670,4 +670,14 @@ public class AhorcadoTests
 
         Assert.Equal("Beto", turnos.Actual);
     }
+    [Fact]
+    public void Despues_del_ultimo_vuelve_al_primero()
+    {
+        var turnos = new Turnos("Ana, Beto");
+
+        turnos.Pasar();
+        turnos.Pasar();
+
+        Assert.Equal("Ana", turnos.Actual);
+    }
 }
