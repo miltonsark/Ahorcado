@@ -30,3 +30,10 @@ h1:focus {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.ahorcado line,
+.ahorcado circle {
+    stroke: #333;
+    stroke-width: 4;
+    fill: none;
+}
