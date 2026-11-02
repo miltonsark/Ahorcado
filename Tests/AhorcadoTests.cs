@@ -599,4 +599,12 @@ public class AhorcadoTests
 
         Assert.Equal("You lost", traductor.Traducir("Perdiste"));
     }
+
+    [Fact]
+    public void En_espanol_Ganaste_queda_igual()
+    {
+        var traductor = new Traductor(Idioma.Espanol);
+
+        Assert.Equal("Ganaste", traductor.Traducir("Ganaste"));
+    }
 }
