@@ -32,6 +32,15 @@
         </select>
     </label>
 
+    <label>
+        Tiempo:
+        <select data-testid="limite-tiempo">
+            <option value="0" selected>Sin límite</option>
+            <option value="60">60 segundos</option>
+            <option value="30">30 segundos</option>
+        </select>
+    </label>
+
     <button data-testid="guardar-configuracion" @onclick="Guardar">Guardar</button>
 </main>
 

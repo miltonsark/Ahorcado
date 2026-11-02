@@ -32,3 +32,11 @@ Escenario: El idioma guardado se usa al iniciar la partida
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Entonces veo la palabra oculta "_ _ _ _ _ _ _"
+
+@CA-4
+Escenario: El tiempo guardado se usa al iniciar la partida
+    Dado que navego a la configuración
+    Cuando elijo el límite de tiempo "30 segundos"
+    Y guardo la configuración
+    Y elijo "Iniciar partida"
+    Entonces veo el tiempo restante entre 25 y 30
