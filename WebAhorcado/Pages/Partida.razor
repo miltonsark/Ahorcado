@@ -2,43 +2,57 @@
 @implements IDisposable
 @inject EstadoDelJuego Estado
 
-<h1>@T("Ahorcado")</h1>
+<main class="partida contenido">
+    <header class="encabezado">
+        <a href="" data-testid="volver-inicio" class="btn btn-secundario">@T("Inicio")</a>
+        <h1>@T("Ahorcado")</h1>
+        <div class="chips">
+            <span class="chip">@T("Jugador"): <strong data-testid="jugador">@Estado.Turnos.Actual</strong></span>
+            <span class="chip">@T("Categoría"): <span data-testid="categoria-actual">@T(Estado.Configuracion.Categoria)</span></span>
+            <span class="chip chip-tiempo">@T("Tiempo restante"): <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></span>
+        </div>
+    </header>
 
-<a href="" data-testid="volver-inicio">@T("Inicio")</a>
+    <div class="juego">
+        <div class="dibujo">
+            @{ var partes = juego?.PartesDelDibujo ?? 0; }
+            <svg data-testid="dibujo" class="ahorcado" data-skin="@Estado.Skin" width="160" height="200" viewBox="0 0 160 200">
+                <line x1="10" y1="190" x2="110" y2="190" />
+                <line x1="40" y1="190" x2="40" y2="10" />
+                <line x1="40" y1="10" x2="110" y2="10" />
+                <line x1="110" y1="10" x2="110" y2="30" />
+                @if (partes >= 1) { <circle data-testid="parte-1" cx="110" cy="45" r="15" /> }
+                @if (partes >= 2) { <line data-testid="parte-2" x1="110" y1="60" x2="110" y2="120" /> }
+                @if (partes >= 3) { <line data-testid="parte-3" x1="110" y1="75" x2="85" y2="100" /> }
+                @if (partes >= 4) { <line data-testid="parte-4" x1="110" y1="75" x2="135" y2="100" /> }
+                @if (partes >= 5) { <line data-testid="parte-5" x1="110" y1="120" x2="90" y2="155" /> }
+                @if (partes >= 6) { <line data-testid="parte-6" x1="110" y1="120" x2="130" y2="155" /> }
+            </svg>
+        </div>
 
-<p>Jugador: <span data-testid="jugador">@Estado.Turnos.Actual</span></p>
+        <div class="panel">
+            <p data-testid="palabra-oculta" class="palabra">@juego?.PalabraEnmascarada()</p>
 
-<p>@T("Categoría"): <span data-testid="categoria-actual">@T(Estado.Configuracion.Categoria)</span></p>
+            <div class="jugada">
+                <input data-testid="letra-input" aria-label="Letra" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
+                <button data-testid="letra-enviar" class="btn btn-primario" @onclick="EnviarLetra">@T("Adivinar")</button>
+                <button data-testid="pista" class="btn btn-secundario" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">@T("Pedir pista")</button>
+            </div>
 
-<p>@T("Tiempo restante"): <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></p>
+            <p data-testid="mensaje" class="mensaje">@T(juego?.Mensaje ?? "")</p>
 
-@{ var partes = juego?.PartesDelDibujo ?? 0; }
-<svg data-testid="dibujo" class="ahorcado" data-skin="@Estado.Skin" width="160" height="200" viewBox="0 0 160 200">
-    <line x1="10" y1="190" x2="110" y2="190" />
-    <line x1="40" y1="190" x2="40" y2="10" />
-    <line x1="40" y1="10" x2="110" y2="10" />
-    <line x1="110" y1="10" x2="110" y2="30" />
-    @if (partes >= 1) { <circle data-testid="parte-1" cx="110" cy="45" r="15" /> }
-    @if (partes >= 2) { <line data-testid="parte-2" x1="110" y1="60" x2="110" y2="120" /> }
-    @if (partes >= 3) { <line data-testid="parte-3" x1="110" y1="75" x2="85" y2="100" /> }
-    @if (partes >= 4) { <line data-testid="parte-4" x1="110" y1="75" x2="135" y2="100" /> }
-    @if (partes >= 5) { <line data-testid="parte-5" x1="110" y1="120" x2="90" y2="155" /> }
-    @if (partes >= 6) { <line data-testid="parte-6" x1="110" y1="120" x2="130" y2="155" /> }
-</svg>
+            <div class="marcadores">
+                <p class="marcador">@T("Errores") <span data-testid="errores">@juego?.Errores</span></p>
+                <p class="marcador">@T("Puntaje") <span data-testid="puntaje">@juego?.Puntaje</span></p>
+                <p class="marcador">@T("Resultado") <span data-testid="resultado">@T(juego?.Resultado ?? "")</span></p>
+            </div>
+        </div>
+    </div>
 
-<p data-testid="palabra-oculta">@juego?.PalabraEnmascarada()</p>
-
-<input data-testid="letra-input" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
-<button data-testid="letra-enviar" @onclick="EnviarLetra">@T("Adivinar")</button>
-<button data-testid="pista" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">@T("Pedir pista")</button>
-<button data-testid="siguiente-partida" @onclick="SiguientePartida">Siguiente partida</button>
-
-
-<p>@T("Errores"): <span data-testid="errores">@juego?.Errores</span></p>
-<p data-testid="mensaje">@T(juego?.Mensaje ?? "")</p>
-<p data-testid="resultado">@T(juego?.Resultado ?? "")</p>
-<p>@T("Puntaje"): <span data-testid="puntaje">@juego?.Puntaje</span></p>
-
+    <footer class="acciones">
+        <button data-testid="siguiente-partida" class="btn btn-secundario" @onclick="SiguientePartida">@T("Siguiente partida")</button>
+    </footer>
+</main>
 
 
 @code {

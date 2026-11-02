@@ -2,64 +2,73 @@
 @inject NavigationManager Nav
 @inject EstadoDelJuego Estado
 
-<main class="configuracion">
-    <h1>@T("Configuración")</h1>
+<main class="configuracion contenido">
+    <header class="encabezado">
+        <h1>@T("Configuración")</h1>
+    </header>
 
-    <label>
-        @T("Categoría"):
-        <select data-testid="categoria" @bind="Estado.Configuracion.Categoria">
-            <option value="" selected>@T("Sin categoría")</option>
-            <option value="Animales">@T("Animales")</option>
-            <option value="Frutas">@T("Frutas")</option>
-            <option value="Colores">@T("Colores")</option>
-        </select>
-    </label>
+    <div class="secciones">
+        <section class="tarjeta">
+            <label class="campo">
+                @T("Idioma")
+                <select data-testid="idioma" @bind="Estado.Configuracion.Idioma">
+                    <option value="Espanol" selected>Español</option>
+                    <option value="Ingles">English</option>
+                </select>
+            </label>
 
-    <label>
-        @T("Dificultad"):
-        <select data-testid="dificultad" @bind="Estado.Configuracion.Dificultad">
-            <option value="Facil">@T("Fácil")</option>
-            <option value="Normal" selected>@T("Normal")</option>
-            <option value="Dificil">@T("Difícil")</option>
-        </select>
-    </label>
+            <label class="campo">
+                @T("Dificultad")
+                <select data-testid="dificultad" @bind="Estado.Configuracion.Dificultad">
+                    <option value="Facil">@T("Fácil")</option>
+                    <option value="Normal" selected>@T("Normal")</option>
+                    <option value="Dificil">@T("Difícil")</option>
+                </select>
+            </label>
 
-    <label>
-        @T("Idioma"):
-        <select data-testid="idioma" @bind="Estado.Configuracion.Idioma">
-            <option value="Espanol" selected>Español</option>
-            <option value="Ingles">English</option>
-        </select>
-    </label>
+            <label class="campo">
+                @T("Categoría")
+                <select data-testid="categoria" @bind="Estado.Configuracion.Categoria">
+                    <option value="" selected>@T("Sin categoría")</option>
+                    <option value="Animales">@T("Animales")</option>
+                    <option value="Frutas">@T("Frutas")</option>
+                    <option value="Colores">@T("Colores")</option>
+                </select>
+            </label>
 
-    <label>
-        @T("Tiempo"):
-        <select data-testid="limite-tiempo" @bind="Estado.Configuracion.Tiempo">
-            <option value="0" selected>@T("Sin límite")</option>
-            <option value="60">@T("60 segundos")</option>
-            <option value="30">@T("30 segundos")</option>
-        </select>
-    </label>
+            <label class="campo">
+                @T("Tiempo")
+                <select data-testid="limite-tiempo" @bind="Estado.Configuracion.Tiempo">
+                    <option value="0" selected>@T("Sin límite")</option>
+                    <option value="60">@T("60 segundos")</option>
+                    <option value="30">@T("30 segundos")</option>
+                </select>
+            </label>
+        </section>
 
-    <label>
-        @T("Skin"):
-        <select data-testid="skin" @bind="Estado.Skin">
-            <option value="clasico" selected>@T("Clásico")</option>
-            <option value="pizarra">@T("Pizarra")</option>
-        </select>
-    </label>
+        <section class="tarjeta">
+            <fieldset class="jugadores">
+                <legend>@T("Jugadores")</legend>
+                <label class="campo">@T("Jugador") 1 <input data-testid="jugador-1" @bind="Estado.Jugadores[0]" /></label>
+                <label class="campo">@T("Jugador") 2 <input data-testid="jugador-2" @bind="Estado.Jugadores[1]" /></label>
+                <label class="campo">@T("Jugador") 3 <input data-testid="jugador-3" @bind="Estado.Jugadores[2]" /></label>
+                <label class="campo">@T("Jugador") 4 <input data-testid="jugador-4" @bind="Estado.Jugadores[3]" /></label>
+            </fieldset>
 
-    <fieldset>
-        <legend>@T("Jugadores")</legend>
-        <label>@T("Jugador") 1: <input data-testid="jugador-1" @bind="Estado.Jugadores[0]" /></label>
-        <label>@T("Jugador") 2: <input data-testid="jugador-2" @bind="Estado.Jugadores[1]" /></label>
-        <label>@T("Jugador") 3: <input data-testid="jugador-3" @bind="Estado.Jugadores[2]" /></label>
-        <label>@T("Jugador") 4: <input data-testid="jugador-4" @bind="Estado.Jugadores[3]" /></label>
-    </fieldset>
+            <label class="campo">
+                @T("Skin")
+                <select data-testid="skin" @bind="Estado.Skin">
+                    <option value="clasico" selected>@T("Clásico")</option>
+                    <option value="pizarra">@T("Pizarra")</option>
+                </select>
+            </label>
+        </section>
+    </div>
 
-    <button data-testid="config-predeterminada" @onclick="UsarPredeterminada">@T("Usar configuración predeterminada")</button>
-
-    <button data-testid="guardar-configuracion" @onclick="Guardar">@T("Guardar")</button>
+    <footer class="acciones">
+        <button data-testid="config-predeterminada" class="btn btn-secundario" @onclick="UsarPredeterminada">@T("Usar configuración predeterminada")</button>
+        <button data-testid="guardar-configuracion" class="btn btn-primario" @onclick="Guardar">@T("Guardar")</button>
+    </footer>
 </main>
 
 @code {

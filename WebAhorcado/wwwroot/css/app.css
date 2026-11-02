@@ -1,5 +1,80 @@
+/* Tema Pizarra escolar */
+:root {
+    --pizarra: #24352B;
+    --pizarra-oscura: #1C2A22;
+    --tiza: #F2EFE6;
+    --tiza-suave: #C9D1C3;
+    --amarillo: #F2C14E;
+    --amarillo-sombra: #B8892A;
+    --madera: #6B4A2B;
+    --madera-oscura: #3B2A1C;
+    --linea: #5E7563;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background: var(--madera-oscura);
+    color: var(--tiza);
+    font-family: "Nunito", system-ui, sans-serif;
+    font-size: 17px;
+}
+
+.marco {
+    min-height: calc(100vh - 40px);
+    box-sizing: border-box;
+    border: 12px solid var(--madera);
+    border-radius: 14px;
+    background: var(--pizarra);
+    padding: 32px 24px;
+}
+
+h1, h2 {
+    font-family: "Patrick Hand", cursive;
+    font-weight: 400;
+    margin: 0;
+}
+
+h1 {
+    font-size: 56px;
+    line-height: 1;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+a {
+    color: var(--amarillo);
+}
+
+:focus-visible {
+    outline: 3px solid var(--amarillo);
+    outline-offset: 2px;
+}
+
 h1:focus {
     outline: none;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .marco {
+        padding: 20px 12px;
+        border-width: 8px;
+    }
+
+    h1 {
+        font-size: 44px;
+    }
 }
 
 #blazor-error-ui {
@@ -31,19 +106,348 @@ h1:focus {
         content: "An error has occurred."
     }
 
+/* Dibujo del ahorcado y skins */
+.ahorcado {
+    width: 260px;
+    height: 325px;
+    max-width: 100%;
+    border-radius: 16px;
+}
+
 .ahorcado line,
 .ahorcado circle {
-    stroke: #333;
-    stroke-width: 4;
     fill: none;
+    stroke-linecap: round;
+}
+
+.ahorcado[data-skin="clasico"] {
+    background: #FBF8F0;
+}
+
+.ahorcado[data-skin="clasico"] line,
+.ahorcado[data-skin="clasico"] circle {
+    stroke: #3A3A3A;
+    stroke-width: 3;
 }
 
 .ahorcado[data-skin="pizarra"] {
-    background: #2f4f3f;
-    border-radius: 8px;
+    background: transparent;
 }
 
 .ahorcado[data-skin="pizarra"] line,
 .ahorcado[data-skin="pizarra"] circle {
-    stroke: #f5f5f5;
+    stroke: var(--tiza);
+    stroke-width: 5;
+    opacity: .9;
+}
+
+/* Botones */
+.btn {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 24px;
+    border-radius: 14px;
+    font: 600 18px "Nunito", system-ui, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primario {
+    background: var(--amarillo);
+    color: var(--pizarra);
+    border: none;
+    font-weight: 700;
+    box-shadow: 0 4px 0 var(--amarillo-sombra);
+}
+
+.btn-primario:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--amarillo-sombra);
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--tiza);
+    border: 2px solid var(--tiza);
+}
+
+.btn-secundario:hover {
+    background: var(--pizarra-oscura);
+}
+
+.btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/* Campos */
+input, select {
+    min-height: 48px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 2px solid var(--tiza);
+    background: var(--pizarra-oscura);
+    color: var(--tiza);
+    padding: 0 14px;
+    font: 600 16px "Nunito", system-ui, sans-serif;
+}
+
+input::placeholder {
+    color: var(--tiza-suave);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--tiza-suave);
+}
+
+/* Estructura común */
+.contenido {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.secciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.tarjeta {
+    border: 2px dashed var(--linea);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.acciones {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* Inicio */
+.inicio {
+    min-height: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.inicio h1 {
+    font-size: 96px;
+    letter-spacing: 6px;
+}
+
+.inicio nav {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inicio .btn-primario {
+    min-height: 64px;
+    font-size: 22px;
+}
+
+/* Configuración */
+.jugadores {
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.jugadores legend {
+    font-family: "Patrick Hand", cursive;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+/* Partida */
+.chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: var(--pizarra-oscura);
+    font-weight: 600;
+}
+
+.chip strong {
+    color: var(--amarillo);
+}
+
+.chip-tiempo {
+    border: 2px solid var(--amarillo);
+    color: var(--amarillo);
+}
+
+.juego {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+}
+
+.dibujo {
+    flex: 1 1 280px;
+    display: flex;
+    justify-content: center;
+}
+
+.panel {
+    flex: 999 1 420px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.palabra {
+    margin: 0;
+    font-family: "Patrick Hand", cursive;
+    font-size: 64px;
+    line-height: 1.1;
+    letter-spacing: 14px;
+    word-break: break-all;
+}
+
+.jugada {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.jugada .btn {
+    min-height: 64px;
+}
+
+[data-testid="letra-input"] {
+    width: 76px;
+    height: 64px;
+    text-align: center;
+    font: 400 40px "Patrick Hand", cursive;
+    text-transform: uppercase;
+}
+
+.mensaje {
+    margin: 0;
+    min-height: 24px;
+    color: var(--amarillo);
+    font-weight: 600;
+}
+
+.marcadores {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 520px;
+}
+
+.marcador {
+    margin: 0;
+    border: 2px dashed var(--linea);
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--tiza-suave);
+}
+
+.marcador span {
+    display: block;
+    min-height: 40px;
+    font-family: "Patrick Hand", cursive;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--tiza);
+}
+
+/* Historial y jugadores */
+[data-testid="jugadores"], [data-testid="historial"] {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+[data-testid="jugadores"] li {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 2px solid var(--linea);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+[data-testid="jugadores"] li.actual {
+    background: var(--amarillo);
+    border-color: var(--amarillo);
+    color: var(--pizarra);
+    font-weight: 700;
+}
+
+[data-testid="historial"] li {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px dashed var(--linea);
+    font-size: 18px;
+}
+
+@media (max-width: 600px) {
+    .inicio h1 {
+        font-size: 64px;
+    }
+
+    .palabra {
+        font-size: 44px;
+        letter-spacing: 8px;
+    }
+
+    .jugadores {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
