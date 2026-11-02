@@ -7,10 +7,11 @@ public class Turnos
     public Turnos(string nombres) =>
         _nombres = nombres.Split(',').Select(nombre => nombre.Trim()).ToList();
 
-    public string Actual => _nombres[0];
+    private int _turno;
 
-    public void Pasar()
-    {
-    }
+    public string Actual => _nombres[_turno];
+
+    public void Pasar() => _turno = (_turno + 1) % _nombres.Count;
+
 }
 
