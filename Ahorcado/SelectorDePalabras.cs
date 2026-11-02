@@ -26,6 +26,8 @@ public class SelectorDePalabras
         return palabras[_elegirIndice(palabras.Length)];
     }
 
+    public string ElegirCategoria() => "";
+
     public static string PalabraPorDefecto(Idioma idioma) =>
         idioma == Idioma.Ingles ? "HANGMAN" : "AHORCADO";
 }

@@ -834,4 +834,12 @@ public class AhorcadoTests
 
         Assert.Equal("Neon", traductor.Traducir("Neón"));
     }
+
+    [Fact]
+    public void Selector_elige_la_categoria_de_la_posicion_sorteada()
+    {
+        var selector = new SelectorDePalabras(_ => 1);
+
+        Assert.Equal("Frutas", selector.ElegirCategoria());
+    }
 }
