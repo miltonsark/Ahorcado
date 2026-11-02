@@ -807,4 +807,12 @@ public class AhorcadoTests
 
         Assert.Equal(esperado, traductor.Traducir(texto));
     }
+
+    [Fact]
+    public void Turnos_exponen_la_lista_de_jugadores()
+    {
+        var turnos = new Turnos("Ana, Carla");
+
+        Assert.Equal(new[] { "Ana", "Carla" }, turnos.Jugadores);
+    }
 }
