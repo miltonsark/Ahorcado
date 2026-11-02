@@ -45,7 +45,12 @@ public class Ahorcado
 
     public void EstablecerLimite(int segundos) => TiempoRestante = segundos;
 
-    public void PasarSegundo() => TiempoRestante--;
+    public void PasarSegundo()
+    {
+        if (Terminado) return;
+
+        TiempoRestante--;
+    }
 
     public void Adivinar(char letra)
     {
@@ -80,6 +85,8 @@ public class Ahorcado
         return string.Join(" ", _palabra.Select(letra =>
             _acertadas.Contains(letra) ? letra.ToString() : "_"));
     }
+
+
 
 
 }
