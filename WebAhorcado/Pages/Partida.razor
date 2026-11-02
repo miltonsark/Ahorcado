@@ -57,7 +57,7 @@
 <p>@T("Tiempo restante"): <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></p>
 
 @{ var partes = juego?.PartesDelDibujo ?? 0; }
-<svg data-testid="dibujo" class="ahorcado" data-skin="@skin" width="160" height="200" viewBox="0 0 160 200">
+<svg data-testid="dibujo" class="ahorcado" data-skin="@Estado.Skin" width="160" height="200" viewBox="0 0 160 200">
     <line x1="10" y1="190" x2="110" y2="190" />
     <line x1="40" y1="190" x2="40" y2="10" />
     <line x1="40" y1="10" x2="110" y2="10" />
@@ -102,7 +102,6 @@
     private Ahorcado.Ahorcado? juego;
     private string letra = "";
     private string nombre = ""; 
-    private string skin = "clasico";
     private readonly Ahorcado.SelectorDePalabras selector = new(cantidad => Random.Shared.Next(cantidad));
 
     protected override void OnParametersSet()
@@ -182,7 +181,7 @@
             juego.EstablecerLimite(segundos);
     }
 
-    private void CambiarSkin(ChangeEventArgs e) => skin = e.Value!.ToString()!;
+    private void CambiarSkin(ChangeEventArgs e) => Estado.Skin = e.Value!.ToString()!;
 
 
     private string T(string texto) => new Ahorcado.Traductor(Estado.Configuracion.Idioma).Traducir(texto);
