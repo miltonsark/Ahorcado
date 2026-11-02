@@ -16,6 +16,9 @@ public class Traductor
     {
         if (_idioma == Idioma.Espanol) return texto;
 
+        if (texto.StartsWith("La letra "))
+            return $"The letter {texto[9]} was already used";
+
         return Ingles.GetValueOrDefault(texto, texto);
     }
 }
