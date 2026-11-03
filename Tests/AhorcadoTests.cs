@@ -1034,4 +1034,27 @@ public class AhorcadoTests
 
         Assert.True(ronda.Terminada);
     }
+
+    [Fact]
+    public void Ronda_cada_juego_terminado_se_registra_una_sola_vez()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana" }, new[] { new Juego("GATO") }, historial);
+
+        foreach (var letra in "GATOX")
+            ronda.Adivinar(letra);   // la X llega con el juego ya terminado
+
+        Assert.Equal(new[] { "Ana: 60" }, historial.Entradas);
+    }
+
+    [Fact]
+    public void Ronda_pedir_pista_pasa_el_turno()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        ronda.PedirPista();
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
 }

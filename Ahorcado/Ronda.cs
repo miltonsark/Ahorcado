@@ -21,8 +21,12 @@ public class Ronda
     public void Adivinar(char letra)
     {
         var juego = JuegoActual;
+        if (juego.Terminado) return;
+
         var errores = juego.Errores;
         juego.Adivinar(letra);
+        if (juego.Terminado)
+            _historial.Registrar(JugadorActual, juego.Puntaje);
         if (juego.Terminado || juego.Errores > errores)
             PasarAlSiguiente();
     }
@@ -41,4 +45,6 @@ public class Ronda
     }
 
     public bool Terminada => _juegos.All(juego => juego.Terminado);
+
+    public void PedirPista() { }
 }
