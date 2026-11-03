@@ -1110,4 +1110,66 @@ public class AhorcadoTests
 
         Assert.Equal(0, juego.Puntaje);
     }
+
+    [Fact]
+    public void Al_adivinar_la_letra_queda_entre_las_usadas()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+
+        Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
+    }
+
+    [Fact]
+    public void Las_letras_usadas_quedan_en_orden_y_en_mayuscula()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.Adivinar('z');
+
+        Assert.Equal(new[] { 'G', 'Z' }, juego.LetrasUsadas);
+    }
+
+    [Fact]
+    public void Una_letra_repetida_no_se_agrega_dos_veces()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.Adivinar('G');
+
+        Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
+    }
+
+    [Fact]
+    public void La_letra_de_la_pista_queda_entre_las_usadas()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+
+        Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
+    }
+    [Fact]
+    public void Las_letras_erradas_son_las_que_no_estan_en_la_palabra()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "GZAX")
+            juego.Adivinar(letra);
+
+        Assert.Equal(new[] { 'Z', 'X' }, juego.LetrasErradas);
+    }
+
+    [Fact]
+    public void Con_Q_la_letra_errada_es_Q()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Q');
+
+        Assert.Equal(new[] { 'Q' }, juego.LetrasErradas);
+    }
 }
