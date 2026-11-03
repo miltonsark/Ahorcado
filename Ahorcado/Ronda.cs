@@ -16,5 +16,14 @@ public class Ronda
 
     public string JugadorActual => _jugadores[_turno];
 
-    public void Adivinar(char letra) { }
+    public Ahorcado JuegoActual => _juegos[_turno];
+
+    public void Adivinar(char letra)
+    {
+        var juego = JuegoActual;
+        var errores = juego.Errores;
+        juego.Adivinar(letra);
+        if (juego.Errores > errores)
+            _turno = (_turno + 1) % _juegos.Count;
+    }
 }
