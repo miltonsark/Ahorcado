@@ -6,31 +6,46 @@ Característica: Establecer cantidad de jugadores
     para poder jugar en modo multijugador
 
 @CA-2
-Escenario: Al pasar a la siguiente partida le toca al siguiente jugador
+Escenario: Si el jugador falla una letra, le toca al siguiente
     Dado que navego a la configuración
     Cuando ingreso el jugador 1 "Ana"
     Y ingreso el jugador 2 "Beto"
     Y guardo la configuración
-    Y inicio la partida con la palabra "GATO"
-    Y ingreso la letra "G"
-    Y ingreso la letra "A"
-    Y ingreso la letra "T"
-    Y ingreso la letra "O"
-    Y paso a la siguiente partida
+    Y inicio la partida con las palabras "GATO, PERRO"
+    Y ingreso la letra "Z"
     Entonces veo el jugador "Beto"
 
-@CA-3
-Escenario: Cada partida se registra con el jugador del turno
+@CA-2
+Escenario: Si el jugador acierta, sigue jugando
     Dado que navego a la configuración
     Cuando ingreso el jugador 1 "Ana"
     Y ingreso el jugador 2 "Beto"
     Y guardo la configuración
-    Y inicio la partida con la palabra "GATO"
+    Y inicio la partida con las palabras "GATO, PERRO"
+    Y ingreso la letra "G"
+    Entonces veo el jugador "Ana"
+
+@CA-4
+Escenario: Cada jugador adivina su propia palabra
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Beto"
+    Y guardo la configuración
+    Y inicio la partida con las palabras "GATO, PERRO"
+    Y ingreso la letra "Z"
+    Entonces veo la palabra oculta "_ _ _ _ _"
+
+@CA-3
+Escenario: Cada palabra se registra con el jugador que la jugó
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Beto"
+    Y guardo la configuración
+    Y inicio la partida con las palabras "GATO, PERRO"
     Y ingreso la letra "G"
     Y ingreso la letra "A"
     Y ingreso la letra "T"
     Y ingreso la letra "O"
-    Y paso a la siguiente partida
     Y ingreso la letra "Z"
     Y ingreso la letra "X"
     Y ingreso la letra "Q"
