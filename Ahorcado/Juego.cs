@@ -39,7 +39,7 @@ public class Ahorcado
 
     public bool Terminado => Resultado != "";
 
-    public int Puntaje => Terminado ? (_maxErrores - Errores) * _puntosPorVida : 0;
+    public int Puntaje => Resultado == "Ganaste" ? (_maxErrores - Errores) * _puntosPorVida : 0;
 
     public int PartesDelDibujo => Errores * 6 / _maxErrores;
 
