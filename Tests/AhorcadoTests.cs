@@ -1072,4 +1072,31 @@ public class AhorcadoTests
         Assert.Equal(29, deAna.TiempoRestante);
         Assert.Equal(30, deBeto.TiempoRestante);
     }
+
+    [Fact]
+    public void Ronda_si_se_acaba_el_tiempo_pierde_y_pasa_el_turno()
+    {
+        var historial = new Historial();
+        var deAna = new Juego("GATO");
+        var deBeto = new Juego("PERRO");
+        deAna.EstablecerLimite(1);
+        deBeto.EstablecerLimite(1);
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { deAna, deBeto }, historial);
+
+        ronda.PasarSegundo();
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+        Assert.Single(historial.Entradas);
+    }
+
+    [Fact]
+    public void Ronda_con_un_solo_jugador_despues_de_fallar_sigue_jugando_el()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana" }, new[] { new Juego("GATO") }, historial);
+
+        ronda.Adivinar('Z');
+
+        Assert.Equal("Ana", ronda.JugadorActual);
+    }
 }
