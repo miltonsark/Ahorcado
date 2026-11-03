@@ -973,4 +973,15 @@ public class AhorcadoTests
 
         Assert.Equal("Beto", ronda.JugadorActual);
     }
+
+    [Fact]
+    public void Ronda_si_el_jugador_acierta_sigue_jugando()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        ronda.Adivinar('G');
+
+        Assert.Equal("Ana", ronda.JugadorActual);
+    }
 }
