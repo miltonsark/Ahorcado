@@ -953,4 +953,13 @@ public class AhorcadoTests
 
         Assert.Equal("Ana", ronda.JugadorActual);
     }
+
+    [Fact]
+    public void Ronda_con_Beto_primero_empieza_Beto()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Beto", "Ana" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
 }
