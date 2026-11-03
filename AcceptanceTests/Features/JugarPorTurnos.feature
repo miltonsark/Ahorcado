@@ -56,3 +56,14 @@ Escenario: Cada palabra se registra con el jugador que la jugó
     Y elijo "Historial y jugadores"
     Entonces la entrada 1 del historial es "Beto: 0"
     Y la entrada 2 del historial es "Ana: 60"
+
+@CA-5
+Escenario: Siguiente partida arranca una ronda nueva con el primer jugador
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Beto"
+    Y guardo la configuración
+    Y inicio la partida con las palabras "GATO, PERRO"
+    Y ingreso la letra "Z"
+    Y paso a la siguiente partida
+    Entonces veo el jugador "Ana"
