@@ -1162,4 +1162,14 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { 'Z', 'X' }, juego.LetrasErradas);
     }
+
+    [Fact]
+    public void Con_Q_la_letra_errada_es_Q()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('Q');
+
+        Assert.Equal(new[] { 'Q' }, juego.LetrasErradas);
+    }
 }
