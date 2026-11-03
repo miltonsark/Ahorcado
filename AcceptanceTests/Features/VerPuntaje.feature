@@ -25,3 +25,10 @@ Escenario: En difícil gano sin errores y veo 80 puntos
     Y ingreso la letra "T"
     Y ingreso la letra "O"
     Entonces veo el puntaje 80
+
+@CA-4
+Escenario: Si se acaba el tiempo el puntaje es 0
+    Dado que ingreso a la partida con la palabra "GATO" y 3 segundos de límite
+    Cuando espero 5 segundos
+    Entonces veo el resultado "Perdiste"
+    Y veo el puntaje 0
