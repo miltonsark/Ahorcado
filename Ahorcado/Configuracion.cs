@@ -11,15 +11,7 @@ public class Configuracion
     public int Tiempo { get; set; }
 
     public Ahorcado CrearPartida(SelectorDePalabras selector, string? palabraFija = null)
-    {
-        var categoria = Categoria == "Aleatoria" && palabraFija is null ? selector.ElegirCategoria() : Categoria;
-        var palabra = palabraFija
-            ?? (categoria == "" ? SelectorDePalabras.PalabraPorDefecto(Idioma) : selector.Elegir(categoria, Idioma));
-        var juego = new Ahorcado(palabra, Dificultad) { Categoria = categoria };
-        if (Tiempo > 0)
-            juego.EstablecerLimite(Tiempo);
-        return juego;
-    }
+    => CrearPartidas(selector, 1, palabraFija is null ? null : new[] { palabraFija })[0];
 
     public IReadOnlyList<Ahorcado> CrearPartidas(SelectorDePalabras selector, int cantidad, IReadOnlyList<string>? palabrasFijas = null)
     {
