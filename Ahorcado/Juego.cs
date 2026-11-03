@@ -98,6 +98,8 @@ public class Ahorcado
 
     public IReadOnlyList<char> LetrasUsadas => _usadas;
 
+    public IReadOnlyList<char> LetrasErradas => [];
+
 
 
 

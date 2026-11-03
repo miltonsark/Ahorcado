@@ -1152,4 +1152,14 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
     }
+    [Fact]
+    public void Las_letras_erradas_son_las_que_no_estan_en_la_palabra()
+    {
+        var juego = new Juego("GATO");
+
+        foreach (var letra in "GZAX")
+            juego.Adivinar(letra);
+
+        Assert.Equal(new[] { 'Z', 'X' }, juego.LetrasErradas);
+    }
 }
