@@ -1142,4 +1142,14 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
     }
+
+    [Fact]
+    public void La_letra_de_la_pista_queda_entre_las_usadas()
+    {
+        var juego = new Juego("GATO");
+
+        juego.PedirPista();
+
+        Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
+    }
 }
