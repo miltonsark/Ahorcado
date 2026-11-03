@@ -31,7 +31,7 @@ Escenario: El idioma guardado se usa al iniciar la partida
     Cuando elijo el idioma "English"
     Y guardo la configuración
     Y elijo "Start game"
-    Entonces veo la palabra oculta "_ _ _ _ _ _ _"
+    Entonces veo una categoría entre "Animals, Fruits, Colors"
 
 @CA-4
 Escenario: El tiempo guardado se usa al iniciar la partida

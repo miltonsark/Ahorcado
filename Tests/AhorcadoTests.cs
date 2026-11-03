@@ -702,23 +702,23 @@ public class AhorcadoTests
     }
 
     [Fact]
-    public void Configuracion_en_ingles_crea_la_partida_con_HANGMAN()
+    public void Configuracion_predeterminada_en_ingles_usa_una_categoria_al_azar()
     {
         var config = new Configuracion { Idioma = Idioma.Ingles };
 
         var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
 
-        Assert.Equal("_ _ _ _ _ _ _", juego.PalabraEnmascarada());
+        Assert.Equal("_ _ _", juego.PalabraEnmascarada());
     }
 
     [Fact]
-    public void Configuracion_predeterminada_crea_la_partida_con_AHORCADO()
+    public void Configuracion_predeterminada_usa_una_categoria_al_azar()
     {
         var config = new Configuracion();
 
         var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
 
-        Assert.Equal("_ _ _ _ _ _ _ _", juego.PalabraEnmascarada());
+        Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
     }
 
     [Fact]

@@ -18,9 +18,9 @@ Escenario: En inglés veo el resultado en inglés
     Entonces veo el resultado "You won"
 
 @CA-2
-Escenario: En inglés la palabra por defecto es HANGMAN
+Escenario: En inglés arranca con una categoría al azar en inglés
     Dado que navego a la configuración
     Cuando elijo el idioma "English"
     Y guardo la configuración
     Y elijo "Start game"
-    Entonces veo la palabra oculta "_ _ _ _ _ _ _"
+    Entonces veo una categoría entre "Animals, Fruits, Colors"

@@ -40,4 +40,10 @@ public class CategoriaSteps
         var patron = new Regex("^(" + string.Join("|", lista.Split(", ")) + ")$");
         await Assertions.Expect(_navegador.Page.GetByTestId("categoria-actual")).ToHaveTextAsync(patron);
     }
+
+    [Then("la categoría elegida es {string}")]
+    public async Task EntoncesLaCategoriaElegidaEs(string valor)
+    {
+        await Assertions.Expect(_navegador.Page.GetByTestId("categoria")).ToHaveValueAsync(valor);
+    }
 }

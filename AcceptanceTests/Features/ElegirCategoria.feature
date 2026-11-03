@@ -34,3 +34,8 @@ Escenario: Con categoría Aleatoria veo la categoría que salió
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Entonces veo una categoría entre "Animales, Frutas, Colores"
+
+@CA-4
+Escenario: Si no elijo categoría, es Aleatoria
+    Dado que navego a la configuración
+    Entonces la categoría elegida es "Aleatoria"
