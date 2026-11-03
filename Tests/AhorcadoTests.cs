@@ -874,4 +874,12 @@ public class AhorcadoTests
     {
         Assert.Equal("Random", new Traductor(Idioma.Ingles).Traducir("Aleatoria"));
     }
+
+    [Fact]
+    public void Selector_elige_palabras_distintas_de_la_categoria()
+    {
+        var selector = new SelectorDePalabras(_ => 0);
+
+        Assert.Equal(new[] { "GATO", "PERRO" }, selector.ElegirDistintas("Animales", Idioma.Espanol, 2));
+    }
 }

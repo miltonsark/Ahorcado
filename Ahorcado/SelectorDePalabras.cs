@@ -31,4 +31,6 @@ public class SelectorDePalabras
 
     public static string PalabraPorDefecto(Idioma idioma) =>
         idioma == Idioma.Ingles ? "HANGMAN" : "AHORCADO";
+
+    public IReadOnlyList<string> ElegirDistintas(string categoria, Idioma idioma, int cantidad) => [];
 }
