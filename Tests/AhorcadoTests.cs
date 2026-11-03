@@ -1057,4 +1057,19 @@ public class AhorcadoTests
 
         Assert.Equal("Beto", ronda.JugadorActual);
     }
+
+    [Fact]
+    public void Ronda_solo_corre_el_reloj_del_jugador_en_turno()
+    {
+        var deAna = new Juego("GATO");
+        var deBeto = new Juego("PERRO");
+        deAna.EstablecerLimite(30);
+        deBeto.EstablecerLimite(30);
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { deAna, deBeto }, new Historial());
+
+        ronda.PasarSegundo();
+
+        Assert.Equal(29, deAna.TiempoRestante);
+        Assert.Equal(30, deBeto.TiempoRestante);
+    }
 }

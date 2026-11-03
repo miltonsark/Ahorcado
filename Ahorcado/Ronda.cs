@@ -49,4 +49,6 @@ public class Ronda
         if (juego.Terminado || juego.Errores > errores)
             PasarAlSiguiente();
     }
+
+    public void PasarSegundo() { }
 }
