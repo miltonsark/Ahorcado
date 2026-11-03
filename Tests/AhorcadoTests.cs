@@ -1022,4 +1022,16 @@ public class AhorcadoTests
 
         Assert.Equal("Beto", ronda.JugadorActual);
     }
+
+    [Fact]
+    public void Ronda_termina_cuando_todos_terminaron()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana" }, new[] { new Juego("GATO") }, historial);
+
+        foreach (var letra in "GATO")
+            ronda.Adivinar(letra);
+
+        Assert.True(ronda.Terminada);
+    }
 }

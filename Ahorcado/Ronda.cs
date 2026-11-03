@@ -39,4 +39,6 @@ public class Ronda
             }
         }
     }
+
+    public bool Terminada => _juegos.All(juego => juego.Terminado);
 }
