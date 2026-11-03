@@ -923,4 +923,14 @@ public class AhorcadoTests
             Assert.Equal(30, juego.TiempoRestante);
         });
     }
+
+    [Fact]
+    public void Configuracion_con_palabras_fijas_cada_jugador_recibe_la_suya()
+    {
+        var config = new Configuracion { Categoria = "Frutas" };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2, new[] { "GATO", "PERRO" });
+
+        Assert.Equal(new[] { "_ _ _ _", "_ _ _ _ _" }, juegos.Select(j => j.PalabraEnmascarada()));
+    }
 }
