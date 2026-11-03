@@ -1,13 +1,14 @@
-﻿using Juego = Ahorcado.Ahorcado;
-using Turnos = Ahorcado.Turnos;
-using Jugador = Ahorcado.Jugador;
+﻿using Ahorcado;
+using Xunit;
+using Configuracion = Ahorcado.Configuracion;
 using Dificultad = Ahorcado.Dificultad;
 using Historial = Ahorcado.Historial;
-using Xunit;
-using SelectorDePalabras = Ahorcado.SelectorDePalabras;
 using Idioma = Ahorcado.Idioma;
+using Juego = Ahorcado.Ahorcado;
+using Jugador = Ahorcado.Jugador;
+using SelectorDePalabras = Ahorcado.SelectorDePalabras;
 using Traductor = Ahorcado.Traductor;
-using Configuracion = Ahorcado.Configuracion;
+using Turnos = Ahorcado.Turnos;
 
 namespace Tests;
 
@@ -942,5 +943,160 @@ public class AhorcadoTests
         var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2, new[] { "GATO" });
 
         Assert.All(juegos, j => Assert.Equal("_ _ _ _", j.PalabraEnmascarada()));
+    }
+
+    [Fact]
+    public void Ronda_empieza_con_el_primer_jugador()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        Assert.Equal("Ana", ronda.JugadorActual);
+    }
+
+    [Fact]
+    public void Ronda_con_Beto_primero_empieza_Beto()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Beto", "Ana" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
+
+    [Fact]
+    public void Ronda_si_el_jugador_falla_le_toca_al_siguiente()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        ronda.Adivinar('Z');
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
+
+    [Fact]
+    public void Ronda_si_el_jugador_acierta_sigue_jugando()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        ronda.Adivinar('G');
+
+        Assert.Equal("Ana", ronda.JugadorActual);
+    }
+
+    [Fact]
+    public void Ronda_cada_jugador_adivina_su_propia_palabra()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        ronda.Adivinar('Z');   // Ana falla → Beto
+        ronda.Adivinar('P');   // Beto acierta la P de PERRO
+
+        Assert.Equal("P _ _ _ _", ronda.JuegoActual.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void Ronda_si_el_jugador_completa_su_palabra_pasa_el_turno()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        foreach (var letra in "GATO")
+            ronda.Adivinar(letra);
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
+
+    [Fact]
+    public void Ronda_el_turno_saltea_a_quien_ya_termino()
+    {
+        var ronda = new Ronda(new[] { "Ana", "Beto", "Carla" },
+            new[] { new Juego("GATO"), new Juego("PERRO"), new Juego("UVA") }, new Historial());
+
+        foreach (var letra in "GATO")
+            ronda.Adivinar(letra);   // Ana gana, le toca a Beto
+        ronda.Adivinar('Z');         // Beto falla, le toca a Carla
+        ronda.Adivinar('Z');         // Carla falla: Ana ya terminó, le toca a Beto
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
+
+    [Fact]
+    public void Ronda_termina_cuando_todos_terminaron()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana" }, new[] { new Juego("GATO") }, historial);
+
+        foreach (var letra in "GATO")
+            ronda.Adivinar(letra);
+
+        Assert.True(ronda.Terminada);
+    }
+
+    [Fact]
+    public void Ronda_cada_juego_terminado_se_registra_una_sola_vez()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana" }, new[] { new Juego("GATO") }, historial);
+
+        foreach (var letra in "GATOX")
+            ronda.Adivinar(letra);   // la X llega con el juego ya terminado
+
+        Assert.Equal(new[] { "Ana: 60" }, historial.Entradas);
+    }
+
+    [Fact]
+    public void Ronda_pedir_pista_pasa_el_turno()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        ronda.PedirPista();
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
+
+    [Fact]
+    public void Ronda_solo_corre_el_reloj_del_jugador_en_turno()
+    {
+        var deAna = new Juego("GATO");
+        var deBeto = new Juego("PERRO");
+        deAna.EstablecerLimite(30);
+        deBeto.EstablecerLimite(30);
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { deAna, deBeto }, new Historial());
+
+        ronda.PasarSegundo();
+
+        Assert.Equal(29, deAna.TiempoRestante);
+        Assert.Equal(30, deBeto.TiempoRestante);
+    }
+
+    [Fact]
+    public void Ronda_si_se_acaba_el_tiempo_pierde_y_pasa_el_turno()
+    {
+        var historial = new Historial();
+        var deAna = new Juego("GATO");
+        var deBeto = new Juego("PERRO");
+        deAna.EstablecerLimite(1);
+        deBeto.EstablecerLimite(1);
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { deAna, deBeto }, historial);
+
+        ronda.PasarSegundo();
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+        Assert.Single(historial.Entradas);
+    }
+
+    [Fact]
+    public void Ronda_con_un_solo_jugador_despues_de_fallar_sigue_jugando_el()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana" }, new[] { new Juego("GATO") }, historial);
+
+        ronda.Adivinar('Z');
+
+        Assert.Equal("Ana", ronda.JugadorActual);
     }
 }
