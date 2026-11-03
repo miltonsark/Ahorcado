@@ -874,4 +874,73 @@ public class AhorcadoTests
     {
         Assert.Equal("Random", new Traductor(Idioma.Ingles).Traducir("Aleatoria"));
     }
+
+    [Fact]
+    public void Selector_elige_palabras_distintas_de_la_categoria()
+    {
+        var selector = new SelectorDePalabras(_ => 0);
+
+        Assert.Equal(new[] { "GATO", "PERRO" }, selector.ElegirDistintas("Animales", Idioma.Espanol, 2));
+    }
+    [Fact]
+    public void Selector_elige_tres_palabras_distintas_de_Frutas()
+    {
+        var selector = new SelectorDePalabras(_ => 0);
+
+        Assert.Equal(
+            new[] { "MANZANA", "BANANA", "PERA" },
+            selector.ElegirDistintas("Frutas", Idioma.Espanol, 3));
+    }
+
+    [Fact]
+    public void Selector_al_azar_las_4_palabras_son_distintas()
+    {
+        var palabras = new SelectorDePalabras(Random.Shared.Next).ElegirDistintas("Colores", Idioma.Espanol, 4);
+
+        Assert.Equal(4, palabras.Distinct().Count());
+    }
+
+    [Fact]
+    public void Configuracion_crea_una_partida_con_palabra_distinta_por_jugador()
+    {
+        var config = new Configuracion { Categoria = "Animales" };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2);
+
+        Assert.Equal(new[] { "_ _ _ _", "_ _ _ _ _" }, juegos.Select(j => j.PalabraEnmascarada()));
+    }
+
+    [Fact]
+    public void Configuracion_todas_las_partidas_comparten_categoria_dificultad_tiempo()
+    {
+        var config = new Configuracion { Dificultad = Dificultad.Dificil, Tiempo = 30 };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 3);
+
+        Assert.All(juegos, juego =>
+        {
+            Assert.Equal("Animales", juego.Categoria);
+            Assert.Equal(30, juego.TiempoRestante);
+        });
+    }
+
+    [Fact]
+    public void Configuracion_con_palabras_fijas_cada_jugador_recibe_la_suya()
+    {
+        var config = new Configuracion { Categoria = "Frutas" };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2, new[] { "GATO", "PERRO" });
+
+        Assert.Equal(new[] { "_ _ _ _", "_ _ _ _ _" }, juegos.Select(j => j.PalabraEnmascarada()));
+    }
+
+    [Fact]
+    public void Configuracion_una_sola_palabra_fija_se_usa_para_todos()
+    {
+        var config = new Configuracion { Categoria = "Animales" };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2, new[] { "GATO" });
+
+        Assert.All(juegos, j => Assert.Equal("_ _ _ _", j.PalabraEnmascarada()));
+    }
 }
