@@ -1131,4 +1131,15 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { 'G', 'Z' }, juego.LetrasUsadas);
     }
+
+    [Fact]
+    public void Una_letra_repetida_no_se_agrega_dos_veces()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.Adivinar('G');
+
+        Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
+    }
 }
