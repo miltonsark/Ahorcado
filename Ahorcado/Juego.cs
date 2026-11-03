@@ -98,7 +98,8 @@ public class Ahorcado
 
     public IReadOnlyList<char> LetrasUsadas => _usadas;
 
-    public IReadOnlyList<char> LetrasErradas => new[] { 'Z', 'X' };
+    public IReadOnlyList<char> LetrasErradas =>
+    _usadas.Where(_erradas.Contains).ToList();
 
 
 
