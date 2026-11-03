@@ -962,4 +962,15 @@ public class AhorcadoTests
 
         Assert.Equal("Beto", ronda.JugadorActual);
     }
+
+    [Fact]
+    public void Ronda_si_el_jugador_falla_le_toca_al_siguiente()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        ronda.Adivinar('Z');
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
 }
