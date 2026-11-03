@@ -909,4 +909,18 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { "_ _ _ _", "_ _ _ _ _" }, juegos.Select(j => j.PalabraEnmascarada()));
     }
+
+    [Fact]
+    public void Configuracion_todas_las_partidas_comparten_categoria_dificultad_tiempo()
+    {
+        var config = new Configuracion { Dificultad = Dificultad.Dificil, Tiempo = 30 };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 3);
+
+        Assert.All(juegos, juego =>
+        {
+            Assert.Equal("Animales", juego.Categoria);
+            Assert.Equal(30, juego.TiempoRestante);
+        });
+    }
 }
