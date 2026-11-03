@@ -7,7 +7,7 @@
         <a href="" data-testid="volver-inicio" class="btn btn-secundario">@T("Inicio")</a>
         <h1>@T("Ahorcado")</h1>
         <div class="chips">
-            <span class="chip">@T("Jugador"): <strong data-testid="jugador">@Estado.Turnos.Actual</strong></span>
+            <span class="chip">@T("Jugador"): <strong data-testid="jugador">@ronda?.JugadorActual</strong></span>
             <span class="chip">@T("Categoría"): <span data-testid="categoria-actual">@T(juego?.Categoria ?? "")</span></span>
             <span class="chip chip-tiempo">@T("Tiempo restante"): <span data-testid="tiempo-restante">@juego?.TiempoRestante</span></span>
         </div>
@@ -51,7 +51,7 @@
             <p data-testid="palabra-oculta" class="palabra">@juego?.PalabraEnmascarada()</p>
 
             <div class="jugada">
-                <input data-testid="letra-input" aria-label="Letra" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(juego?.Terminado == true)" />
+                <input data-testid="letra-input" aria-label="Letra" maxlength="1" @bind="letra" @bind:event="oninput" @onkeydown="TeclaPresionada" disabled="@(ronda?.Terminada == true)" />
                 <button data-testid="letra-enviar" class="btn btn-primario" @onclick="EnviarLetra">@T("Adivinar")</button>
                 <button data-testid="pista" class="btn btn-secundario" @onclick="PedirPista" disabled="@(juego?.PuedePedirPista != true)">@T("Pedir pista")</button>
             </div>
@@ -79,40 +79,36 @@
     [SupplyParameterFromQuery(Name = "tiempo")]
     public int? Tiempo { get; set; }
 
-    private Ahorcado.Ahorcado? juego;
+    private Ahorcado.Ronda? ronda;
+    private Ahorcado.Ahorcado? juego => ronda?.JuegoActual;
     private string letra = "";
     private readonly Ahorcado.SelectorDePalabras selector = new(cantidad => Random.Shared.Next(cantidad));
 
     protected override void OnParametersSet()
     {
-        if (juego is not null) return;
+        if (ronda is not null) return;
 
-        juego = Estado.Configuracion.CrearPartida(selector, Word);
+        NuevaRonda();
+    }
+
+    private void NuevaRonda()
+    {
+        var palabras = Word?.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        var juegos = Estado.Configuracion.CrearPartidas(selector, Estado.Turnos.Jugadores.Count, palabras);
         if (Tiempo > 0)
-            juego.EstablecerLimite(Tiempo.Value);
+            foreach (var juegoDeJugador in juegos)
+                juegoDeJugador.EstablecerLimite(Tiempo.Value);
+        ronda = new Ahorcado.Ronda(Estado.Turnos.Jugadores, juegos, Estado.Historial);
     }
 
     private void EnviarLetra()
     {
         if (letra.Length == 1)
-        {
-            juego!.Adivinar(letra[0]);
-            RegistrarSiTermino();
-        }
+            ronda!.Adivinar(letra[0]);
         letra = "";
     }
 
-    private void PedirPista()
-    {
-        juego!.PedirPista();
-        RegistrarSiTermino();
-    }
-
-    private void RegistrarSiTermino()
-    {
-        if (juego!.Terminado)
-            Estado.Historial.Registrar(Estado.Turnos.Actual, juego.Puntaje);
-    }
+    private void PedirPista() => ronda!.PedirPista();
 
     private void TeclaPresionada(KeyboardEventArgs e)
     {
@@ -126,10 +122,9 @@
     {
         reloj = new System.Threading.Timer(_ => InvokeAsync(() =>
         {
-            if (juego is null || juego.Terminado) return;
+            if (ronda is null || ronda.Terminada) return;
 
-            juego.PasarSegundo();
-            RegistrarSiTermino();
+            ronda.PasarSegundo();
             StateHasChanged();
         }), null, 1000, 1000);
     }
@@ -139,9 +134,5 @@
 
     public void Dispose() => reloj?.Dispose();
 
-    private void SiguientePartida()
-    {
-        Estado.Turnos.Pasar();
-        juego = Estado.Configuracion.CrearPartida(selector, Word);
-    }
+    private void SiguientePartida() => NuevaRonda();
 }

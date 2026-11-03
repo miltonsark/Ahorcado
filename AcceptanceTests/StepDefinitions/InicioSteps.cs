@@ -29,4 +29,13 @@ public class InicioSteps
         await _navegador.Page.EvaluateAsync($"Blazor.navigateTo('partida?word={palabra}')");
         await Assertions.Expect(_navegador.Page.GetByTestId("palabra-oculta")).ToBeVisibleAsync();
     }
+
+    [When("inicio la partida con las palabras {string}")]
+    public async Task CuandoInicioLaPartidaConLasPalabras(string palabras)
+    {
+        // Una palabra por jugador, en orden: "GATO, PERRO" -> partida?word=GATO,PERRO
+        var lista = palabras.Replace(" ", "");
+        await _navegador.Page.EvaluateAsync($"Blazor.navigateTo('partida?word={lista}')");
+        await Assertions.Expect(_navegador.Page.GetByTestId("palabra-oculta")).ToBeVisibleAsync();
+    }
 }
