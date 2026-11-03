@@ -32,6 +32,17 @@ public class SelectorDePalabras
     public static string PalabraPorDefecto(Idioma idioma) =>
         idioma == Idioma.Ingles ? "HANGMAN" : "AHORCADO";
 
-    public IReadOnlyList<string> ElegirDistintas(string categoria, Idioma idioma, int cantidad) => new[] { "GATO", "PERRO" };
+    public IReadOnlyList<string> ElegirDistintas(string categoria, Idioma idioma, int cantidad)
+    {
+        var disponibles = (idioma == Idioma.Ingles ? PalabrasEnIngles : Palabras)[categoria].ToList();
+        var elegidas = new List<string>();
+        for (var i = 0; i < cantidad; i++)
+        {
+            var palabra = disponibles[_elegirIndice(disponibles.Count)];
+            disponibles.Remove(palabra);
+            elegidas.Add(palabra);
+        }
+        return elegidas;
+    }
 
 }
