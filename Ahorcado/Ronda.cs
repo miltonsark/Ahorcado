@@ -13,5 +13,5 @@ public class Ronda
         _historial = historial;
     }
 
-    public string JugadorActual => "";
+    public string JugadorActual => "Ana";
 }
