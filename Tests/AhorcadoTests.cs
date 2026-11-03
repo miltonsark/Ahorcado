@@ -996,4 +996,16 @@ public class AhorcadoTests
 
         Assert.Equal("P _ _ _ _", ronda.JuegoActual.PalabraEnmascarada());
     }
+
+    [Fact]
+    public void Ronda_si_el_jugador_completa_su_palabra_pasa_el_turno()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        foreach (var letra in "GATO")
+            ronda.Adivinar(letra);
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
 }
