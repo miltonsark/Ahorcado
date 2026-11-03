@@ -50,5 +50,5 @@ public class Ronda
             PasarAlSiguiente();
     }
 
-    public void PasarSegundo() { }
+    public void PasarSegundo() => Jugar(juego => juego.PasarSegundo());
 }
