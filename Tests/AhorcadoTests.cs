@@ -1099,4 +1099,15 @@ public class AhorcadoTests
 
         Assert.Equal("Ana", ronda.JugadorActual);
     }
+
+    [Fact]
+    public void Perder_por_tiempo_da_0_puntos()
+    {
+        var juego = new Juego("GATO");
+        juego.EstablecerLimite(1);
+
+        juego.PasarSegundo();
+
+        Assert.Equal(0, juego.Puntaje);
+    }
 }
