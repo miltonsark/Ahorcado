@@ -20,4 +20,7 @@ public class Configuracion
             juego.EstablecerLimite(Tiempo);
         return juego;
     }
+
+    public IReadOnlyList<Ahorcado> CrearPartidas(SelectorDePalabras selector, int cantidad, IReadOnlyList<string>? palabrasFijas = null)
+    => [CrearPartida(selector)];
 }

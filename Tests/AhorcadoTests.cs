@@ -899,4 +899,14 @@ public class AhorcadoTests
 
         Assert.Equal(4, palabras.Distinct().Count());
     }
+
+    [Fact]
+    public void Configuracion_crea_una_partida_con_palabra_distinta_por_jugador()
+    {
+        var config = new Configuracion { Categoria = "Animales" };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2);
+
+        Assert.Equal(new[] { "_ _ _ _", "_ _ _ _ _" }, juegos.Select(j => j.PalabraEnmascarada()));
+    }
 }
