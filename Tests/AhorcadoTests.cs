@@ -891,4 +891,12 @@ public class AhorcadoTests
             new[] { "MANZANA", "BANANA", "PERA" },
             selector.ElegirDistintas("Frutas", Idioma.Espanol, 3));
     }
+
+    [Fact]
+    public void Selector_al_azar_las_4_palabras_son_distintas()
+    {
+        var palabras = new SelectorDePalabras(Random.Shared.Next).ElegirDistintas("Colores", Idioma.Espanol, 4);
+
+        Assert.Equal(4, palabras.Distinct().Count());
+    }
 }
