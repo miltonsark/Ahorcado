@@ -40,7 +40,8 @@ public class Traductor
         ["Jugadores"] = "Players",
         ["Inicio"] = "Home",
         ["Orden de turnos"] = "Turn order",
-        ["Últimas partidas"] = "Latest games"
+        ["Últimas partidas"] = "Latest games",
+        ["Letras usadas"] = "Used letters",
     };
 
     private readonly Idioma _idioma;
