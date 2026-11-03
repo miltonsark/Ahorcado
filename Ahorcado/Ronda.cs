@@ -18,18 +18,7 @@ public class Ronda
 
     public Ahorcado JuegoActual => _juegos[_turno];
 
-    public void Adivinar(char letra)
-    {
-        var juego = JuegoActual;
-        if (juego.Terminado) return;
-
-        var errores = juego.Errores;
-        juego.Adivinar(letra);
-        if (juego.Terminado)
-            _historial.Registrar(JugadorActual, juego.Puntaje);
-        if (juego.Terminado || juego.Errores > errores)
-            PasarAlSiguiente();
-    }
+    public void Adivinar(char letra) => Jugar(juego => juego.Adivinar(letra));
 
     private void PasarAlSiguiente()
     {
@@ -46,13 +35,15 @@ public class Ronda
 
     public bool Terminada => _juegos.All(juego => juego.Terminado);
 
-    public void PedirPista()
+    public void PedirPista() => Jugar(juego => juego.PedirPista());
+
+    private void Jugar(Action<Ahorcado> jugada)
     {
         var juego = JuegoActual;
         if (juego.Terminado) return;
 
         var errores = juego.Errores;
-        juego.PedirPista();
+        jugada(juego);
         if (juego.Terminado)
             _historial.Registrar(JugadorActual, juego.Puntaje);
         if (juego.Terminado || juego.Errores > errores)
