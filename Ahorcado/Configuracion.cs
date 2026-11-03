@@ -23,8 +23,15 @@ public class Configuracion
 
     public IReadOnlyList<Ahorcado> CrearPartidas(SelectorDePalabras selector, int cantidad, IReadOnlyList<string>? palabrasFijas = null)
     {
-        var categoria = Categoria == "Aleatoria" ? selector.ElegirCategoria() : Categoria;
-        return selector.ElegirDistintas(categoria, Idioma, cantidad)
+        var categoria = Categoria == "Aleatoria" && palabrasFijas is null
+            ? selector.ElegirCategoria()
+            : Categoria;
+
+        var palabras = palabrasFijas is not null
+            ? Enumerable.Range(0, cantidad).Select(i => palabrasFijas[i % palabrasFijas.Count]).ToList()
+            : selector.ElegirDistintas(categoria, Idioma, cantidad);
+
+        return palabras
             .Select(palabra => CrearJuego(palabra, categoria))
             .ToList();
     }
