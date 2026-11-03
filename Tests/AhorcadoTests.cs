@@ -702,23 +702,23 @@ public class AhorcadoTests
     }
 
     [Fact]
-    public void Configuracion_en_ingles_crea_la_partida_con_HANGMAN()
+    public void Configuracion_predeterminada_en_ingles_usa_una_categoria_al_azar()
     {
         var config = new Configuracion { Idioma = Idioma.Ingles };
 
         var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
 
-        Assert.Equal("_ _ _ _ _ _ _", juego.PalabraEnmascarada());
+        Assert.Equal("_ _ _", juego.PalabraEnmascarada());
     }
 
     [Fact]
-    public void Configuracion_predeterminada_crea_la_partida_con_AHORCADO()
+    public void Configuracion_predeterminada_usa_una_categoria_al_azar()
     {
         var config = new Configuracion();
 
         var juego = config.CrearPartida(new SelectorDePalabras(_ => 0));
 
-        Assert.Equal("_ _ _ _ _ _ _ _", juego.PalabraEnmascarada());
+        Assert.Equal("_ _ _ _", juego.PalabraEnmascarada());
     }
 
     [Fact]
@@ -833,5 +833,45 @@ public class AhorcadoTests
         var traductor = new Traductor(Idioma.Ingles);
 
         Assert.Equal("Neon", traductor.Traducir("Neón"));
+    }
+
+    [Fact]
+    public void Selector_elige_la_categoria_de_la_posicion_sorteada()
+    {
+        var selector = new SelectorDePalabras(_ => 1);
+
+        Assert.Equal("Frutas", selector.ElegirCategoria());
+    }
+
+    [Fact]
+    public void Selector_con_la_posicion_2_elige_Colores()
+    {
+        var selector = new SelectorDePalabras(_ => 2);
+
+        Assert.Equal("Colores", selector.ElegirCategoria());
+    }
+
+    [Fact]
+    public void Configuracion_aleatoria_elige_la_palabra_de_una_categoria_al_azar()
+    {
+        var config = new Configuracion { Categoria = "Aleatoria" };
+
+        var juego = config.CrearPartida(new SelectorDePalabras(_ => 1));
+
+        Assert.Equal("_ _ _ _ _ _", juego.PalabraEnmascarada());
+    }
+
+    [Fact]
+    public void La_partida_sabe_de_que_categoria_es_su_palabra()
+    {
+        var juego = new Configuracion { Categoria = "Aleatoria" }.CrearPartida(new SelectorDePalabras(_ => 1));
+
+        Assert.Equal("Frutas", juego.Categoria);
+    }
+
+    [Fact]
+    public void Traductor_traduce_Aleatoria()
+    {
+        Assert.Equal("Random", new Traductor(Idioma.Ingles).Traducir("Aleatoria"));
     }
 }

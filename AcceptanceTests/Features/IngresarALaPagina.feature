@@ -11,6 +11,6 @@ Escenario: El jugador ingresa a la página
     Entonces veo el título "Ahorcado"
 
 @CA-2
-Escenario: Sin palabra en la URL arranca con la palabra por defecto
+Escenario: Sin palabra en la URL arranca con una categoría al azar
     Dado que navego a la partida
-    Entonces veo la palabra oculta "_ _ _ _ _ _ _ _"
+    Entonces veo una categoría entre "Animales, Frutas, Colores"

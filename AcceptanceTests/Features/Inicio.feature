@@ -16,4 +16,4 @@ Escenario: El inicio muestra las tres opciones
 Escenario: Iniciar partida abre una partida con la configuración predeterminada
     Dado que navego a la página principal
     Cuando elijo "Iniciar partida"
-    Entonces veo la palabra oculta "_ _ _ _ _ _ _ _"
+    Entonces veo una categoría entre "Animales, Frutas, Colores"
