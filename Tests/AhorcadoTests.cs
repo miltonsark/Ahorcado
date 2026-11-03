@@ -1,13 +1,14 @@
-﻿using Juego = Ahorcado.Ahorcado;
-using Turnos = Ahorcado.Turnos;
-using Jugador = Ahorcado.Jugador;
+﻿using Ahorcado;
+using Xunit;
+using Configuracion = Ahorcado.Configuracion;
 using Dificultad = Ahorcado.Dificultad;
 using Historial = Ahorcado.Historial;
-using Xunit;
-using SelectorDePalabras = Ahorcado.SelectorDePalabras;
 using Idioma = Ahorcado.Idioma;
+using Juego = Ahorcado.Ahorcado;
+using Jugador = Ahorcado.Jugador;
+using SelectorDePalabras = Ahorcado.SelectorDePalabras;
 using Traductor = Ahorcado.Traductor;
-using Configuracion = Ahorcado.Configuracion;
+using Turnos = Ahorcado.Turnos;
 
 namespace Tests;
 
@@ -942,5 +943,14 @@ public class AhorcadoTests
         var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2, new[] { "GATO" });
 
         Assert.All(juegos, j => Assert.Equal("_ _ _ _", j.PalabraEnmascarada()));
+    }
+
+    [Fact]
+    public void Ronda_empieza_con_el_primer_jugador()
+    {
+        var historial = new Historial();
+        var ronda = new Ronda(new[] { "Ana", "Beto" }, new[] { new Juego("GATO"), new Juego("PERRO") }, historial);
+
+        Assert.Equal("Ana", ronda.JugadorActual);
     }
 }
