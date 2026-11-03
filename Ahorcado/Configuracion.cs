@@ -4,7 +4,7 @@ public class Configuracion
 {
     public Idioma Idioma { get; set; } = Idioma.Espanol;
 
-    public string Categoria { get; set; } = "";
+    public string Categoria { get; set; } = "Aleatoria";
 
     public Dificultad Dificultad { get; set; } = Dificultad.Normal;
 
