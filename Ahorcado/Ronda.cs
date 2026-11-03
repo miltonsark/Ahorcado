@@ -24,6 +24,19 @@ public class Ronda
         var errores = juego.Errores;
         juego.Adivinar(letra);
         if (juego.Terminado || juego.Errores > errores)
-            _turno = (_turno + 1) % _juegos.Count;
+            PasarAlSiguiente();
+    }
+
+    private void PasarAlSiguiente()
+    {
+        for (var i = 1; i <= _juegos.Count; i++)
+        {
+            var siguiente = (_turno + i) % _juegos.Count;
+            if (!_juegos[siguiente].Terminado)
+            {
+                _turno = siguiente;
+                return;
+            }
+        }
     }
 }

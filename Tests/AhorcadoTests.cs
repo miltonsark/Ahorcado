@@ -1008,4 +1008,18 @@ public class AhorcadoTests
 
         Assert.Equal("Beto", ronda.JugadorActual);
     }
+
+    [Fact]
+    public void Ronda_el_turno_saltea_a_quien_ya_termino()
+    {
+        var ronda = new Ronda(new[] { "Ana", "Beto", "Carla" },
+            new[] { new Juego("GATO"), new Juego("PERRO"), new Juego("UVA") }, new Historial());
+
+        foreach (var letra in "GATO")
+            ronda.Adivinar(letra);   // Ana gana, le toca a Beto
+        ronda.Adivinar('Z');         // Beto falla, le toca a Carla
+        ronda.Adivinar('Z');         // Carla falla: Ana ya terminó, le toca a Beto
+
+        Assert.Equal("Beto", ronda.JugadorActual);
+    }
 }
