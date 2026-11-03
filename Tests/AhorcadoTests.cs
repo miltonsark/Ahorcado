@@ -1120,4 +1120,15 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
     }
+
+    [Fact]
+    public void Las_letras_usadas_quedan_en_orden_y_en_mayuscula()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+        juego.Adivinar('z');
+
+        Assert.Equal(new[] { 'G', 'Z' }, juego.LetrasUsadas);
+    }
 }
