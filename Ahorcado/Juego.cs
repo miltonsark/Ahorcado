@@ -82,7 +82,7 @@ public class Ahorcado
 
         var letra = _palabra.First(l => !_acertadas.Contains(l));
         _acertadas.Add(letra);
-
+        _usadas.Add(letra);
         Errores++;
         _pistaUsada = true;
     }
