@@ -23,7 +23,7 @@ public class Ronda
         var juego = JuegoActual;
         var errores = juego.Errores;
         juego.Adivinar(letra);
-        if (juego.Errores > errores)
+        if (juego.Terminado || juego.Errores > errores)
             _turno = (_turno + 1) % _juegos.Count;
     }
 }
