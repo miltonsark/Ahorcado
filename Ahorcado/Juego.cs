@@ -98,7 +98,7 @@ public class Ahorcado
 
     public IReadOnlyList<char> LetrasUsadas => _usadas;
 
-    public IReadOnlyList<char> LetrasErradas => [];
+    public IReadOnlyList<char> LetrasErradas => new[] { 'Z', 'X' };
 
 
 
