@@ -1110,4 +1110,14 @@ public class AhorcadoTests
 
         Assert.Equal(0, juego.Puntaje);
     }
+
+    [Fact]
+    public void Al_adivinar_la_letra_queda_entre_las_usadas()
+    {
+        var juego = new Juego("GATO");
+
+        juego.Adivinar('G');
+
+        Assert.Equal(new[] { 'G' }, juego.LetrasUsadas);
+    }
 }

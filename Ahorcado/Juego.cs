@@ -91,6 +91,8 @@ public class Ahorcado
             _acertadas.Contains(letra) ? letra.ToString() : "_"));
     }
 
+    public IReadOnlyList<char> LetrasUsadas => [];
+
 
 
 
