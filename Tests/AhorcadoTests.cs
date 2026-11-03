@@ -882,4 +882,13 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { "GATO", "PERRO" }, selector.ElegirDistintas("Animales", Idioma.Espanol, 2));
     }
+    [Fact]
+    public void Selector_elige_tres_palabras_distintas_de_Frutas()
+    {
+        var selector = new SelectorDePalabras(_ => 0);
+
+        Assert.Equal(
+            new[] { "MANZANA", "BANANA", "PERA" },
+            selector.ElegirDistintas("Frutas", Idioma.Espanol, 3));
+    }
 }
