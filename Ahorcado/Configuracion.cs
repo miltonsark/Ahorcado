@@ -43,4 +43,6 @@ public class Configuracion
             juego.EstablecerLimite(Tiempo);
         return juego;
     }
+
+
 }

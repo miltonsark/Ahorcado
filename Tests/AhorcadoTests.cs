@@ -933,4 +933,14 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { "_ _ _ _", "_ _ _ _ _" }, juegos.Select(j => j.PalabraEnmascarada()));
     }
+
+    [Fact]
+    public void Configuracion_una_sola_palabra_fija_se_usa_para_todos()
+    {
+        var config = new Configuracion { Categoria = "Animales" };
+
+        var juegos = config.CrearPartidas(new SelectorDePalabras(_ => 0), 2, new[] { "GATO" });
+
+        Assert.All(juegos, j => Assert.Equal("_ _ _ _", j.PalabraEnmascarada()));
+    }
 }
