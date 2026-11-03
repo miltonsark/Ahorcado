@@ -7,6 +7,7 @@ namespace Ahorcado;
 public class Ahorcado
 {
     private readonly string _palabra;
+    private readonly List<char> _usadas = new();
     private readonly HashSet<char> _acertadas = new HashSet<char>();
     private readonly HashSet<char> _erradas = new HashSet<char>();
     private readonly int _maxErrores = 6;
@@ -66,6 +67,9 @@ public class Ahorcado
         if (_acertadas.Contains(letra) || _erradas.Contains(letra))
             Mensaje = $"La letra {letra} ya fue usada";
 
+        if (!_usadas.Contains(letra))
+            _usadas.Add(letra);
+
         if (_palabra.Contains(letra))
             _acertadas.Add(letra);
         else if (_erradas.Add(letra))
@@ -91,7 +95,7 @@ public class Ahorcado
             _acertadas.Contains(letra) ? letra.ToString() : "_"));
     }
 
-    public IReadOnlyList<char> LetrasUsadas => new[] { 'G' };
+    public IReadOnlyList<char> LetrasUsadas => _usadas;
 
 
 
