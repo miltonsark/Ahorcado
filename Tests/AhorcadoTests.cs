@@ -1172,4 +1172,10 @@ public class AhorcadoTests
 
         Assert.Equal(new[] { 'Q' }, juego.LetrasErradas);
     }
+
+    [Fact]
+    public void Traducir_LetrasUsadas_AlIngles()
+    {
+        Assert.Equal("Used letters", new Traductor(Idioma.Ingles).Traducir("Letras usadas"));
+    }
 }
