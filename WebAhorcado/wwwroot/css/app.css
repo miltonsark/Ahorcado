@@ -506,8 +506,10 @@ input::placeholder {
 }
 
 @media (max-width: 600px) {
-    .inicio h1 {
-        font-size: 64px;
+    .inicio {
+        min-height: auto;
+        padding-top: 32px;
+        gap: 28px;
     }
 
     .palabra {
@@ -541,5 +543,13 @@ input::placeholder {
 
     .chip {
         font-size: 14px;
+    }
+
+    .secciones {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjeta {
+        padding: 16px;
     }
 }
