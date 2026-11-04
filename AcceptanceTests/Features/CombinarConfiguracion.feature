@@ -12,7 +12,7 @@ Escenario: Siguiente partida arranca con la configuración elegida
     Y guardo la configuración
     Y elijo "Iniciar partida"
     Y paso a la siguiente partida
-    Y ingreso la letra "Z"
+    Y ingreso la letra "K"
     Y ingreso la letra "X"
     Y ingreso la letra "Q"
     Y ingreso la letra "W"

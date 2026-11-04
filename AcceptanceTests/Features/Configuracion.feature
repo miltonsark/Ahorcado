@@ -19,7 +19,7 @@ Escenario: La dificultad guardada se usa al iniciar la partida
     Cuando elijo la dificultad "Difícil"
     Y guardo la configuración
     Y elijo "Iniciar partida"
-    Y ingreso la letra "Z"
+    Y ingreso la letra "K"
     Y ingreso la letra "X"
     Y ingreso la letra "Q"
     Y ingreso la letra "W"
