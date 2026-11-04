@@ -60,7 +60,7 @@
             <ul data-testid="letras-usadas" class="letras-usadas" aria-label="@T("Letras usadas")">
                 @foreach (var letra in juego?.LetrasUsadas ?? Array.Empty<char>())
                 {
-                    <li>@letra</li>
+                    <li class="@((juego?.LetrasErradas.Contains(letra) ?? false) ? "errada" : "acertada")">@letra</li>
                 }
             </ul>
 
