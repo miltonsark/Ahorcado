@@ -19,3 +19,16 @@ Escenario: Las letras que no están en la palabra se marcan como erradas
     Cuando ingreso la letra "A"
     Y ingreso la letra "Z"
     Entonces la letra usada "Z" está marcada como errada
+
+@CA-4
+Escenario: En multijugador cada jugador ve sus propias letras
+    Dado que navego a la configuración
+    Cuando ingreso el jugador 1 "Ana"
+    Y ingreso el jugador 2 "Beto"
+    Y guardo la configuración
+    Y inicio la partida con las palabras "GATO, PERRO"
+    Y ingreso la letra "A"
+    Y ingreso la letra "Z"
+    Y ingreso la letra "E"
+    Entonces veo el jugador "Beto"
+    Y veo las letras usadas "E"
