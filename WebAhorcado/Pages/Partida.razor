@@ -57,7 +57,12 @@
             </div>
 
             <p data-testid="mensaje" class="mensaje">@T(juego?.Mensaje ?? "")</p>
-            <ul data-testid="letras-usadas" class="letras-usadas" aria-label="@T("Letras usadas")"></ul>
+            <ul data-testid="letras-usadas" class="letras-usadas" aria-label="@T("Letras usadas")">
+                @foreach (var letra in juego?.LetrasUsadas ?? Array.Empty<char>())
+                {
+                    <li>@letra</li>
+                }
+            </ul>
 
             <div class="marcadores">
                 <p class="marcador">@T("Errores") <span data-testid="errores">@juego?.Errores</span></p>
