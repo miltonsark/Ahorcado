@@ -41,7 +41,7 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 56px;
+    font-size: clamp(40px, 9vw, 56px);
     line-height: 1;
 }
 
@@ -108,8 +108,8 @@ h1:focus {
 
 /* Dibujo del ahorcado y skins */
 .ahorcado {
-    width: 260px;
-    height: 325px;
+    width: min(260px, 70vw);
+    height: auto;
     max-width: 100%;
     border-radius: 16px;
 }
@@ -296,7 +296,7 @@ input::placeholder {
 }
 
 .inicio h1 {
-    font-size: 96px;
+    font-size: clamp(56px, 16vw, 96px);
     letter-spacing: 6px;
 }
 
@@ -380,12 +380,12 @@ input::placeholder {
 .palabra {
     margin: 0;
     font-family: "Patrick Hand", cursive;
-    font-size: 64px;
+    font-size: clamp(32px, 9vw, 64px);
     line-height: 1.1;
-    letter-spacing: 14px;
+    letter-spacing: clamp(4px, 2vw, 14px);
     word-break: break-all;
 }
-
+.ah
 .jugada {
     display: flex;
     gap: 12px;
@@ -506,8 +506,10 @@ input::placeholder {
 }
 
 @media (max-width: 600px) {
-    .inicio h1 {
-        font-size: 64px;
+    .inicio {
+        min-height: auto;
+        padding-top: 32px;
+        gap: 28px;
     }
 
     .palabra {
@@ -517,5 +519,37 @@ input::placeholder {
 
     .jugadores {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .juego {
+        gap: 16px;
+    }
+
+    .jugada .btn {
+        flex: 1 1 120px;
+    }
+
+    .marcador {
+        padding: 8px 10px;
+    }
+    .marcador span {
+        font-size: 28px;
+        overflow-wrap: anywhere;
+    }
+
+    .acciones .btn {
+        flex: 1 1 100%;
+    }
+
+    .chip {
+        font-size: 14px;
+    }
+
+    .secciones {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjeta {
+        padding: 16px;
     }
 }
