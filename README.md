@@ -8,6 +8,10 @@ La aplicación web está desarrollada con **Blazor WebAssembly** y publicada en 
 
 **[Jugar al Ahorcado](https://miltonsark.github.io/Ahorcado/)**
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=miltonsark_Ahorcado&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=miltonsark_Ahorcado)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=miltonsark_Ahorcado&metric=coverage)](https://sonarcloud.io/summary/new_code?id=miltonsark_Ahorcado)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=miltonsark_Ahorcado&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=miltonsark_Ahorcado)
+
 ## Tecnologías
 
 ### Aplicación
@@ -90,6 +94,19 @@ El job `build-test` corre en Ubuntu y realiza, en orden, estos pasos:
 8. Sube los resultados TRX y los archivos de cobertura como artefactos, incluso si fallan las pruebas.
 
 Tanto los `push` como los pull requests ejecutan estas validaciones. El despliegue no se realiza desde un pull request.
+
+### Análisis estático de código (SonarQube Cloud)
+
+El job `analisis-estatico` corre en paralelo a `build-test` y envía el código a [SonarQube Cloud](https://sonarcloud.io/summary/new_code?id=miltonsark_Ahorcado):
+
+1. Descarga el código con el historial completo, para que Sonar distinga el código nuevo.
+2. Configura .NET y Java (el scanner necesita Java 17).
+3. Inicia el análisis con `dotnet sonarscanner begin`, compila la solución y corre las pruebas unitarias con cobertura.
+4. Cierra el análisis con `dotnet sonarscanner end` y sube los resultados.
+
+Sonar informa bugs, vulnerabilidades, *code smells*, código duplicado y la cobertura del dominio (la interfaz web queda fuera de la cobertura, igual que en el mínimo del 90 %). El resultado se ve en el panel del proyecto y en los badges de arriba, y en cada pull request Sonar comenta si se cumple el *quality gate*.
+
+Este job no bloquea el despliegue: es informativo.
 
 ### Despliegue continuo (CD)
 

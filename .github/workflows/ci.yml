@@ -63,6 +63,66 @@ jobs:
             TestResults/*.trx
             TestResults/coverage/
 
+  # Analisis estatico con SonarQube Cloud (sonarcloud.io): bugs, code smells,
+  # vulnerabilidades, duplicacion y cobertura. El reporte queda en el panel web
+  # del proyecto y, en los PR, Sonar comenta el resultado del quality gate.
+  # Corre en paralelo a build-test y no bloquea el deploy.
+  analisis-estatico:
+    runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      # Historial completo: Sonar lo usa para saber que codigo es nuevo
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      # El scanner de Sonar necesita Java 17 o superior
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Instalar SonarScanner
+        run: dotnet tool install --global dotnet-sonarscanner
+
+      # "begin" va antes del build: Sonar analiza el codigo mientras se compila.
+      # La cobertura se toma de los unit tests y solo cuenta el dominio,
+      # igual que el minimo del 90% del job build-test.
+      - name: Iniciar analisis
+        run: >
+          dotnet sonarscanner begin
+          /k:"miltonsark_Ahorcado"
+          /o:"miltonsark"
+          /d:sonar.host.url="https://sonarcloud.io"
+          /d:sonar.token="$SONAR_TOKEN"
+          /d:sonar.cs.opencover.reportsPaths="TestResults/coverage/coverage.opencover.xml"
+          /d:sonar.cs.vstest.reportsPaths="TestResults/*.trx"
+          /d:sonar.coverage.exclusions="WebAhorcado/**"
+
+      - name: Build
+        run: dotnet build Ahorcado.slnx
+
+      - name: Unit tests + coverage
+        run: >
+          dotnet test Tests --no-build
+          --logger "trx;LogFileName=unit-tests.trx" --results-directory TestResults
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          /p:CoverletOutput=../TestResults/coverage/
+          /p:Include="[Ahorcado]*"
+
+      - name: Enviar analisis a SonarQube Cloud
+        run: dotnet sonarscanner end /d:sonar.token="$SONAR_TOKEN"
+
   # Publica la web en GitHub Pages solo si pasaron todos los tests
   # y solo con push a master (al mergear un PR)
   deploy:
