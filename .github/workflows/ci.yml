@@ -32,10 +32,13 @@ jobs:
         run: dotnet build Ahorcado.slnx --no-restore
 
       # Unit tests + coverage del dominio (proyecto Ahorcado). Falla si baja del 90%.
+      # El logger GitHubActions arma un resumen con los tests que fallaron y marca
+      # cada fallo en la linea del test (se ve en el run y en "Files changed" del PR).
       - name: Unit tests + coverage (minimo 90%)
         run: >
           dotnet test Tests --no-build
           --logger "trx;LogFileName=unit-tests.trx" --results-directory TestResults
+          --logger "GitHubActions;summary-include-passed=false"
           /p:CollectCoverage=true
           /p:CoverletOutputFormat=opencover
           /p:CoverletOutput=../TestResults/coverage/
@@ -48,7 +51,7 @@ jobs:
 
       # El hook (Support/Hook.cs) levanta WebAhorcado antes de correr los escenarios
       - name: Acceptance tests
-        run: dotnet test AcceptanceTests --no-build --logger "trx;LogFileName=acceptance-tests.trx" --results-directory TestResults
+        run: dotnet test AcceptanceTests --no-build --logger "trx;LogFileName=acceptance-tests.trx" --logger "GitHubActions;summary-include-passed=false" --results-directory TestResults
 
       # Sube resultados y coverage aunque fallen los tests
       - name: Publicar resultados
