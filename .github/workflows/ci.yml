@@ -5,6 +5,9 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  # Permite correr el workflow a mano desde la pestania Actions (por ejemplo,
+  # para reintentar un deploy que fallo por un problema temporal de GitHub)
+  workflow_dispatch:
 
 # Cancela ejecuciones viejas del mismo branch/PR
 concurrency:
@@ -124,10 +127,10 @@ jobs:
         run: dotnet sonarscanner end /d:sonar.token="$SONAR_TOKEN"
 
   # Publica la web en GitHub Pages solo si pasaron todos los tests
-  # y solo con push a master (al mergear un PR)
+  # y solo en master: con push (al mergear un PR) o al correrlo a mano
   deploy:
     needs: build-test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       contents: read
