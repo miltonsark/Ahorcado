@@ -8,7 +8,7 @@ Característica: Ingresar a la página
 @CA-1
 Escenario: El jugador ingresa a la página
     Dado que navego a la página principal
-    Entonces veo el título "Ahorcado"
+    Entonces veo el título "Hangman"
 
 @CA-2
 Escenario: Sin palabra en la URL arranca con una categoría al azar
